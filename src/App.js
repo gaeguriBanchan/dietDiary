@@ -6,7 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/Login";
-import Nav from "./components/common/Nav";
 import Today from "./pages/Today";
 import Drink from "./pages/Drink";
 import DailyMenu from "./pages/DailyMenu";
