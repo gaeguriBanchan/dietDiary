@@ -5,11 +5,11 @@ import { Sidebar } from "../components/common/Sidebar";
 
 const Drink = () => {
   return (
-    <div className="container">
-      <div className="w-screen">
-        <div className="w-7/12 bg-slate-300 m-auto flex">
+    <div className="container  w-full h-full">
+      <div className="w-full h-full">
+        <div className="w-full bg-slate-300 m-auto flex">
           <Sidebar></Sidebar>
-          <div className="ml-8">
+          <div className="w-[1080px] h-full m-8">
             <div className="drinking bg-white mb-8 pt-2 pl-2 border rounded-2xl">
               음수량
               <Piechart />

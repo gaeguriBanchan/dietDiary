@@ -12,7 +12,7 @@ export const Sidebar = () => {
     
   }
   return (
-    <div className="w-2/12 h-screen bg-main rounded-3xl">
+    <div className="w-[200px] h-screen bg-main rounded-3xl">
       <div className="flex h-full justify-center text-center">
         <div className="grid h-3/5  items-center justify-center align-middle text-center">
           <Link className="self-center" to="/today">
