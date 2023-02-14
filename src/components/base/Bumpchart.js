@@ -8,7 +8,7 @@ const Bumpchart = () => {
       data: [
         {
           x: "월",
-          y: 1500,
+          y: 1600,
         },
         {
           x: "화",
@@ -43,7 +43,7 @@ const Bumpchart = () => {
     // no chart will be rendered.
     // website examples showcase many properties,
     // you'll often use just a few of them.
-    <div style={{ width: "800px", height: "300px", margin: "0 auto" }}>
+    <div className="" style={{ width: "800px", height: "300px", margin: "0 auto" }}>
       <ResponsiveBump
         data={data}
         colors={"#81CFD1"}
