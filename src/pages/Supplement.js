@@ -7,7 +7,10 @@ const Supplement = () => {
       <div className="w-screen">
         <div className="w-7/12 bg-slate-300 m-auto flex">
           <Sidebar></Sidebar>
-          <div className="">Supplement</div>
+          <div className="">
+            Supplement
+
+          </div>
         </div>
       </div>
     </div>
