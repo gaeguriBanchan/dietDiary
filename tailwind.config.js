@@ -4,35 +4,38 @@
  */
 
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ['./src/**/*.{html,js}'],
   theme: {
     extend: {
+      backgroundImage: {
+        food: 'src/assets/images/icon/icon_b_food.png',
+      },
       colors: {
-        main: "#81CFD1",
-        second: "#BDD1D4",
-        textGray: "#6D9399",
-        textBlack: "#0C3547",
-        textRed: "#D76A6A",
-        textYellow: "#FFE194",
-        textAsh: "#D9D9D9",
+        main: '#81CFD1',
+        second: '#BDD1D4',
+        textGray: '#6D9399',
+        textBlack: '#0C3547',
+        textRed: '#D76A6A',
+        textYellow: '#FFE194',
+        textAsh: '#D9D9D9',
       },
       fontFamily: {
-        NanumSquareNeo: ["NanumSquareNeo-Variable"],
+        NanumSquareNeo: ['NanumSquareNeo-Variable'],
 
-        MuseoModerno: ["MuseoModerno", "cursive"],
+        MuseoModerno: ['MuseoModerno', 'cursive'],
       },
     },
     fontSize: {
-      "2xs": "8px",
-      xs: "12px",
-      sm: "14",
-      m: "16px",
-      lg: "18px",
-      xl: "20px",
-      "2xl": "28px",
-      "3xl": "30px",
-      "4xl": "35px",
-      "5xl": "40px",
+      '2xs': '8px',
+      xs: '12px',
+      sm: '14',
+      m: '16px',
+      lg: '18px',
+      xl: '20px',
+      '2xl': '28px',
+      '3xl': '30px',
+      '4xl': '35px',
+      '5xl': '40px',
     },
   },
   plugins: [],

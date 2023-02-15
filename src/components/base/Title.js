@@ -2,7 +2,7 @@ import React from 'react'
 
 const Title = ({name}) => {
   return (
-    <div>{name}</div>
+    <div className='text-main text-m '>{name}</div>
   )
 }
 
