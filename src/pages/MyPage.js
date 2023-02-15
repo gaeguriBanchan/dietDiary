@@ -1,7 +1,13 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import Title from "../components/base/Title";
+// import Title from "../components/base/Title";
 import { Sidebar } from "../components/common/Sidebar";
+import InfoChange from "../components/main/myPage/InfoChange";
+import MyPageMain from "../components/main/myPage/MyPageMain";
+// import Goal from "../components/sub/myPage/Goal";
+// import MyPageFrofile from "../components/sub/myPage/MyPageFrofile";
+// import Weight from "../components/sub/myPage/Weight";
+// import WeightGraph from "../components/sub/myPage/WeightGraph";
 
 const MyPage = () => {
   return (
@@ -11,9 +17,9 @@ const MyPage = () => {
       </Helmet>
       <div className="w-full h-full flex">
         <Sidebar></Sidebar>
-        <div className="w-[1080px] m-8 h-full self-start bg-slate-600">
-          <div className="h-[340px] m-auto mb-[20px] bg-slate-300 text-2xs">asdfasdf</div>
-          <div className="h-[340px] m-auto mb-[20px] bg-slate-300"></div>
+        <div className="w-[1080px] m-8 h-full self-start ">
+          <MyPageMain />
+          {/* <InfoChange/> */}
         </div>
       </div>
     </div>

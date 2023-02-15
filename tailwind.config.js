@@ -10,6 +10,11 @@ module.exports = {
       colors: {
         main: "#81CFD1",
         second: "#BDD1D4",
+        textGray: "#6D9399",
+        textBlack: "#0C3547",
+        textRed: "#D76A6A",
+        textYellow: "#FFE194",
+        textAsh: "#D9D9D9",
       },
       fontFamily: {
         NanumSquareNeo: ["NanumSquareNeo-Variable"],
