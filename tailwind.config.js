@@ -7,9 +7,6 @@ module.exports = {
   content: ['./src/**/*.{html,js}'],
   theme: {
     extend: {
-      backgroundImage: {
-        food: 'src/assets/images/icon/icon_b_food.png',
-      },
       colors: {
         main: '#81CFD1',
         second: '#BDD1D4',
@@ -37,6 +34,11 @@ module.exports = {
       '4xl': '35px',
       '5xl': '40px',
     },
+    backgroundImage: {
+      addfood: 'url(/src/assets/images/icon/add_food.png)',
+      food: 'url(/src/assets/images/icon/icon_b_food.png)',
+    },
   },
   plugins: [],
 };
+
