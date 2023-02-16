@@ -7,7 +7,7 @@ const WaterDrop = () => {
     // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
     <div
       className=""
-      style={{ width: "800px", height: "300px", margin: "0 auto" }}
+      style={{ width: "500px", height: "300px", margin: "0 auto" }}
     >
       <div className="btn">
         <button className="">

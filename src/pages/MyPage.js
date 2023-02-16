@@ -17,9 +17,9 @@ const MyPage = () => {
       </Helmet>
       <div className="w-full h-full flex">
         <Sidebar></Sidebar>
-        <div className="w-[1080px] m-8 h-full self-start ">
+        <div className="w-[1080px] ml-8 h-full self-start ">
           {/* <MyPageMain /> */}
-          <InfoChange/>
+          <InfoChange />
         </div>
       </div>
     </div>
