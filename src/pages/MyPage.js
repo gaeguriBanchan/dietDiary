@@ -18,8 +18,8 @@ const MyPage = () => {
       <div className="w-full h-full flex">
         <Sidebar></Sidebar>
         <div className="w-[1080px] m-8 h-full self-start ">
-          <MyPageMain />
-          {/* <InfoChange/> */}
+          {/* <MyPageMain /> */}
+          <InfoChange/>
         </div>
       </div>
     </div>
