@@ -10,7 +10,7 @@ import me from "../../assets/images/man.png";
 export const Sidebar = () => {
   const hover = {};
   return (
-    <div className="w-[200px] h-screen bg-main rounded-3xl">
+    <div className="w-[200px] h-[800px] bg-main rounded-3xl">
       <div className="flex h-full justify-center text-center">
         <div className="grid h-3/5  items-center justify-center align-middle text-center">
           <Link className="self-center" to="/today">

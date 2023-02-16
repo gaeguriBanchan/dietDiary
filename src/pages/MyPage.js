@@ -11,18 +11,18 @@ import MyPageMain from "../components/main/myPage/MyPageMain";
 
 const MyPage = () => {
   return (
-    <div className="container w-full h-full">
+    <>
       <Helmet>
         <title>마이페이지</title>
       </Helmet>
-      <div className="w-full h-full flex">
+      <div className="container w-full h-full flex m-auto">
         <Sidebar></Sidebar>
-        <div className="w-[1080px] m-8 h-full self-start ">
+        <div className="w-full ml-8 h-full self-start drop-shadow-md">
           {/* <MyPageMain /> */}
-          <InfoChange/>
+          <InfoChange />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
