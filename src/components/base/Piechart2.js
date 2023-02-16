@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ResponsivePie } from "@nivo/pie";
 
-const Piechart = () => {
+const Piechart2 = () => {
   const handle = {
     padClick: (data) => {
       console.log(data);
@@ -14,23 +14,23 @@ const Piechart = () => {
 
   return (
     // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
-    <div style={{ width: "800px", height: "500px", margin: "0 auto" }}>
+    <div style={{ width: "300px", height: "300px" }}>
       <ResponsivePie
         /**
          * chart에 사용될 데이터
          */
         data={[
-          { id: "water", value: 324 },
-          { id: "empty", value: 88 },
+          { id: "water", value: 25 },
+          { id: "none", value: 75 },
         ]}
         /**
          * chart margin
          */
-        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+        margin={{ top: 40, right: 60, bottom: 40, left: 0 }}
         /**
          * chart 중간 빈공간 반지름
          */
-        innerRadius={0.5}
+        innerRadius={0.7}
         /**
          * pad 간격
          */
@@ -55,7 +55,7 @@ const Piechart = () => {
         /**
          * link label 색상
          */
-        arcLinkLabelsTextColor="#000000"
+        arcLinkLabelsTextColor="none"
         /**
          * link label 연결되는 선 두께
          */
@@ -74,17 +74,8 @@ const Piechart = () => {
            */
           labels: {
             text: {
-              fontSize: 14,
-              fill: "#ffffff",
-            },
-          },
-          /**
-           * legend style (default로 하단에 있는 색상별 key 표시)
-           */
-          legends: {
-            text: {
-              fontSize: 12,
-              fill: "#000000",
+              fontSize: 0,
+              fill: "none",
             },
           },
         }}
@@ -95,35 +86,9 @@ const Piechart = () => {
         /**
          * legend 설정 (default로 하단에 있는 색상별 key 표시)
          */
-        legends={[
-          {
-            anchor: "bottom", // 위치
-            direction: "row", // item 그려지는 방향
-            justify: false, // 글씨, 색상간 간격 justify 적용 여부
-            translateX: 0, // chart와 X 간격
-            translateY: 56, // chart와 Y 간격
-            itemsSpacing: 0, // item간 간격
-            itemWidth: 100, // item width
-            itemHeight: 18, // item height
-            itemDirection: "left-to-right", // item 내부에 그려지는 방향
-            itemOpacity: 1, // item opacity
-            symbolSize: 18, // symbol (색상 표기) 크기
-            symbolShape: "circle", // symbol (색상 표기) 모양
-            effects: [
-              {
-                // 추가 효과 설정 (hover하면 textColor를 olive로 변경)
-                on: "hover",
-                style: {
-                  itemTextColor: "olive",
-                },
-              },
-            ],
-            onClick: handle.legendClick, // legend 클릭 이벤트
-          },
-        ]}
       />
     </div>
   );
 };
 
-export default Piechart;
+export default Piechart2;
