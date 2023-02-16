@@ -8,9 +8,7 @@ import drug from "../../assets/images/drug.png";
 import me from "../../assets/images/man.png";
 
 export const Sidebar = () => {
-  const hover = {
-    
-  }
+  const hover = {};
   return (
     <div className="w-[200px] h-screen bg-main rounded-3xl">
       <div className="flex h-full justify-center text-center">
@@ -22,7 +20,11 @@ export const Sidebar = () => {
             to="/dailyMenu"
             className="flex justify-center items-center px-10 text-white h-7 rounded-xl hover:bg-white hover:text-main"
           >
-            <img src={food} alt="" className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"/>
+            <img
+              src={food}
+              alt=""
+              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"
+            />
             <p className="ml-2 text-xl">밥</p>
           </Link>
           <Link
@@ -44,7 +46,9 @@ export const Sidebar = () => {
             나
           </Link>
         </div>
-        <p className="text-white absolute bottom-10">나의 식단일지</p>
+        <p className="text-white absolute bottom-10 font-NanumSquareNeo">
+          나의 식단일지
+        </p>
       </div>
     </div>
   );
