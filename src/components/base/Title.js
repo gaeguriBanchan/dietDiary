@@ -1,9 +1,9 @@
-import React from 'react'
+/** @format */
 
-const Title = ({name}) => {
-  return (
-    <div>{name}</div>
-  )
-}
+import React from 'react';
 
-export default Title
+const Title = ({ name }) => {
+  return <span className="text-main text-xl">{name}</span>;
+};
+
+export default Title;
