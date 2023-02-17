@@ -1,7 +1,3 @@
-/** @format */
-
-import React from 'react';
-
 import Title from '../components/base/Title';
 import { Sidebar } from '../components/common/Sidebar';
 import food from '../assets/images/icon/icon_b_food.png';
@@ -13,6 +9,7 @@ import FoodCard from '../components/dailymenu/FoodCard';
 import { useEffect } from 'react';
 import MyCalendar from '../components/base/MyCalendar';
 import dumyData from '../components/dailymenu/dumyData.json';
+
 
 const DailyMenu = () => {
   const [chBt, setchBt] = useState({
@@ -112,7 +109,11 @@ const DailyMenu = () => {
                 </div>
               </div>
             </div>
+            <button>
+              <img src={calender} alt="food" />
+            </button>
           </div>
+          <div className="bg-addfood bg-no-repeat bg-contain w-[190px] h-[290px]" />
         </div>
       </div>
     </>
