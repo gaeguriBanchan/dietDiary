@@ -5,7 +5,9 @@ import Piechart2 from "../components/base/Piechart2";
 import { Sidebar } from "../components/common/Sidebar";
 import Barchart from "../components/base/Barchart";
 import { Helmet } from "react-helmet";
-
+import Title from "../components/base/Title";
+import water from "../assets/images/icon/icon_b_water.png";
+import calender from "../assets/images/icon/icon_calendar.png";
 const Drink = () => {
   return (
     <>
@@ -14,11 +16,23 @@ const Drink = () => {
       </Helmet>
       <div className="container m-auto flex w-full h-full">
         <Sidebar></Sidebar>
-        <div className="w-full h-full ml-8">
+        <div className="w-full h-full ml-8 drop-shadow-md ">
           <div className="drinking bg-white mb-8 p-8 border rounded-2xl ">
-            <p className="text-xl text-main font-NanumSquareNeo font-bold">
-              음수량
-            </p>
+            <div className="flex justify-between mb-8">
+              <div className="flex">
+                <img
+                  src={water}
+                  alt="water"
+                  className="w-[20px] h-[20px] self-center mr-3"
+                />
+                <Title name={"물"} />
+              </div>
+              <button>
+                {" "}
+                <img src={calender} alt="water" />
+              </button>
+            </div>
+
             <WaterDrop />
           </div>
           <div className="weekWater bg-white mb-8 p-8 border rounded-2xl ">
@@ -27,13 +41,13 @@ const Drink = () => {
             </p>
             <Linechart />
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between ">
             <div className="goalWater bg-white mb-8 border rounded-2xl h-1/4">
-              <p className="text-xl text-main font-NanumSquareNeo">
+              <p className="text-xl text-main font-NanumSquareNeo p-8">
                 목표 음수량
               </p>
               <p
-                className="absolute font-MuseoModerno text-5xl font-medium w-100"
+                className="absolute font-MuseoModerno text-5xl font-medium w-[300px] translate-x-32 translate-y-24"
                 style={{
                   color: "#46A7AE",
                 }}
@@ -44,7 +58,7 @@ const Drink = () => {
                 </span>
               </p>
               <span
-                className="absolute font-MuseoModerno text-m font-medium"
+                className="absolute font-MuseoModerno text-m font-medium translate-x-[103px] translate-y-40"
                 style={{ color: "#6D9399" }}
               >
                 8
@@ -53,27 +67,32 @@ const Drink = () => {
                 </span>
               </span>
               <Piechart2 />
-              <p className="font-NanumSquareNeo text-center">
+              <p className="font-NanumSquareNeo text-center pb-5">
                 목표 음수량{" "}
                 <span className="ml-12 text-2xl font-NanumSquareNeo">
                   1600ml
                 </span>
               </p>
             </div>
-            <div className="goalGraph bg-white mb-8 border rounded-2xl">
-              <p className="text-xl text-main font-NanumSquareNeo font-bold">
+            <div className="goalGraph bg-white mb-8 border rounded-2xl ">
+              <p className="text-xl text-main font-NanumSquareNeo font-bold p-8">
                 목표 달성 그래프
               </p>
+
               <h4
-                className="text-[65px] font-medium font-MuseoModerno flex justify-end mr-16 "
+                className="flex text-[65px] font-medium font-MuseoModerno justify-around"
                 style={{ color: "#46A7AE" }}
               >
-                <p className="text-main font-NanumSquareNeo text-xl pt-16 mr-60">
-                  <span className="font-bold text-[18px] mr-3">달성일</span> 282
-                  / 364
+                <p className=" text-main font-NanumSquareNeo text-xl pt-14 pr-5">
+                  <span className="font-bold text-[18px] mr-3">달성일</span>{" "}
+                  <span className="font-MuseoModerno text-lg font-medium">
+                    282 <span style={{ color: "#D9D9D9" }}>/</span> 364
+                  </span>
                 </p>
-                <span className="font-normal font-MuseoModerno">82</span>
-                <span className="text-5xl font-bold pt-7">%</span>
+                <span className="font-normal font-MuseoModerno">
+                  82 <span className="text-5xl font-bold pt-7">%</span>
+                </span>
+
               </h4>
               <Barchart />
             </div>
@@ -83,5 +102,4 @@ const Drink = () => {
     </>
   );
 };
-
 export default Drink;

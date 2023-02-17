@@ -29,24 +29,39 @@ export const Sidebar = () => {
           </Link>
           <Link
             to="/drink"
-            className="text-white h-7 rounded-xl hover:bg-white hover:text-main"
+            className="flex justify-center items-center px-10 text-white h-7 rounded-xl hover:bg-white hover:text-main"
           >
-            물
+            <img
+              src={water}
+              alt=""
+              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"
+            />
+            <p className="ml-2 text-xl">물</p>
           </Link>
           <Link
             to="/supplement"
-            className="text-white h-7 rounded-xl hover:bg-white hover:text-main"
+            className="flex justify-center items-center px-10 text-white h-7 rounded-xl hover:bg-white hover:text-main"
           >
-            약
+            <img
+              src={drug}
+              alt=""
+              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"
+            />
+            <p className="ml-2 text-xl">약</p>
           </Link>
           <Link
             to="/mypage"
-            className="text-white h-7 rounded-xl hover:bg-white hover:text-main px-4"
+            className="flex justify-center items-center px-10 text-white h-7 rounded-xl hover:bg-white hover:text-main "
           >
-            나
+            <img
+              src={me}
+              alt=""
+              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"
+            />
+            <p className="ml-2 text-xl">나</p>
           </Link>
         </div>
-        <p className="text-white absolute bottom-10 font-NanumSquareNeo">
+        <p className="text-white absolute top-[750px] font-NanumSquareNeo">
           나의 식단일지
         </p>
       </div>

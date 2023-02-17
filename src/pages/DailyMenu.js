@@ -8,6 +8,7 @@ import calender from "../assets/images/icon/icon_calendar.png";
 import diet from "../assets/images/icon/icon_diet.png";
 import addFood from "../assets/images/icon/add_food.png";
 import { useState } from "react";
+
 import { Helmet } from "react-helmet";
 
 const DailyMenu = () => {

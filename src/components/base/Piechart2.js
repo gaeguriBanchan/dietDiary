@@ -26,7 +26,7 @@ const Piechart2 = () => {
         /**
          * chart margin
          */
-        margin={{ top: 40, right: 60, bottom: 40, left: 0 }}
+        margin={{ top: 40, right: 30, bottom: 40, left: 30 }}
         /**
          * chart 중간 빈공간 반지름
          */
