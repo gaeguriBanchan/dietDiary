@@ -1,20 +1,19 @@
-import Title from '../components/base/Title';
-import { Sidebar } from '../components/common/Sidebar';
-import food from '../assets/images/icon/icon_b_food.png';
-import calender from '../assets/images/icon/icon_calendar.png';
-import diet from '../assets/images/icon/icon_diet.png';
-import { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import FoodCard from '../components/dailymenu/FoodCard';
-import { useEffect } from 'react';
-import MyCalendar from '../components/base/MyCalendar';
-import dumyData from '../components/dailymenu/dumyData.json';
-
+import Title from "../components/base/Title";
+import { Sidebar } from "../components/common/Sidebar";
+import food from "../assets/images/icon/icon_b_food.png";
+import calender from "../assets/images/icon/icon_calendar.png";
+import diet from "../assets/images/icon/icon_diet.png";
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import FoodCard from "../components/dailymenu/FoodCard";
+import { useEffect } from "react";
+import MyCalendar from "../components/base/MyCalendar";
+import dumyData from "../components/dailymenu/dumyData.json";
 
 const DailyMenu = () => {
   const [chBt, setchBt] = useState({
     src: calender,
-    alt: 'calender',
+    alt: "calender",
     chBt: true,
   });
 
@@ -24,13 +23,13 @@ const DailyMenu = () => {
       if (chBt.chBt) {
         return {
           src: diet,
-          alt: 'diet',
+          alt: "diet",
           chBt: false,
         };
       } else {
         return {
           src: calender,
-          alt: 'calender',
+          alt: "calender",
           chBt: true,
         };
       }
@@ -47,8 +46,8 @@ const DailyMenu = () => {
       <div className="container w-full h-full m-auto flex">
         <Sidebar></Sidebar>
 
-        <div className="w-full">
-          <div className="ml-8 mb-[20px] pb-[10px] rounded-2xl border bg-white drop-shadow-md">
+        <div className="w-full ml-8">
+          <div className=" mb-[20px] pb-[10px] rounded-2xl border bg-white drop-shadow-md">
             <div className="flex justify-between p-8">
               <div className="flex">
                 <img
@@ -56,7 +55,7 @@ const DailyMenu = () => {
                   alt="food"
                   className="w-[20px] h-[20px] self-center mr-3"
                 />
-                <Title name={'밥'} />
+                <Title name={"밥"} />
               </div>
               <button onClick={changeBtn}>
                 <img src={chBt.src} alt={chBt.alt} />
@@ -76,7 +75,7 @@ const DailyMenu = () => {
               <MyCalendar />
             )}
           </div>
-          <div className="ml-8 mb-[20px] pb-[10px] rounded-2xl border bg-white drop-shadow-md">
+          <div className="mb-[20px] pb-[10px] rounded-2xl border bg-white drop-shadow-md">
             <div className="flex justify-between p-8">
               <div className="flex">
                 <img
@@ -84,7 +83,7 @@ const DailyMenu = () => {
                   alt="food"
                   className="w-[20px] h-[20px] self-center mr-3"
                 />
-                <Title name={'오늘 추천 식단'} />
+                <Title name={"오늘 추천 식단"} />
               </div>
             </div>
             <div className="mx-4">

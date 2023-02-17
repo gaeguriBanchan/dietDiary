@@ -92,7 +92,6 @@ const Drink = () => {
                 <span className="font-normal font-MuseoModerno">
                   82 <span className="text-5xl font-bold pt-7">%</span>
                 </span>
-
               </h4>
               <Barchart />
             </div>
