@@ -5,6 +5,9 @@ import Piechart2 from "../components/base/Piechart2";
 import { Sidebar } from "../components/common/Sidebar";
 import Barchart from "../components/base/Barchart";
 import { Helmet } from "react-helmet";
+import Title from "../components/base/Title";
+import water from "../assets/images/icon/icon_b_water.png";
+import calender from "../assets/images/icon/icon_calendar.png";
 const Drink = () => {
   return (
     <>
@@ -15,9 +18,21 @@ const Drink = () => {
         <Sidebar></Sidebar>
         <div className="w-full h-full ml-8 drop-shadow-md ">
           <div className="drinking bg-white mb-8 p-8 border rounded-2xl ">
-            <p className="text-xl text-main font-NanumSquareNeo font-bold">
-              음수량
-            </p>
+            <div className="flex justify-between mb-8">
+              <div className="flex">
+                <img
+                  src={water}
+                  alt="water"
+                  className="w-[20px] h-[20px] self-center mr-3"
+                />
+                <Title name={"물"} />
+              </div>
+              <button>
+                {" "}
+                <img src={calender} alt="water" />
+              </button>
+            </div>
+
             <WaterDrop />
           </div>
           <div className="weekWater bg-white mb-8 p-8 border rounded-2xl ">
@@ -32,7 +47,7 @@ const Drink = () => {
                 목표 음수량
               </p>
               <p
-                className="absolute font-MuseoModerno text-5xl font-medium w-100"
+                className="absolute font-MuseoModerno text-5xl font-medium w-[300px] translate-x-32 translate-y-24"
                 style={{
                   color: "#46A7AE",
                 }}
@@ -43,7 +58,7 @@ const Drink = () => {
                 </span>
               </p>
               <span
-                className="absolute font-MuseoModerno text-m font-medium"
+                className="absolute font-MuseoModerno text-m font-medium translate-x-[103px] translate-y-40"
                 style={{ color: "#6D9399" }}
               >
                 8
@@ -78,7 +93,6 @@ const Drink = () => {
                   82 <span className="text-5xl font-bold pt-7">%</span>
                 </span>
               </h4>
-
               <Barchart />
             </div>
           </div>
