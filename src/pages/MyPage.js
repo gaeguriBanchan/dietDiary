@@ -18,8 +18,8 @@ const MyPage = () => {
       <div className="container w-full h-full flex m-auto">
         <Sidebar></Sidebar>
         <div className="w-full ml-8 h-full self-start drop-shadow-md">
-          {/* <MyPageMain /> */}
-          <InfoChange />
+          <MyPageMain name='최개똥' age={26} />
+          {/* <InfoChange /> */}
         </div>
       </div>
     </>

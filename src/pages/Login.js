@@ -4,9 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import logo from "../assets/images/icon/logo.png";
 import kakaoLoginBt from "../assets/images/kakao_login/kakao_login_large_wide.png";
-import kakaoIcon from "../assets/images/kakao_login/kakao_icon.png";
-import naverLoginBt from "../assets/images/naver_login/btnG_축약형.png";
-import naverIcon from "../assets/images/naver_login/btnG_아이콘사각.png";
+import naverLoginBt from "../assets/images/naver_login/naver_login_large_wide.png";
 
 const Login = () => {
   // 카카오 로그인 기능
@@ -110,12 +108,8 @@ const Login = () => {
             </p>
             <p className="text-main text-[60px] ">나의 식단일지</p>
             <button onClick={kakaoLogin} className="bg-[#FEE500] w-[600px] h-[90px] rounded-xl my-3 flex text-[26px]">
-              <img className="w-[90px] top-0 left-1" alt="" srcset="" />
-              <p className="m-auto ">카카오 로그인</p>
-              {/* <img src={kakaoLoginBt} alt="" srcset="" /> */}
+              <img className="w-full top-0" src={kakaoLoginBt} alt="" srcset="" />
             </button>
-            {/* 네이버로그인은 반드시 !!! id="naverIdLogin" */}
-            {/* <button id="naverIdLogin">네이버 로그인</button> */}
             <button
               id="naverIdLogin"
               ref={naverRef}
@@ -124,8 +118,7 @@ const Login = () => {
               <img src={naverLoginBt} alt="" srcset="" />
             </button>
             <button className="bg-[#03C75A] w-[600px] h-[90px] rounded-xl my-3 flex text-[26px]" onClick={naverLogin}>
-              <img className="w-[90px] top-0 ml-1" src={naverIcon} alt="" srcset="" />
-              <p className="m-auto text-white">네이버 로그인</p>
+              <img className="w-full top-0" src={naverLoginBt} alt="" srcset="" />
             </button>
           </div>
         </div>
