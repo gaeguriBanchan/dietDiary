@@ -1,44 +1,53 @@
-import Title from '../components/base/Title';
-import { Sidebar } from '../components/common/Sidebar';
-import food from '../assets/images/icon/icon_b_food.png';
-import calender from '../assets/images/icon/icon_calendar.png';
-import diet from '../assets/images/icon/icon_diet.png';
-import { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import FoodCard from '../components/dailymenu/FoodCard';
-import { useEffect } from 'react';
-import MyCalendar from '../components/base/MyCalendar';
-import dumyData from '../components/dailymenu/dumyData.json';
-
+import Title from "../components/base/Title";
+import { Sidebar } from "../components/common/Sidebar";
+import food from "../assets/images/icon/icon_b_food.png";
+import calender from "../assets/images/icon/icon_calendar.png";
+import diet from "../assets/images/icon/icon_diet.png";
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import FoodCard from "../components/dailymenu/FoodCard";
+import { useEffect } from "react";
+import MyCalendar from "../components/base/MyCalendar";
+import dumyData from "../components/dailymenu/dumyData.json";
+import Modal from "../components/dailymenu/Modal";
 
 const DailyMenu = () => {
   const [chBt, setchBt] = useState({
     src: calender,
-    alt: 'calender',
+    alt: "calender",
     chBt: true,
   });
-
   const changeBtn = (e) => {
     e.preventDefault();
     setchBt(() => {
       if (chBt.chBt) {
         return {
           src: diet,
-          alt: 'diet',
+          alt: "diet",
           chBt: false,
         };
       } else {
         return {
           src: calender,
-          alt: 'calender',
+          alt: "calender",
           chBt: true,
         };
       }
     });
     console.log(chBt);
   };
-
   useEffect(() => {}, [chBt]);
+
+  // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
       <Helmet>
@@ -56,7 +65,7 @@ const DailyMenu = () => {
                   alt="food"
                   className="w-[20px] h-[20px] self-center mr-3"
                 />
-                <Title name={'밥'} />
+                <Title name={"밥"} />
               </div>
               <button onClick={changeBtn}>
                 <img src={chBt.src} alt={chBt.alt} />
@@ -79,12 +88,7 @@ const DailyMenu = () => {
           <div className="ml-8 mb-[20px] pb-[10px] rounded-2xl border bg-white drop-shadow-md">
             <div className="flex justify-between p-8">
               <div className="flex">
-                <img
-                  src={food}
-                  alt="food"
-                  className="w-[20px] h-[20px] self-center mr-3"
-                />
-                <Title name={'오늘 추천 식단'} />
+                <Title name={"오늘 추천 식단"} />
               </div>
             </div>
             <div className="mx-4">
@@ -107,13 +111,68 @@ const DailyMenu = () => {
                     <span>156Kcal</span>
                   </p>
                 </div>
+                <div className=" bg-white drop-shadow-md py-4 px-5 rounded-2xl mx-[10px] mb-[20px] ">
+                  <div className="bg-main w-full h-40"></div>
+                  <p className="mt-5 mb-4 text-xl text-main text-center">
+                    아침
+                  </p>
+                  <p className="flex justify-between">
+                    <span>삶은 계란</span>
+                    <span>156Kcal</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span>삶은 계란</span>
+                    <span>156Kcal</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span>삶은 계란</span>
+                    <span>156Kcal</span>
+                  </p>
+                </div>
+                <div className=" bg-white drop-shadow-md py-4 px-5 rounded-2xl mx-[10px] mb-[20px] ">
+                  <div className="bg-main w-full h-40"></div>
+                  <p className="mt-5 mb-4 text-xl text-main text-center">
+                    아침
+                  </p>
+                  <p className="flex justify-between">
+                    <span>삶은 계란</span>
+                    <span>156Kcal</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span>삶은 계란</span>
+                    <span>156Kcal</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span>삶은 계란</span>
+                    <span>156Kcal</span>
+                  </p>
+                </div>
               </div>
             </div>
-            <button>
-              <img src={calender} alt="food" />
-            </button>
           </div>
-          <div className="bg-addfood bg-no-repeat bg-contain w-[190px] h-[290px]" />
+          <div className="ml-8 mb-[20px] rounded-2xl border bg-white drop-shadow-md">
+            <div className="m-8">
+              <table>
+                <tr>
+                  <td></td>
+                  <td>월</td>
+                  <td>화</td>
+                  <td>수</td>
+                  <td>목</td>
+                  <td>금</td>
+                  <td>토</td>
+                  <td>일</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <button onClick={openModal}>모달팝업</button>
+
+          <Modal
+            open={modalOpen}
+            close={closeModal}
+            header="Modal heading"
+          ></Modal>
         </div>
       </div>
     </>
