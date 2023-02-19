@@ -1,19 +1,21 @@
 import React from "react";
+import EditFood from "./FoodModal";
 
 const Modal = (props) => {
-  const { open, close, header } = props;
+  const { open, close } = props;
 
   return (
     <div className={open ? "openModal modal" : "modal"}>
       {open ? (
         <section>
-          <header>
-            {header}
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-          </header>
-          <main>{props.children}</main>
+          <button className="close" onClick={close}>
+            X
+          </button>
+
+          <main>
+            <EditFood />
+            {props.children}
+          </main>
           <footer>
             <button className="close" onClick={close}>
               close
