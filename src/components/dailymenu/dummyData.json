@@ -4,37 +4,37 @@
       "img": "이미지1",
       "title": "그릭요거트1",
       "time": "am:08:31",
-      "kcal": "300kcal"
+      "kcal": "300"
     },
     {
       "img": "이미지2",
       "title": "그릭요거트2",
       "time": "am:09:31",
-      "kcal": "300kcal"
+      "kcal": "300"
     },
     {
       "img": "이미지3",
       "title": "그릭요거트3",
       "time": "am:10:31",
-      "kcal": "300kcal"
+      "kcal": "300"
     },
     {
       "img": "이미지4",
       "title": "그릭요거트4",
       "time": "am:10:31",
-      "kcal": "300kcal"
+      "kcal": "300"
     },
     {
       "img": "이미지5",
       "title": "그릭요거트5",
       "time": "am:11:31",
-      "kcal": "300kcal"
+      "kcal": "300"
     },
     {
       "img": "이미지6",
       "title": "그릭요거트6",
       "time": "pm:12:31",
-      "kcal": "300kcal"
+      "kcal": "300"
     }
   ]
 }
