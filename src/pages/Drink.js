@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Linechart from "../components/base/Linechart";
 import WaterDrop from "../components/base/WaterDrop";
 import Piechart2 from "../components/base/Piechart2";
@@ -8,7 +8,36 @@ import { Helmet } from "react-helmet";
 import Title from "../components/base/Title";
 import water from "../assets/images/icon/icon_b_water.png";
 import calender from "../assets/images/icon/icon_calendar.png";
+import diet from "../assets/images/icon/icon_diet.png";
+import MyCalendar from "../components/base/MyCalendar";
+
 const Drink = () => {
+  const [chBt, setchBt] = useState({
+    src: calender,
+    alt: "calender",
+    chBt: true,
+  });
+
+  const changeBtn = (e) => {
+    e.preventDefault();
+    setchBt(() => {
+      if (chBt.chBt) {
+        return {
+          src: diet,
+          alt: "diet",
+          chBt: false,
+        };
+      } else {
+        return {
+          src: calender,
+          alt: "calender",
+          chBt: true,
+        };
+      }
+    });
+    console.log(chBt);
+  };
+  useEffect(() => {}, [chBt]);
   return (
     <>
       <Helmet>
@@ -27,13 +56,18 @@ const Drink = () => {
                 />
                 <Title name={"물"} />
               </div>
-              <button>
-                {" "}
-                <img src={calender} alt="water" />
+              <button onClick={changeBtn}>
+                <img src={chBt.src} alt={chBt.alt} />
               </button>
             </div>
 
-            <WaterDrop />
+            {chBt.src === calender ? (
+              <WaterDrop />
+            ) : (
+              <div>
+                <MyCalendar />
+              </div>
+            )}
           </div>
           <div className="weekWater bg-white mb-8 p-8 border rounded-2xl ">
             <p className="text-xl text-main font-NanumSquareNeo font-bold">
