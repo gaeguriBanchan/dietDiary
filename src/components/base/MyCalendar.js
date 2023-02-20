@@ -8,7 +8,6 @@ import moment from 'moment/moment';
 // 한글로 출력하게 해줌.
 import 'moment/locale/ko';
 import { useState } from 'react';
-import 'react-calendar/dist/Calendar.css';
 
 const MyCalendar = () => {
   const [value, onChange] = useState(new Date());
@@ -17,8 +16,10 @@ const MyCalendar = () => {
       <Calendar
         // 일요일부터 출력
         calendarType="US"
+        
         onChange={onChange}
         value={value}
+        formatDay={(locale, date) => moment(date).format("DD")}
       />
     </div>
   );
