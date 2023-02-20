@@ -43,7 +43,7 @@ const FoodModal = ({ close }) => {
               {dummyData.diet[0].title}
             </span>
             <span className="mb-8 text-5xl font-MuseoModerno font-normal text-textGray ">
-              {dummyData.diet[0].kcal}
+              {dummyData.diet[0].kcal}kcal
             </span>
           </div>
           <div className="bg-[#F6F6F6] rounded-2xl mb-8">
@@ -54,8 +54,6 @@ const FoodModal = ({ close }) => {
               <p
                 className="font-normal w-full bg-[#F6F6F6] focus:outline-none p-3 text-[24px] resize-none h-[250px]"
                 maxLength="150"
-                col="5"
-                readonly={true}
               >
                 {dummyData.diet[0].kcal}
               </p>
