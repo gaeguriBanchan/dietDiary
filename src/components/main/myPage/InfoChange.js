@@ -1,13 +1,13 @@
 import FrofileChange from "../../sub/myPage/FrofileChange";
 import GoalChange from "../../sub/myPage/GoalChange";
 
-const InfoChange = ({ toggleChange}) => {
+const InfoChange = ({ name, age, toggleChange, height, weight}) => {
   const handlePage = ()=>{
     toggleChange()
   }
   return (
     <>
-      <FrofileChange />
+      <FrofileChange name={name} age={age} height={height} weight={weight} />
       <GoalChange />
       <button
         onClick={handlePage}

@@ -1,7 +1,7 @@
 import React from "react";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
 
-const MyPageFrofile = ({ name, age, toggleChange }) => {
+const MyPageFrofile = ({ name, age, toggleChange, height, weight }) => {
   const handlePage = ()=>{
     toggleChange()
   }
@@ -34,11 +34,11 @@ const MyPageFrofile = ({ name, age, toggleChange }) => {
         </div>
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">신장</p>
-          <p className="text-center text-textGray text-4xl">170 cm</p>
+          <p className="text-center text-textGray text-4xl">{height} cm</p>
         </div>
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">체중</p>
-          <p className="text-center text-textGray text-4xl">85 kg</p>
+          <p className="text-center text-textGray text-4xl">{weight} kg</p>
         </div>
       </div>
     </div>

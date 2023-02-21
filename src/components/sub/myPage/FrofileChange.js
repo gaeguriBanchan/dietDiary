@@ -1,7 +1,7 @@
 import React from "react";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
 
-const FrofileChange = () => {
+const FrofileChange = ({ name, age, height, weight }) => {
   return (
     <div className="h-[770px] mb-[20px] rounded-2xl bg-white p-8">
       <div className="flex justify-between">
@@ -14,9 +14,8 @@ const FrofileChange = () => {
           <p className="text-main text-xl">프로필</p>
         </div>
       </div>
-      <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray mb-[50px]">
-      </div>
-      <p className="text-4xl text-textBlack text-center mb-[10px]">김개똥</p>
+      <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray mb-[50px]"></div>
+      <p className="text-4xl text-textBlack text-center mb-[10px]">{name}</p>
       <div className="text-3xl flex justify-around text-textAsh text-center mx-[150px] mb-[50px]">
         <button type="button" className="border rounded-full px-7">
           건강
@@ -37,7 +36,7 @@ const FrofileChange = () => {
           <input
             type="text"
             className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
-            placeholder="25세"
+            placeholder={age + '세'}
           />
         </div>
         <div className="">
@@ -45,7 +44,7 @@ const FrofileChange = () => {
           <input
             type="text"
             className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
-            placeholder="170 cm"
+            placeholder={height + 'cm'}
           />
         </div>
         <div className="">
@@ -53,7 +52,7 @@ const FrofileChange = () => {
           <input
             type="text"
             className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
-            placeholder="85 kg"
+            placeholder={weight + 'kg'}
           />
         </div>
       </div>

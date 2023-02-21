@@ -12,6 +12,7 @@ import DailyMenu from "./pages/DailyMenu";
 import Supplement from "./pages/Supplement";
 import MyPage from "./pages/MyPage";
 import Footer from "./components/common/Footer";
+import Join from "./pages/Join";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/dailyMenu" element={<DailyMenu />}></Route>
           <Route path="/supplement" element={<Supplement />}></Route>
           <Route path="/myPage" element={<MyPage />}></Route>
+          <Route path="/join" element={<Join />}></Route>
           <Route path="*" element={<Navigate to="/today" />} />
         </Routes>
         <Footer />

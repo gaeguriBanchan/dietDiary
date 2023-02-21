@@ -12,6 +12,7 @@ import MyPageMain from "../components/main/myPage/MyPageMain";
 const MyPage = () => {
   const [pageChange, setPageChange] = useState(true);
   const toggleChange = () => setPageChange((mode) => !mode);
+  
   return (
     <>
       <Helmet>
@@ -20,7 +21,23 @@ const MyPage = () => {
       <div className="container w-full h-full flex m-auto">
         <Sidebar></Sidebar>
         <div className="w-full ml-8 h-full self-start drop-shadow-md">
-          {pageChange ? <MyPageMain toggleChange={toggleChange} name="최개똥" age={26} /> : <InfoChange toggleChange={toggleChange} />}
+          {pageChange ? (
+            <MyPageMain
+              toggleChange={toggleChange}
+              name="최개똥"
+              age={29}
+              height={190}
+              weight={90}
+            />
+          ) : (
+            <InfoChange
+              toggleChange={toggleChange}
+              name="최개똥"
+              age={29}
+              height={190}
+              weight={90}
+            />
+          )}
           {/* <MyPageMain toggleChange={toggleChange} name="최개똥" age={26} />
           <InfoChange toggleChange={toggleChange} /> */}
         </div>

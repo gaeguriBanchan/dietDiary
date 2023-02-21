@@ -6,7 +6,7 @@ const GoalChange = () => {
       <div className="h-[200px] bg-white rounded-2xl border">
         <p className="text-main m-8 mb-0 text-xl">기간</p>
         <span className="flex items-center justify-center">
-        <input
+          <input
             className="max-w-[140px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
             type="text"
             placeholder="300"
@@ -30,7 +30,7 @@ const GoalChange = () => {
       <div className="h-[200px] bg-white rounded-2xl border">
         <p className="text-main m-8 mb-0 text-xl">목표음수량</p>
         <span className="flex items-center justify-center">
-        <input
+          <input
             className="max-w-[100px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
             type="text"
             placeholder="8"
