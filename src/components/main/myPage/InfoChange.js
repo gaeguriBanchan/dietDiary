@@ -1,16 +1,17 @@
+import { useContext } from "react";
+import { MypageContext } from "../../../context/MypageContext";
 import FrofileChange from "../../sub/myPage/FrofileChange";
 import GoalChange from "../../sub/myPage/GoalChange";
 
-const InfoChange = ({ name, age, toggleChange, height, weight}) => {
-  const handlePage = ()=>{
-    toggleChange()
-  }
+const InfoChange = () => {
+  const { toggleChange } = useContext(MypageContext);
+
   return (
     <>
-      <FrofileChange name={name} age={age} height={height} weight={weight} />
+      <FrofileChange />
       <GoalChange />
       <button
-        onClick={handlePage}
+        onClick={() => toggleChange()}
         className="w-full rounded-2xl h-[60px] text-white font-medium text-xl bg-main"
       >
         확인

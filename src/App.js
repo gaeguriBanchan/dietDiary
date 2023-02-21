@@ -13,6 +13,7 @@ import Supplement from "./pages/Supplement";
 import MyPage from "./pages/MyPage";
 import Footer from "./components/common/Footer";
 import Join from "./pages/Join";
+import RealMyPage from "./pages/RealMyPage";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path="/drink" element={<Drink />}></Route>
           <Route path="/dailyMenu" element={<DailyMenu />}></Route>
           <Route path="/supplement" element={<Supplement />}></Route>
-          <Route path="/myPage" element={<MyPage />}></Route>
+          <Route path="/myPage" element={<RealMyPage />}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="*" element={<Navigate to="/today" />} />
         </Routes>
