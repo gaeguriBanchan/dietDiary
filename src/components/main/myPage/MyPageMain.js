@@ -4,10 +4,10 @@ import MyPageFrofile from "../../sub/myPage/MyPageFrofile";
 import Weight from "../../sub/myPage/Weight";
 import WeightGraph from "../../sub/myPage/WeightGraph";
 
-const MyPageMain = ({name, age}) => {
+const MyPageMain = ({name, age, toggleChange}) => {
   return (
     <>
-      <MyPageFrofile name={name} age={age}/>
+      <MyPageFrofile name={name} age={age} toggleChange={toggleChange}/>
       <Goal />
       <Weight />
       <WeightGraph />

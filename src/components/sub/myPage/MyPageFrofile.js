@@ -1,8 +1,10 @@
 import React from "react";
-import { useState } from "react";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
 
-const MyPageFrofile = ({ name, age }) => {
+const MyPageFrofile = ({ name, age, toggleChange }) => {
+  const handlePage = ()=>{
+    toggleChange()
+  }
   return (
     <div className="h-[770px] m-auto mb-[20px] rounded-2xl border bg-white ">
       <div className="flex justify-between">
@@ -14,7 +16,7 @@ const MyPageFrofile = ({ name, age }) => {
           />
           <p className="text-main text-xl">프로필</p>
         </div>
-        <button className="m-8 text-sm w-[70px] h-[25px] text-textAsh border-solid border-2 border-textAsh rounded-full">
+        <button onClick={handlePage} className="m-8 text-sm w-[70px] h-[25px] text-textAsh border-solid border-2 border-textAsh rounded-full">
           수정
         </button>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 // import Title from "../components/base/Title";
 import { Sidebar } from "../components/common/Sidebar";
@@ -10,6 +10,8 @@ import MyPageMain from "../components/main/myPage/MyPageMain";
 // import WeightGraph from "../components/sub/myPage/WeightGraph";
 
 const MyPage = () => {
+  const [pageChange, setPageChange] = useState(true);
+  const toggleChange = () => setPageChange((mode) => !mode);
   return (
     <>
       <Helmet>
@@ -18,8 +20,9 @@ const MyPage = () => {
       <div className="container w-full h-full flex m-auto">
         <Sidebar></Sidebar>
         <div className="w-full ml-8 h-full self-start drop-shadow-md">
-          <MyPageMain name='최개똥' age={26} />
-          {/* <InfoChange /> */}
+          {pageChange ? <MyPageMain toggleChange={toggleChange} name="최개똥" age={26} /> : <InfoChange toggleChange={toggleChange} />}
+          {/* <MyPageMain toggleChange={toggleChange} name="최개똥" age={26} />
+          <InfoChange toggleChange={toggleChange} /> */}
         </div>
       </div>
     </>
