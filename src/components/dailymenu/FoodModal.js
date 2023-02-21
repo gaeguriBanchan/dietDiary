@@ -79,17 +79,24 @@ const FoodModal = ({ close }) => {
             />
           </div>
           <div className="flex flex-col justify-center items-center p-8">
-            <div className="w-[525px] h-[525px] bg-textGray rounded-2xl "></div>
-            <input
-              type="text"
-              placeholder={dummyData.diet[0].title}
-              className="my-8 text-4xl text-textBlack"
-            ></input>
-            <input
-              className="mb-8 text-5xl font-MuseoModerno font-normal"
-              type="text"
-              placeholder={dummyData.diet[0].kcal}
-            />
+            <div className="w-[525px] h-[525px] bg-textGray rounded-2xl " />
+            <label>
+              <input
+                type="text"
+                placeholder={dummyData.diet[0].title}
+                className="my-8 text-4xl text-textBlack text-center"
+              ></input>
+            </label>
+            <div>
+              <label>
+                <input
+                  className="mb-8 text-5xl font-MuseoModerno font-normal text-center"
+                  type="text"
+                  placeholder={dummyData.diet[0].kcal + 'Kcal'}
+                ></input>
+              </label>
+            </div>
+
             {/* <span className="mb-8 text-5xl font-MuseoModerno font-normal text-textGray ">
               {dummyData.diet[0].kcal}
             </span> */}

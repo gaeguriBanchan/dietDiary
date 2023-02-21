@@ -18,8 +18,24 @@ import Piechart2 from '../components/base/Piechart2';
 import Barchart from '../components/base/Barchart';
 import DailyDiet from '../components/dailymenu/DailyDiet';
 import FoodModal from '../components/dailymenu/FoodModal';
+import axios from 'axios';
 
 const DailyMenu = () => {
+  const [foodList, setFoodList] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        'http://192.168.0.16:9876/api/diet/list?token=1&date=2023-02-09T00%3A00%3A00'
+      )
+      .then((res) => {
+        console.log(res.data.list);
+        setFoodList(res.data.list);
+      })
+
+      .catch();
+  }, []);
+  // console.log(foodList);
+
   const [chBt, setchBt] = useState({
     src: calender,
     alt: 'calender',
@@ -86,7 +102,7 @@ const DailyMenu = () => {
                 <div className=" grid grid-cols-4 ">
                   <div className="bg-[#BDD1D4] bg-center bg-addfood bg-no-repeat  h-[290px] rounded-2xl mx-[10px]" />
 
-                  {dummyData.diet.map((item, index) => {
+                  {foodList.map((item, index) => {
                     return (
                       <div onClick={openModal}>
                         <FoodCard item={item} key={index} />
