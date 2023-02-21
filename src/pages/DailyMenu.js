@@ -25,6 +25,7 @@ const DailyMenu = () => {
     alt: 'calender',
     chBt: true,
   });
+
   const changeBtn = (e) => {
     e.preventDefault();
     setchBt(() => {
