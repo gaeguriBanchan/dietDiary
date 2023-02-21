@@ -1,28 +1,14 @@
-import React from "react";
-import EditFood from "./FoodModal";
+/** @format */
+
+import React from 'react';
+
 
 const Modal = (props) => {
   const { open, close } = props;
 
   return (
-    <div className={open ? "openModal modal" : "modal"}>
-      {open ? (
-        <section>
-          <button className="close" onClick={close}>
-            X
-          </button>
-
-          <main>
-            <EditFood />
-            {props.children}
-          </main>
-          <footer>
-            <button className="close" onClick={close}>
-              close
-            </button>
-          </footer>
-        </section>
-      ) : null}
+    <div className={open ? 'openModal modal' : 'modal'}>
+      {open ? <>{props.children}</> : null}
     </div>
   );
 };

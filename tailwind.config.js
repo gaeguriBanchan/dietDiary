@@ -37,6 +37,7 @@ module.exports = {
     backgroundImage: {
       addfood: 'url(/src/assets/images/icon/add_food.png)',
       food: 'url(/src/assets/images/icon/icon_b_food.png)',
+      close: 'url(/src/assets/images/icon/close.png)',
     },
   },
   plugins: [],
