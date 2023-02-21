@@ -1,4 +1,6 @@
-import React from "react";
+/** @format */
+
+import React from 'react';
 
 const FoodCard = ({ item, open, close, header }) => {
   return (
@@ -6,11 +8,11 @@ const FoodCard = ({ item, open, close, header }) => {
       className="bg-white drop-shadow-md h-[290px] py-4 px-5 rounded-2xl mx-[10px] mb-[20px] cursor-pointer"
       onClick={open}
     >
-      <div>{item.img}</div>
+      <div>{item.dfImg}</div>
       <div className="flex flex-col">
-        <span>{item.title}</span>
-        <span>{item.time}</span>
-        <span>{item.kcal}</span>
+        <span>{item.dfMenu}</span>
+        <span>{item.dfRegDt}</span>
+        <span>{item.dfKcal}</span>
       </div>
     </div>
   );
