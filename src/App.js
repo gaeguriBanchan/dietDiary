@@ -1,18 +1,21 @@
-import "./App.css";
+/** @format */
+
+import './App.css';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-} from "react-router-dom";
-import Login from "./pages/Login";
-import Today from "./pages/Today";
-import Drink from "./pages/Drink";
-import DailyMenu from "./pages/DailyMenu";
-import Supplement from "./pages/Supplement";
-import MyPage from "./pages/MyPage";
-import Footer from "./components/common/Footer";
-import Join from "./pages/Join";
+} from 'react-router-dom';
+import Login from './pages/Login';
+import Today from './pages/Today';
+import Drink from './pages/Drink';
+import DailyMenu from './pages/DailyMenu';
+import Supplement from './pages/Supplement';
+import MyPage from './pages/MyPage';
+import Footer from './components/common/Footer';
+import Join from './pages/Join';
+import Addfood from './pages/AddFood';
 
 function App() {
   return (
@@ -24,6 +27,7 @@ function App() {
           <Route path="/today" element={<Today />}></Route>
           <Route path="/drink" element={<Drink />}></Route>
           <Route path="/dailyMenu" element={<DailyMenu />}></Route>
+          <Route path="/addfood" element={<Addfood />}></Route>
           <Route path="/supplement" element={<Supplement />}></Route>
           <Route path="/myPage" element={<MyPage />}></Route>
           <Route path="/join" element={<Join />}></Route>

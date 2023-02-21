@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet';
 import FoodCard from '../components/dailymenu/FoodCard';
 import { useEffect } from 'react';
 import MyCalendar from '../components/base/MyCalendar';
-import dummyData from '../components/dailymenu/dummyData.json';
+
 import Modal from '../components/dailymenu/Modal';
 import Background from '../components/base/Background';
 import Linechart from '../components/base/Linechart';
@@ -25,7 +25,7 @@ const DailyMenu = () => {
   useEffect(() => {
     axios
       .get(
-        'http://192.168.0.16:9876/api/diet/list?token=1&date=2023-02-09T00%3A00%3A00'
+        'http://192.168.0.16:9876/api/diet/list?token=1&date=2023-02-10T00%3A00%3A00'
       )
       .then((res) => {
         console.log(res.data.list);
@@ -35,6 +35,8 @@ const DailyMenu = () => {
       .catch();
   }, []);
   // console.log(foodList);
+
+  // date: Wed Dec 11 2019 09:00:00 GMT+0900 (Korean Standard Time)
 
   const [chBt, setchBt] = useState({
     src: calender,
@@ -83,7 +85,7 @@ const DailyMenu = () => {
         <Sidebar></Sidebar>
 
         <div className="w-full h-full ml-8 drop-shadow-md ">
-          <div className="drinking bg-white mb-8 p-8 border rounded-2xl ">
+          <div className=" bg-white mb-8 p-8 border rounded-2xl ">
             <div className="flex justify-between mb-8">
               <div className="flex">
                 <img
@@ -133,10 +135,12 @@ const DailyMenu = () => {
               </div>
             </div>
           </div>
+
           <Background>
             <Title name={'주간 섭취 칼로리'} />
             <Linechart />
           </Background>
+
           <div className="flex justify-between">
             <div className="bg-white mb-8 border rounded-2xl h-1/4">
               <div className="m-8">
@@ -192,15 +196,17 @@ const DailyMenu = () => {
               <Barchart />
             </div>
           </div>
+
           <div className="mb-[20px] rounded-2xl border bg-white drop-shadow-md">
             <div className="m-8">
               <Title name={'주간 식단'} />
               <p>여기에 주간 식단</p>
             </div>
           </div>
+
           <div className="w-full absolute top-0 left-0 z-999999">
             <Modal open={modalOpen} close={closeModal}>
-              <FoodModal close={closeModal} />
+              <FoodModal close={closeModal} foodList={foodList} />
             </Modal>
           </div>
         </div>
