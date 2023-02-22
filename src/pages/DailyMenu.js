@@ -19,6 +19,7 @@ import Barchart from '../components/base/Barchart';
 import DailyDiet from '../components/dailymenu/DailyDiet';
 import FoodModal from '../components/dailymenu/FoodModal';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const DailyMenu = () => {
   const [foodList, setFoodList] = useState([]);
@@ -36,7 +37,7 @@ const DailyMenu = () => {
   }, []);
   // console.log(foodList);
 
-  // date: Wed Dec 11 2019 09:00:00 GMT+0900 (Korean Standard Time)
+  const navigate = useNavigate();
 
   const [chBt, setchBt] = useState({
     src: calender,
@@ -74,6 +75,9 @@ const DailyMenu = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const goAddFood = () => {
+    navigate('/addfood');
+  };
 
   return (
     <>
@@ -103,7 +107,10 @@ const DailyMenu = () => {
             {chBt.src === calender ? (
               <div>
                 <div className=" grid grid-cols-4 ">
-                  <div className="bg-[#BDD1D4] bg-center bg-addfood bg-no-repeat  h-[290px] rounded-2xl mx-[10px]" />
+                  <div
+                    className="bg-[#BDD1D4] bg-center bg-addfood bg-no-repeat  h-[290px] rounded-2xl mx-[10px]"
+                    onClick={goAddFood}
+                  />
 
                   {foodList.map((item, index) => {
                     return (
