@@ -49,7 +49,7 @@ const Supplement = () => {
       <div className="container m-auto flex w-full h-full">
         <Sidebar></Sidebar>
         <div className="w-full h-full ml-8 drop-shadow-md">
-          <div className="pill h-[1200px] bg-white mb-8 p-8 border rounded-2xl">
+          <div className="pill h-[1100px] bg-white mb-8 p-8 border rounded-2xl">
             <div className="flex justify-between mb-8">
               <div className="flex">
                 <img

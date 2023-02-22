@@ -56,7 +56,7 @@ const PillUpdate = () => {
       ) : (
         <>
           <div className="w-full py-4">
-            <form action="">
+            <form action="submit">
               <input
                 type="text"
                 className="w-full h-14 font-nomal focus:outline-none border border-main rounded-2xl pl-3"
