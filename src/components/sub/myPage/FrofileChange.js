@@ -1,9 +1,13 @@
 import React from "react";
+import { useContext } from "react";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
+import { MypageContext } from "../../../context/MypageContext";
+import Level from "./Level";
 
-const FrofileChange = ({ name, age, height, weight }) => {
+const FrofileChange = () => {
+  const {human} = useContext(MypageContext)
   return (
-    <div className="h-[770px] mb-[20px] rounded-2xl bg-white p-8">
+    <div className="h-[770px] mb-[20px] rounded-2xl border bg-white p-8">
       <div className="flex justify-between">
         <div className="flex">
           <img
@@ -15,28 +19,15 @@ const FrofileChange = ({ name, age, height, weight }) => {
         </div>
       </div>
       <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray mb-[50px]"></div>
-      <p className="text-4xl text-textBlack text-center mb-[10px]">{name}</p>
-      <div className="text-3xl flex justify-around text-textAsh text-center mx-[150px] mb-[50px]">
-        <button type="button" className="border rounded-full px-7">
-          건강
-        </button>
-        <button type="button" className="border rounded-full px-7">
-          쉬움
-        </button>
-        <button type="button" className="border rounded-full px-7">
-          보통
-        </button>
-        <button type="button" className="border rounded-full px-7">
-          강함
-        </button>
-      </div>
+      <p className="text-4xl text-textBlack text-center mb-[10px]">{human.name}</p>
+      <Level />
       <div className="flex justify-around">
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">나이</p>
           <input
             type="text"
             className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
-            placeholder={age + '세'}
+            placeholder={human.age + '세'}
           />
         </div>
         <div className="">
@@ -44,7 +35,7 @@ const FrofileChange = ({ name, age, height, weight }) => {
           <input
             type="text"
             className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
-            placeholder={height + 'cm'}
+            placeholder={human.height + 'cm'}
           />
         </div>
         <div className="">
@@ -52,7 +43,7 @@ const FrofileChange = ({ name, age, height, weight }) => {
           <input
             type="text"
             className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
-            placeholder={weight + 'kg'}
+            placeholder={human.weight + 'kg'}
           />
         </div>
       </div>

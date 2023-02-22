@@ -1,6 +1,9 @@
 import React from "react";
+import { useContext } from "react";
+import { MypageContext } from "../../../context/MypageContext";
 
 const GoalChange = () => {
+  const { human } = useContext(MypageContext);
   return (
     <div className="m-auto grid grid-cols-3 gap-3 mb-[20px] rounded-2xl">
       <div className="h-[200px] bg-white rounded-2xl border">
@@ -8,8 +11,10 @@ const GoalChange = () => {
         <span className="flex items-center justify-center">
           <input
             className="max-w-[140px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-            type="text"
-            placeholder="300"
+            type="number"
+            min="1"
+            max="1000"
+            placeholder={human.day}
           />
           <p className="text-[26px] text-textGray font-normal">일</p>
         </span>
@@ -19,8 +24,9 @@ const GoalChange = () => {
         <span className="flex items-center justify-center">
           <input
             className="max-w-[160px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-            type="text"
-            placeholder="2500"
+            type="number"
+            min="1"
+            placeholder={human.cal}
           />
           <p className="text-[26px] text-textGray font-MuseoModerno font-normal">
             Kcal
@@ -32,8 +38,9 @@ const GoalChange = () => {
         <span className="flex items-center justify-center">
           <input
             className="max-w-[100px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-            type="text"
-            placeholder="8"
+            type="number"
+            min="1"
+            placeholder={human.cup}
           />
           <p className="text-[26px] text-textGray font-normal">컵</p>
         </span>
