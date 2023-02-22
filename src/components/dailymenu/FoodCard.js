@@ -2,6 +2,7 @@
 
 import React from "react";
 
+
 const FoodCard = ({ item, open, close, header }) => {
   const data = item.dfRegDt;
   let a = data.slice(11, 16);
@@ -12,19 +13,23 @@ const FoodCard = ({ item, open, close, header }) => {
     var _timeRegExFormat = /^([0-9]{2}):([0-9]{2})$/;
     var _timeToken = time.match(_timeRegExFormat);
     if (typeof _timeRegExFormat === "undefine") {
+
       // 잘못된 형식
       return null;
     }
     var _intHours = parseInt(_timeToken[1]);
     var _intMinutes = parseInt(_timeToken[2]);
     var _strHours12H = ("0" + (_intHours == 12 ? 12 : _intHours % 12)).slice(
+
       -2
     );
     return (
       _ampmLabel[parseInt(_intHours / 12)] +
+
       " " +
       _strHours12H +
       ":" +
+
       _intMinutes
     );
   }
@@ -35,6 +40,7 @@ const FoodCard = ({ item, open, close, header }) => {
   );
   const time = convert12H(a, {
     ampmLabel: ["am", "pm"],
+
   });
 
   return (
