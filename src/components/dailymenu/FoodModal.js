@@ -5,7 +5,7 @@ import Background from '../base/Background';
 import BarButton from '../base/BarButton';
 import dummyData from './dummyData.json';
 
-const FoodModal = ({ close }) => {
+const FoodModal = ({ close, foodList }) => {
   const [Edit, setEdit] = useState({ name: '수정', EditBt: false });
   const [totalLength, setTotalLength] = useState('');
   const tL = (e) => {
@@ -20,6 +20,8 @@ const FoodModal = ({ close }) => {
       }
     });
   };
+
+
   return (
     <div>
       {Edit.name === '수정' ? (

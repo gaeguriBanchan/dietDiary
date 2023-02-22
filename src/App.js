@@ -1,16 +1,18 @@
-import "./App.css";
+/** @format */
+
+import './App.css';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+
 } from "react-router-dom";
 import Login from "./pages/Login";
 import Today from "./pages/Today";
 import Drink from "./pages/Drink";
 import DailyMenu from "./pages/DailyMenu";
 import Supplement from "./pages/Supplement";
-// import MyPage from "./pages/MyPage";
 import Footer from "./components/common/Footer";
 import Join from "./pages/Join";
 import RealMyPage from "./pages/RealMyPage";

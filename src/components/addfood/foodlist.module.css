@@ -1,0 +1,16 @@
+/** @format */
+
+.inputradio {
+  display: none;
+}
+.labelradio::before {
+  content: '';
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  vertical-align: -6px;
+  background: url(../../assets/images/icon/radio_off.png) no-repeat center;
+}
+.inputradio:checked + .labelradio::before {
+  background: url(../../assets/images/icon/radio_on.png) no-repeat center;
+}
