@@ -11,7 +11,9 @@ const GoalChange = () => {
         <span className="flex items-center justify-center">
           <input
             className="max-w-[140px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-            type="text"
+            type="number"
+            min="1"
+            max="1000"
             placeholder={human.day}
           />
           <p className="text-[26px] text-textGray font-normal">일</p>
@@ -22,7 +24,8 @@ const GoalChange = () => {
         <span className="flex items-center justify-center">
           <input
             className="max-w-[160px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-            type="text"
+            type="number"
+            min="1"
             placeholder={human.cal}
           />
           <p className="text-[26px] text-textGray font-MuseoModerno font-normal">
@@ -35,7 +38,8 @@ const GoalChange = () => {
         <span className="flex items-center justify-center">
           <input
             className="max-w-[100px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-            type="text"
+            type="number"
+            min="1"
             placeholder={human.cup}
           />
           <p className="text-[26px] text-textGray font-normal">컵</p>

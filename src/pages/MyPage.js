@@ -12,10 +12,7 @@ import { MypageContext } from "../context/MypageContext";
 // import WeightGraph from "../components/sub/myPage/WeightGraph";
 
 const MyPage = () => {
-  // const [pageChange, setPageChange] = useState(true);
-  // const toggleChange = () => setPageChange((mode) => !mode);
   const { pageChange } = useContext(MypageContext);
-  console.log(pageChange);
 
   return (
     <>
@@ -25,13 +22,7 @@ const MyPage = () => {
       <div className="container w-full h-full flex m-auto">
         <Sidebar></Sidebar>
         <div className="w-full ml-8 h-full self-start drop-shadow-md">
-          {pageChange ? (
-            <MyPageMain />
-          ) : (
-            <InfoChange />
-          )}
-          {/* <MyPageMain toggleChange={toggleChange} name="최개똥" age={26} />
-          <InfoChange toggleChange={toggleChange} /> */}
+          {pageChange ? <MyPageMain /> : <InfoChange />}
         </div>
       </div>
     </>

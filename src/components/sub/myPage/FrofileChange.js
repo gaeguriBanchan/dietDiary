@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
 import { MypageContext } from "../../../context/MypageContext";
+import Level from "./Level";
 
 const FrofileChange = () => {
   const {human} = useContext(MypageContext)
@@ -19,20 +20,7 @@ const FrofileChange = () => {
       </div>
       <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray mb-[50px]"></div>
       <p className="text-4xl text-textBlack text-center mb-[10px]">{human.name}</p>
-      <div className="text-3xl flex justify-around text-textAsh text-center mx-[150px] mb-[50px]">
-        <button type="button" className="border rounded-full px-7">
-          건강
-        </button>
-        <button type="button" className="border rounded-full px-7">
-          쉬움
-        </button>
-        <button type="button" className="border rounded-full px-7">
-          보통
-        </button>
-        <button type="button" className="border rounded-full px-7">
-          강함
-        </button>
-      </div>
+      <Level />
       <div className="flex justify-around">
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">나이</p>
