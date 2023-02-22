@@ -1,6 +1,6 @@
 /** @format */
 
-import React from 'react';
+import React from "react";
 
 const FoodCard = ({ item, open, close, header }) => {
   const data = item.dfRegDt;
@@ -8,33 +8,33 @@ const FoodCard = ({ item, open, close, header }) => {
   console.log(a);
 
   function convert12H(time, options) {
-    var _ampmLabel = (options && options.ampmLabel) || ['오전', '오후'];
+    var _ampmLabel = (options && options.ampmLabel) || ["오전", "오후"];
     var _timeRegExFormat = /^([0-9]{2}):([0-9]{2})$/;
     var _timeToken = time.match(_timeRegExFormat);
-    if (typeof _timeRegExFormat === 'undefine') {
+    if (typeof _timeRegExFormat === "undefine") {
       // 잘못된 형식
       return null;
     }
     var _intHours = parseInt(_timeToken[1]);
     var _intMinutes = parseInt(_timeToken[2]);
-    var _strHours12H = ('0' + (_intHours == 12 ? 12 : _intHours % 12)).slice(
+    var _strHours12H = ("0" + (_intHours == 12 ? 12 : _intHours % 12)).slice(
       -2
     );
     return (
       _ampmLabel[parseInt(_intHours / 12)] +
-      ' ' +
+      " " +
       _strHours12H +
-      ':' +
+      ":" +
       _intMinutes
     );
   }
   console.log(
     convert12H(a, {
-      ampmLabel: ['AM', 'PM'],
+      ampmLabel: ["AM", "PM"],
     })
   );
   const time = convert12H(a, {
-    ampmLabel: ['am', 'pm'],
+    ampmLabel: ["am", "pm"],
   });
 
   return (

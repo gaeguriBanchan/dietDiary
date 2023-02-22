@@ -8,9 +8,12 @@ import Title from "../components/base/Title";
 import PillUpdate from "../components/base/PillUpdate";
 import { useState } from "react";
 import { useEffect } from "react";
+// import { useForm } from "react-hook-form";
 import MyCalendar from "../components/base/MyCalendar";
 
 const Supplement = () => {
+  // const handleSubmit = useForm({ mode: "onChange" });
+
   const [chBt, setchBt] = useState({
     src: calendar,
     alt: "calender",
@@ -46,7 +49,7 @@ const Supplement = () => {
       <div className="container m-auto flex w-full h-full">
         <Sidebar></Sidebar>
         <div className="w-full h-full ml-8 drop-shadow-md">
-          <div className="pill bg-white mb-8 p-8 border rounded-2xl">
+          <div className="pill h-[1200px] bg-white mb-8 p-8 border rounded-2xl">
             <div className="flex justify-between mb-8">
               <div className="flex">
                 <img
