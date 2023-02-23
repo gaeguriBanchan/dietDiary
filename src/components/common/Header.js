@@ -21,7 +21,7 @@ const Header = () => {
         </p>
 
         <div className="userInfo font-medium pt-2 flex">
-          박둘리
+          강백호
           <img
             src={me}
             alt="user"
