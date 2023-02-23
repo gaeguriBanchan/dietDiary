@@ -10,8 +10,14 @@ import water from "../assets/images/icon/icon_b_water.png";
 import calender from "../assets/images/icon/icon_calendar.png";
 import diet from "../assets/images/icon/icon_diet.png";
 import MyCalendar from "../components/base/MyCalendar";
+import axios from "axios";
+import Header from "../components/common/Header";
 
 const Drink = () => {
+  useEffect(() => {
+    axios.post("").then().catch();
+  }, []);
+
   const [chBt, setchBt] = useState({
     src: calender,
     alt: "calender",
