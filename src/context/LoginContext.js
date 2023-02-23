@@ -8,7 +8,7 @@ export const LoginContext = createContext();
 
 export function LoginProvider({ children }) {
   const [kakaoLoginInfo, setKakaoLoginInfo] = useState({});
-  const [naverLoginInfo, setNaverLoginInfo] = useState([]);
+  const [naverLoginInfo, setNaverLoginInfo] = useState({});
   // 카카오 로그인 기능
   // 등록된 앱의 JavaScript key
   const jsKey = process.env.REACT_APP_KAKAO;
@@ -34,7 +34,7 @@ export function LoginProvider({ children }) {
           success: (res) => {
             const kakao_account = res.kakao_account;
             console.log("사용자 정보", kakao_account);
-            setKakaoLoginInfo(kakao_account);
+            setKakaoLoginInfo((m) => kakao_account);
             console.log("카카오로그인정보를 가져왔당~!", kakaoLoginInfo);
             // 사용자 정보를 받은 경우 localStorage 저장 또는 redux 저장
             navigate("/today");
@@ -104,9 +104,9 @@ export function LoginProvider({ children }) {
   const naverLogin = () => {
     naverRef.current.children[0].click();
   };
-
+  
   return (
-    <LoginContext.Provider value={{ kakaoLogin, naverLogin, naverRef }}>
+    <LoginContext.Provider value={{ kakaoLogin, naverLogin, naverRef, kakaoLoginInfo }}>
       {children}
     </LoginContext.Provider>
   );

@@ -17,6 +17,8 @@ import Join from "./pages/Join";
 import RealMyPage from "./pages/RealMyPage";
 import { LoginProvider } from "./context/LoginContext";
 import Header from "./components/common/Header";
+import Addfood from "./pages/AddFood";
+
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
         </Routes>
         <Footer />
         {/* </LoginProvider> */}
+
       </Router>
     </>
   );

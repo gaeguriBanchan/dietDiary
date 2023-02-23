@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { MypageContext } from "../../../context/MypageContext";
-import FrofileChange from "../../sub/myPage/FrofileChange";
+import ProfileChange from "../../sub/myPage/ProfileChange";
 import GoalChange from "../../sub/myPage/GoalChange";
 
 const InfoChange = () => {
@@ -8,11 +8,11 @@ const InfoChange = () => {
 
   return (
     <>
-      <FrofileChange />
+      <ProfileChange />
       <GoalChange />
       <button
         onClick={() => toggleChange()}
-        className="w-full rounded-2xl h-[60px] text-white font-medium text-xl bg-main"
+        className="w-full rounded-2xl h-[60px] text-white font-medium text-xl bg-main mb-3"
       >
         확인
       </button>

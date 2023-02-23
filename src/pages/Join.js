@@ -3,8 +3,41 @@ import Background from "../components/base/Background";
 import myIcon from "../assets/images/icon/icon_b_my.png";
 import BarButton from "../components/base/BarButton";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Join = () => {
+  const [btnActive, setBtnActive] = useState();
+  const toggleActive = (e) => {
+    setBtnActive((prev) => {
+      return e.target.value;
+    });
+  };
+  const level = ["건강", "쉬움", "보통", "강함"];
+  const levelBt = level.map((item, index) => {
+    return (
+      <button
+        value={index}
+        onClick={toggleActive}
+        type="button"
+        className={
+          index.toString() === btnActive
+            ? "border border-main rounded-full px-7 bg-main text-white"
+            : "border rounded-full px-7"
+        }
+      >
+        {item}
+      </button>
+    );
+  });
+  const Level = () => {
+    return (
+      <>
+        <div className="text-3xl flex justify-around text-textAsh text-center mx-[150px] mb-[50px]">
+          {levelBt}
+        </div>
+      </>
+    );
+  };
   return (
     <>
       <Background>
@@ -20,7 +53,8 @@ const Join = () => {
         </div>
         <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray mb-[50px]"></div>
         <p className="text-4xl text-textBlack text-center mb-[10px]">이름</p>
-        <div className="text-3xl flex justify-around text-textAsh text-center mx-[150px] mb-[50px]">
+        <Level/>
+        {/* <div className="text-3xl flex justify-around text-textAsh text-center mx-[150px] mb-[50px]">
           <button type="button" className="border rounded-full px-7">
             건강
           </button>
@@ -33,7 +67,7 @@ const Join = () => {
           <button type="button" className="border rounded-full px-7">
             강함
           </button>
-        </div>
+        </div> */}
         <div className="flex justify-around mb-[70px]">
           <div className="">
             <p className="text-center text-main mb-[10px] text-2xl">나이</p>
@@ -100,6 +134,20 @@ const Join = () => {
                 placeholder="8"
               />
               <p className="text-[26px] text-textGray font-normal">컵</p>
+            </span>
+            <div className="w-[280px] h-[1px] m-auto bg-textAsh"></div>
+          </div>
+          <div className=" m-auto justify-center text-center mb-[70px]">
+            <p className="text-center text-main mb-[10px] text-2xl">
+              목표 체중
+            </p>
+            <span className="flex items-center justify-center">
+              <input
+                className="max-w-[120px] h-[90px] text-[62px] font-MuseoModerno text-center text-textBlack focus:outline-none"
+                type="text"
+                placeholder="80"
+              />
+              <p className="text-[26px] text-textGray font-normal">kg</p>
             </span>
             <div className="w-[280px] h-[1px] m-auto bg-textAsh"></div>
           </div>
