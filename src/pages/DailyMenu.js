@@ -23,19 +23,19 @@ import { useNavigate } from 'react-router';
 
 const DailyMenu = () => {
   const [foodList, setFoodList] = useState([]);
-  useEffect(() => {
-    axios
-      .get(
-        'http://192.168.0.16:9876/api/diet/list?token=1&date=2023-02-10T00%3A00%3A00'
-      )
-      .then((res) => {
-        console.log(res.data.list);
-        setFoodList(res.data.list);
-      })
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       'http://192.168.0.16:9876/api/diet/list?token=1&date=2023-02-10T00%3A00%3A00'
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data.list);
+  //       setFoodList(res.data.list);
+  //     })
 
-      .catch();
-  }, []);
-  // console.log(foodList);
+  //     .catch();
+  // }, []);
+  // // console.log(foodList);
 
   const navigate = useNavigate();
 
