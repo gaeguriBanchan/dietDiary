@@ -10,8 +10,14 @@ import water from "../assets/images/icon/icon_b_water.png";
 import calender from "../assets/images/icon/icon_calendar.png";
 import diet from "../assets/images/icon/icon_diet.png";
 import MyCalendar from "../components/base/MyCalendar";
+import axios from "axios";
+import Header from "../components/common/Header";
 
 const Drink = () => {
+  useEffect(() => {
+    axios.post("").then().catch();
+  }, []);
+
   const [chBt, setchBt] = useState({
     src: calender,
     alt: "calender",
@@ -70,16 +76,12 @@ const Drink = () => {
             )}
           </div>
           <div className="weekWater bg-white mb-8 p-8 border rounded-2xl ">
-            <p className="text-xl text-main font-NanumSquareNeo font-bold">
-              주간 음수량
-            </p>
+            <p className="text-xl text-main font-bold">주간 음수량</p>
             <Linechart />
           </div>
           <div className="flex justify-between ">
             <div className="goalWater bg-white mb-8 border rounded-2xl h-1/4">
-              <p className="text-xl text-main font-NanumSquareNeo p-8">
-                목표 음수량
-              </p>
+              <p className="text-xl text-main p-8">목표 음수량</p>
               <p
                 className="absolute font-MuseoModerno text-5xl font-medium w-[300px] translate-x-32 translate-y-24"
                 style={{
@@ -109,7 +111,7 @@ const Drink = () => {
               </p>
             </div>
             <div className="goalGraph bg-white mb-8 border rounded-2xl ">
-              <p className="text-xl text-main font-NanumSquareNeo font-bold p-8">
+              <p className="text-xl text-main font-bold p-8">
                 목표 달성 그래프
               </p>
 

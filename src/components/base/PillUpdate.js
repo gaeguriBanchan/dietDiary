@@ -1,72 +1,82 @@
+// import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import style from "../../pages/Pill.css";
+import style from "../../pages/Pill.module.css";
+import BarButton from "./BarButton";
 
 // const handleChecked=()
 
 const PillUpdate = () => {
+  const [Edit, setEdit] = useState({ name: "추가", EditBt: false });
+  const PillEdit = (e) => {
+    setEdit(() => {
+      if (Edit.EditBt) {
+        return { name: "추가", EditBt: false };
+      } else {
+        return { name: "등록", EditBt: true };
+      }
+    });
+  };
+  useEffect(() => {}, [Edit]);
+  // axios
+  //   .put("http://192.168.0.16:9876/api/pill/add?token=1")
+  //   .then(() => {})
+  //   .catch((err) => {
+  //     console.log("실패^^");
+  //   });
   return (
-    <div className="grid grid-cols-2 w-full py-4 ">
-      <label htmlFor="pill1" className="flex justify-between w-1/2 top-0">
-        <span className={style.labelradio}>종합 영양제</span>
-        <input
-          id="pill1"
-          type="checkbox"
-          name="totalv"
-          value="0"
-          // checked={name === "totalv" ? true : false}
-          onClick={(e) => e}
-          style={{ cursor: "pointer", display: "none" }}
-        />
-        <input
-          className={style.inputradio}
-          id="pill1"
-          type="checkbox"
-          name="totalv"
-          value="0"
-          // checked={id === "pill1" ? true : false}
-          onClick={(e) => e}
-        />
-        <input
-          className={style.inputradio}
-          id="pill1"
-          type="checkbox"
-          name="totalv"
-          value="0"
-          // checked={id === "pill1" ? true : false}
-          onClick={(e) => e}
-        />
-      </label>
-      <label htmlFor="p1" className="flex justify-between w-1/2">
-        <span className={style.labelradio}>단백질</span>
-        <input
-          className={style.inputradio}
-          id="p1"
-          type="checkbox"
-          name="protein"
-          value="1"
-          onClick={(e) => e}
-        />
-        <input
-          className={style.inputradio}
-          id="p1"
-          type="checkbox"
-          name="protein"
-          value="2"
-          onClick={(e) => e}
-        />
-      </label>
-      <label htmlFor="p2" className="flex justify-between w-1/2">
-        <span className={style.labelradio}>비타민</span>
-        <input
-          className={style.inputradio}
-          id="p2"
-          type="checkbox"
-          name="vitamin"
-          value="3"
-          onClick={(e) => e}
-        />
-      </label>
+    <div>
+      {Edit.name === "추가" ? (
+        <>
+          <div className="">
+            <div className="pill-left">
+              <div className="pill-0">
+                <label htmlFor="pill">
+                  <span className={style.labelradio}>종합 영양제</span>
+                  <input type={"checkbox"} className={style.inputradio} />
+                  <input type={"checkbox"} className={style.inputradio} />
+                  <input type={"checkbox"} className={style.inputradio} />
+                </label>
+              </div>
+              <div className="pill-1">
+                <span className={style.labelradio}>비타민</span>
+              </div>
+            </div>
+            <div className="pill-right justify-between">
+              <div className="pill-2">
+                <span className={style.labelradio}>단백질</span>
+              </div>
+            </div>
+          </div>
+          <div onClick={(e) => PillEdit(e)}>
+            <BarButton name={Edit.name} color={"main"} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="w-full py-4">
+            <form action="submit">
+              <input
+                type="text"
+                className="w-full h-14 font-nomal focus:outline-none border border-main rounded-2xl pl-3"
+                placeholder="약의 종류를 입력해주세요"
+              />
+              <input
+                type="number"
+                className="w-full h-14 font-nomal focus:outline-none border border-main rounded-2xl pl-3 mt-3"
+                placeholder="복용 횟수를 입력해주세요"
+              />
+            </form>
+          </div>
+          <div className="mb-2" onClick={PillEdit}>
+            <BarButton name={"취소"} className="cancel" color={"textRed"} />
+          </div>
+          <div onClick={(e) => PillEdit(e)}>
+            <BarButton name={Edit.name} color={"main"} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

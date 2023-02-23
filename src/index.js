@@ -8,7 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <HelmetProvider>
-    <App />
-  </HelmetProvider>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
 );

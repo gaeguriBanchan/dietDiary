@@ -38,7 +38,7 @@ const WeightGraph = () => {
     },
   ];
   return (
-    <div className="w-full h-full bg-white rounded-2xl border">
+    <div className="w-full h-full bg-white rounded-2xl border mb-3">
       <p className=" text-xl text-main m-8 mb-0">체중변화 그래프</p>
       <div
         className="px-3"
