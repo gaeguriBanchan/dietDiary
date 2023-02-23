@@ -1,13 +1,13 @@
 import React from "react";
 import Goal from "../../sub/myPage/Goal";
-import MyPageFrofile from "../../sub/myPage/MyPageFrofile";
+import MyPageProfile from "../../sub/myPage/MyPageProfile";
 import Weight from "../../sub/myPage/Weight";
 import WeightGraph from "../../sub/myPage/WeightGraph";
 
 const MyPageMain = () => {
   return (
     <>
-      <MyPageFrofile />
+      <MyPageProfile />
       <Goal />
       <Weight />
       <WeightGraph />
