@@ -111,7 +111,7 @@ const FoodModal = ({ close, foodList }) => {
               <textarea
                 className="font-normal w-full bg-[#F6F6F6] focus:outline-none p-3 text-[24px] resize-none h-[250px]"
                 maxLength="150"
-                col
+    
                 value={totalLength}
                 onChange={tL}
               />

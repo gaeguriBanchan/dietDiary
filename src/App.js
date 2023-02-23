@@ -6,6 +6,7 @@ import {
   Routes,
   Route,
   Navigate,
+
 } from "react-router-dom";
 import Login from "./pages/Login";
 import Today from "./pages/Today";
@@ -19,7 +20,6 @@ import { LoginProvider } from "./context/LoginContext";
 import Header from "./components/common/Header";
 import Addfood from "./pages/AddFood";
 
-
 function App() {
   return (
     <>
@@ -32,6 +32,7 @@ function App() {
             <Route path="/today" element={<Today />}></Route>
             <Route path="/drink" element={<Drink />}></Route>
             <Route path="/dailyMenu" element={<DailyMenu />}></Route>
+            <Route path="/addfood" element={<Addfood />}></Route>
             <Route path="/supplement" element={<Supplement />}></Route>
             <Route path="/myPage" element={<RealMyPage />}></Route>
             <Route path="/join" element={<Join />}></Route>
@@ -40,7 +41,6 @@ function App() {
         </Routes>
         <Footer />
         {/* </LoginProvider> */}
-
       </Router>
     </>
   );

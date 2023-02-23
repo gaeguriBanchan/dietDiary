@@ -35,6 +35,7 @@ const DailyMenu = () => {
 
   //     .catch();
   // }, []);
+
   // console.log(foodList);
 
   const navigate = useNavigate();

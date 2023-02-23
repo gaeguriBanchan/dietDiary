@@ -4,11 +4,9 @@ import Background from '../components/base/Background';
 import Title from '../components/base/Title';
 import food from '../assets/images/icon/icon_b_food.png';
 import search from '../assets/images/icon/search.png';
-
 import { Sidebar } from '../components/common/Sidebar';
-import axios from 'axios';
-import RountButton from '../components/base/RoundButon';
 import FoodList from '../components/addfood/FoodList';
+import BarButton from '../components/base/BarButton';
 import { useState } from 'react';
 // import { useEffect } from 'react';
 const Addfood = () => {
@@ -82,6 +80,8 @@ const Addfood = () => {
               </button>
             </div>
             <FoodList />
+
+            <BarButton name={'등록'} color={'main'} />
           </Background>
         </div>
       </div>

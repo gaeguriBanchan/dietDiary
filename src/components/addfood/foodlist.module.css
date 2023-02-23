@@ -6,11 +6,26 @@
 .labelradio::before {
   content: '';
   display: inline-flex;
-  width: 26px;
-  height: 26px;
-  vertical-align: -6px;
-  background: url(../../assets/images/icon/radio_off.png) no-repeat center;
+  width: 30px;
+  height: 30px;
+  vertical-align: -7px;
+  background: url(../../assets/images/icon/food_radio_off.png) no-repeat center;
 }
 .inputradio:checked + .labelradio::before {
-  background: url(../../assets/images/icon/radio_on.png) no-repeat center;
+  background: url(../../assets/images/icon/food_radio_on.png) no-repeat center;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+  height: 90%;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  height: 10%; /* 스크롤바의 길이 */
+  background: #81cfd1; /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: rgba(128, 203, 196, 0.1); /*스크롤바 뒷 배경 상*/
 }
