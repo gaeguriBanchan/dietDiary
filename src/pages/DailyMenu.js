@@ -1,5 +1,7 @@
 /** @format */
 
+// 날짜 관련 라이브러리
+import moment from "moment/moment";
 import Title from "../components/base/Title";
 import { Sidebar } from "../components/common/Sidebar";
 import food from "../assets/images/icon/icon_b_food.png";
@@ -23,31 +25,68 @@ import { useNavigate } from "react-router";
 
 const DailyMenu = () => {
   const [foodList, setFoodList] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       'http://192.168.0.16:9876/api/diet/list?token=1&date=2023-02-10T00%3A00%3A00'
-  //     )
-  //     .then((res) => {
-  //       console.log(res.data.list);
-  //       setFoodList(res.data.list);
-  //     })
+  const [goalList, setGoalList] = useState([]);
 
-  //     .catch();
-  // }, []);
+  // Card 목록을 출력하는 useEffect
+  const getFoodList = (_day) => {
+    axios
+      .get(
+        // "http://192.168.0.16:9876/api/diet/list?token=token1&date=2023-02-23T00%3A00%3A00"
+        `http://192.168.0.16:9876/api/diet/list?token=token1&date=${_day}`
+      )
+      .then((res) => {
+        console.log(res.data.list);
+        if (res.data.list != null) {
+          setFoodList(res.data.list);
+        } else {
+          setFoodList([]);
+        }
+      })
+      .catch();
+  };
+  useEffect(() => {
+    // 오늘날짜 목록 가져오기
+    getFoodList(
+      moment(new Date()).format("YYYY-MM-DD") +
+        "T" +
+        moment(new Date()).format("hh:mm")
+    );
+  }, []);
 
-  // console.log(foodList);
-
+  // 결과를 출력하는 useEffect
+  useEffect(() => {
+    // 해당년/월에 목표 달성 여부를 출력합니다 / 회원 토큰, 년, 월을 입력하세요.
+    axios
+      .get(
+        "http://192.168.0.16:9876/api/cal/month?token=token1&year=2023&month=2"
+      )
+      .then((res) => {
+        // console.log("결과", res);
+        let resultArr = [];
+        for (let item of res.data.list) {
+          // console.log(item);
+          resultArr.push(item);
+        }
+        setGoalList(resultArr);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const navigate = useNavigate();
-
   const [chBt, setchBt] = useState({
     src: calender,
     alt: "calender",
     chBt: true,
   });
 
-  const changeBtn = (e) => {
-    e.preventDefault();
+  const changeDay = (_day) => {
+    changeBtn();
+    console.log("전달된 날짜 : ", _day);
+    getFoodList(_day);
+  };
+  const changeBtn = () => {
+    // e.preventDefault();
     setchBt(() => {
       if (chBt.chBt) {
         return {
@@ -106,7 +145,7 @@ const DailyMenu = () => {
             </div>
 
             {chBt.src === calender ? (
-              <div>
+              <div className="h-[650px] overflow-y-scroll">
                 <div className=" grid grid-cols-4 ">
                   <div
                     className="bg-[#BDD1D4] bg-center bg-addfood bg-no-repeat  h-[290px] rounded-2xl mx-[10px]"
@@ -124,7 +163,11 @@ const DailyMenu = () => {
               </div>
             ) : (
               <div>
-                <MyCalendar />
+                <MyCalendar
+                  menu="밥"
+                  goalList={goalList}
+                  changeDay={changeDay}
+                />
               </div>
             )}
           </div>
