@@ -18,7 +18,6 @@ module.exports = {
       },
       fontFamily: {
         NanumSquareNeo: ["NanumSquareNeo-Variable"],
-
         MuseoModerno: ["MuseoModerno", "cursive"],
       },
     },

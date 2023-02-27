@@ -1,10 +1,8 @@
-// import axios from "axios";
+import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import style from "../../pages/Pill.module.css";
 import BarButton from "./BarButton";
-import { useForm } from "react-hook-form";
-// const handleChecked=()
 
 const PillUpdate = () => {
   const [Edit, setEdit] = useState({ name: "추가", EditBt: false });
@@ -17,98 +15,64 @@ const PillUpdate = () => {
       }
     });
   };
-  useEffect(() => {}, [Edit]);
-  // axios
-  //   .put("http://192.168.0.16:9876/api/pill/add?token=1")
-  //   .then(() => {})
-  //   .catch((err) => {
-  //     console.log("실패^^");
-  //   });
-  // 로컬에 저장된 내용을 가지고 온다.
-  const { reset, register, handleSubmit } = useForm();
-  const getLocalPost = () => {
-    const data = localStorage.getItem("post");
-    if (data === null) {
-      return [];
-    } else {
-      return JSON.parse(data);
-    }
+  // 약 이름
+  const [name, setName] = useState("");
+  const piName = (e) => {
+    setName(e.target.value);
   };
-  const [posts, setPosts] = useState(getLocalPost());
-  const [Allowed, setAllowed] = useState(true);
-  const createPost = (data) => {
-    console.log("submit 으로 넘겨진 데이터");
-    console.log(data);
-    // data ======>  { title: title, content: conten}
-    setPosts([...posts, data]);
-    // ...register("title")
-    // ...register("conente")
-    reset();
-
-    setAllowed((prev) => true);
-    setPosts((prev) => {
-      const arr = [...prev];
-      const updateArr = arr.map((item, index) => {
-        item.enableUpdate = false;
-        return item;
-      });
-      return updateArr;
-    });
+  //약 먹는 횟수
+  const [count, setCount] = useState(1);
+  const piAmount = (e) => {
+    setCount(e.target.value);
   };
 
-  // 삭제기능
-  const deletePost = (idx) => {
-    if (!window.confirm("정말 삭제하시겠습니까?")) {
-      return;
-    }
-    setPosts(posts.filter((item, index) => idx !== index));
-  };
-  // 업데이트 기능
-  const enableUpdate = (idx) => {
-    if (!Allowed) return;
-    setAllowed(false);
-    setPosts(
-      posts.map((item, index) => {
-        if (idx === index) {
-          item.enableUpdate = true;
-        }
-        return item;
-      })
-    );
-  };
-  // 업데이트 취소
-  const disableUpdate = (idx) => {
-    setAllowed(true);
-    setPosts(
-      posts.map((item, index) => {
-        if (index === idx) {
-          item.enableUpdate = false;
-        }
-        return item;
-      })
-    );
-  };
-  // 게시물 업데이트
-  const updatePost = (data) => {
-    setPosts(
-      posts.map((item, index) => {
-        // 숫자로 변경하여서 비교
-        if (parseInt(data.index) === index) {
-          item.title = data.title;
-          item.content = data.content;
-          item.timestamp = data.timestamp;
-          item.enableUpdate = false;
-        }
-        return item;
-      })
-    );
+  //리스트 출력
+  const [Plist, setPlist] = useState([]);
 
-    setAllowed(true);
-  };
-  // 로컬에 저장
   useEffect(() => {
-    localStorage.setItem("post", JSON.stringify(posts));
-  }, [posts]);
+    axios
+      .get("http://192.168.0.16:9876/api/pill/info?token=token1")
+      .then((res) => {
+        setPlist(res.data.list);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const btnClick = (e) => {
+    e.preventDefault();
+    if (name === "") {
+      alert("이름을 입력해주세요");
+    }
+    if (count === "") {
+      alert("횟수를 입력해주세요");
+    }
+    const params = {
+      piName: name,
+      piAmount: count,
+    };
+    axios
+      .put("http://192.168.0.16:9876/api/pill/add?token=token1", params)
+      .then((res) => {
+        console.log(res);
+        alert(res.data.message);
+        setEdit(() => {
+          if (Edit.EditBt) {
+            return { name: "추가", EditBt: false };
+          } else {
+            return { name: "등록", EditBt: true };
+          }
+        });
+      })
+      .catch((err) => {
+        console.log("실패^^", err);
+      });
+  };
+
+  console.log(Plist);
+
+  useEffect(() => {}, [Edit]);
+
   return (
     <div>
       {Edit.name === "추가" ? (
@@ -130,6 +94,15 @@ const PillUpdate = () => {
             <div className="pill-right justify-between">
               <div className="pill-2">
                 <span className={style.labelradio}>단백질</span>
+                <span className={style.labelradio}>
+                  {Plist.map((item, pillSeq) => {
+                    return (
+                      <p key={pillSeq} className="ml-[8.5px]">
+                        {item.pillName}
+                      </p>
+                    );
+                  })}
+                </span>
               </div>
             </div>
           </div>
@@ -140,25 +113,27 @@ const PillUpdate = () => {
       ) : (
         <>
           <div className="w-full py-4">
-            <form onSubmit={handleSubmit(createPost)}>
+            <form>
               <input
                 type="text"
+                value={name}
                 className="w-full h-14 font-nomal focus:outline-none border border-main rounded-2xl pl-3"
                 placeholder="약의 종류를 입력해주세요"
-                {...register}
+                onChange={piName}
               />
               <input
                 type="number"
+                value={count}
                 className="w-full h-14 font-nomal focus:outline-none border border-main rounded-2xl pl-3 mt-3"
                 placeholder="복용 횟수를 입력해주세요"
-                {...register}
+                onChange={piAmount}
               />
             </form>
           </div>
           <div className="mb-2" onClick={PillEdit}>
             <BarButton name={"취소"} className="cancel" color={"textRed"} />
           </div>
-          <div onClick={handleSubmit(createPost)}>
+          <div onClick={(e) => btnClick(e)}>
             <BarButton name={Edit.name} color={"main"} />
           </div>
         </>
