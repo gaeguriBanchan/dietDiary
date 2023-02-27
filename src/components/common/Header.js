@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router";
-import me from "../../assets/images/icon/icon_b_my.png";
+import me from "../../assets/images/icon/profile.png";
 
 const Header = () => {
   const today = () => {
