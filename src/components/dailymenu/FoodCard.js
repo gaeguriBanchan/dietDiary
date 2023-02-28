@@ -44,7 +44,7 @@ const FoodCard = ({ item, open, close, header }) => {
     >
       <div className="w-full h-1/2 bg-main rounded-xl">
         <img
-          src={`http://192.168.0.16:9876/api/calex/calorie/image/${item.dfImg}`}
+          src={`http://192.168.0.16:9876//api/diet/images/${item.dfImg}`}
           alt={item.dfImg}
         />
       </div>

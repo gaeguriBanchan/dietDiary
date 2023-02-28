@@ -1,22 +1,22 @@
 /** @format */
 
-import React, { useState } from "react";
-import Background from "../base/Background";
-import BarButton from "../base/BarButton";
-import dummyData from "./dummyData.json";
+import React, { useState } from 'react';
+import Background from '../base/Background';
+import BarButton from '../base/BarButton';
+import dummyData from './dummyData.json';
 
 const FoodModal = ({ close, foodList }) => {
-  const [Edit, setEdit] = useState({ name: "수정", EditBt: false });
-  const [totalLength, setTotalLength] = useState("");
+  const [Edit, setEdit] = useState({ name: '수정', EditBt: false });
+  const [totalLength, setTotalLength] = useState('');
   const tL = (e) => {
     setTotalLength(e.target.value);
   };
   const dietEdit = (e) => {
     setEdit(() => {
       if (Edit.EditBt) {
-        return { name: "수정", EditBt: false };
+        return { name: '수정', EditBt: false };
       } else {
-        return { name: "등록", EditBt: true };
+        return { name: '등록', EditBt: true };
       }
     });
   };
@@ -34,7 +34,7 @@ const FoodModal = ({ close, foodList }) => {
 
           <button className="bg-close bg-no-repeat w-8 h-8 " onClick={close} />
         </div>
-        {Edit.name === "수정" ? (
+        {Edit.name === '수정' ? (
           <>
             <div className="flex flex-col justify-center items-center p-8">
               <div className="w-[525px] h-[525px] bg-textGray rounded-2xl "></div>
@@ -59,7 +59,7 @@ const FoodModal = ({ close, foodList }) => {
               </div>
             </div>
             <div onClick={dietEdit}>
-              <BarButton name={Edit.name} color={"main"} />
+              <BarButton name={Edit.name} color={'main'} />
             </div>
           </>
         ) : (
@@ -78,7 +78,7 @@ const FoodModal = ({ close, foodList }) => {
                   <input
                     className="mb-8 text-5xl font-MuseoModerno font-normal text-center"
                     type="text"
-                    placeholder={dummyData.diet[0].kcal + "Kcal"}
+                    placeholder={dummyData.diet[0].kcal + 'Kcal'}
                   ></input>
                 </label>
               </div>
@@ -104,10 +104,10 @@ const FoodModal = ({ close, foodList }) => {
               </div>
             </div>
             <div className="mb-2" onClick={close}>
-              <BarButton name={"삭제"} color={"textRed"} />
+              <BarButton name={'삭제'} color={'textRed'} />
             </div>
             <div onClick={close}>
-              <BarButton name={Edit.name} color={"main"} />
+              <BarButton name={Edit.name} color={'main'} />
             </div>
           </>
         )}
