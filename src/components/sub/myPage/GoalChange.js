@@ -12,9 +12,7 @@ const GoalChange = () => {
           <span className="flex items-center justify-center">
             <input
               className="max-w-[140px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-              type="number"
-              min="1"
-              max="1000"
+              type="text"
               placeholder={human.day}
             />
             <p className="text-[26px] text-textGray font-normal">일</p>
@@ -25,8 +23,7 @@ const GoalChange = () => {
           <span className="flex items-center justify-center">
             <input
               className="max-w-[180px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-              type="number"
-              min="1"
+              type="text"
               placeholder={human.cal}
             />
             <p className="text-[26px] text-textGray font-MuseoModerno font-normal">
@@ -39,8 +36,7 @@ const GoalChange = () => {
           <span className="flex items-center justify-center">
             <input
               className="max-w-[110px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-              type="number"
-              min="1"
+              type="text"
               placeholder={human.cup}
             />
             <p className="text-[26px] text-textGray font-normal">컵</p>
@@ -52,9 +48,8 @@ const GoalChange = () => {
         <span className="flex items-center justify-center">
           <input
             className="max-w-[120px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
-            type="number"
-            min="1"
-            placeholder='80'
+            type="text"
+            placeholder="80"
           />
           <p className="text-[26px] text-textGray font-MuseoModerno font-normal">
             kg

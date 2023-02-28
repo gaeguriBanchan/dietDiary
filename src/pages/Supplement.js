@@ -66,11 +66,7 @@ const Supplement = () => {
 
             {chBt.src === calendar ? (
               <div className="pillupdate">
-                <PillUpdate
-                  // enableUpdate={enableUpdate}
-                  // deletePost={deletePost}
-                  // index={index}
-                />
+                <PillUpdate />
               </div>
             ) : (
               <MyCalendar />
