@@ -11,9 +11,13 @@ import { useEffect, useState } from 'react';
 import DirectFood from '../components/addfood/DirectFood';
 import axios, { Axios } from 'axios';
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
 const Addfood = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+
+  const miToken = user.miToken;
 
   const [foodContent, setFoodContent] = useState([]);
   const [radioVal, setRadioVal] = useState('');
@@ -85,15 +89,15 @@ const Addfood = () => {
   }, []);
 
   // 식단예시클릭 등록
-  const token = 'token1';
+
   const handleSubmit = () => {
     let params = {
       dceSeq: dceSeq,
-      token: token,
+      token: miToken,
     };
     axios
       .get(
-        `http://192.168.0.16:9876/api/diet/add/bycal?dceSeq=${dceSeq}&token=${token}`,
+        `http://192.168.0.16:9876/api/diet/add/bycal?dceSeq=${dceSeq}&token=${miToken}`,
         params
       )
       .then((res) => {

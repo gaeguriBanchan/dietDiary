@@ -1,13 +1,21 @@
 /** @format */
 
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import Background from '../base/Background';
 import BarButton from '../base/BarButton';
 import dummyData from './dummyData.json';
+import { useSelector } from 'react-redux';
 
-const FoodModal = ({ close, foodList, item }) => {
+const FoodModal = ({ close, foodList }) => {
   const [Edit, setEdit] = useState({ name: '수정', EditBt: false });
   const [totalLength, setTotalLength] = useState('');
+
+  const user = useSelector((state) => state.user);
+
+  const miToken = user.miToken;
+
   const tL = (e) => {
     setTotalLength(e.target.value);
   };
@@ -21,37 +29,24 @@ const FoodModal = ({ close, foodList, item }) => {
     });
   };
 
-  //시간표기
-  const data = item.dfRegDt;
-  let a = data.slice(11, 16);
-  function convert12H(time, options) {
-    var _ampmLabel = (options && options.ampmLabel) || ['오전', '오후'];
-    var _timeRegExFormat = /^([0-9]{2}):([0-9]{2})$/;
-    var _timeToken = time.match(_timeRegExFormat);
-    if (typeof _timeRegExFormat === 'undefine') {
-      // 잘못된 형식
-      return null;
-    }
-    var _intHours = parseInt(_timeToken[1]);
-    var _intMinutes = parseInt(_timeToken[2]);
-    var _strHours12H = ('0' + (_intHours == 12 ? 12 : _intHours % 12)).slice(
-      -2
-    );
-    return (
-      _ampmLabel[parseInt(_intHours / 12)] +
-      ' ' +
-      _strHours12H +
-      ':' +
-      _intMinutes
-    );
-  }
-  const time = convert12H(a, {
-    ampmLabel: ['am', 'pm'],
-  });
-
-
-
-  
+  // 식단 삭제
+  useEffect(() => {
+    // let params = {
+    //   token: miToken,
+    //   dfSeq: dfSeq,
+    // };
+    // axios
+    //   .get(
+    //     `http://192.168.0.16:9876/api/diet/delete?token=${miToken}&dfSeq=${dfSeq}`,
+    //     params
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  }, []);
 
   return (
     <div>
@@ -60,7 +55,7 @@ const FoodModal = ({ close, foodList, item }) => {
           <p>
             <span className="w-full text-3xl text-main">아침</span>
             <span className="font-MuseoModerno font-normal text-3xl text-second ml-8">
-              {time}
+              시간
             </span>
           </p>
 

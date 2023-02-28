@@ -23,17 +23,21 @@ import FoodModal from '../components/dailymenu/FoodModal';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import WeekSuggest from '../components/dailymenu/WeekSuggest';
+import { useSelector } from 'react-redux';
 
 const DailyMenu = () => {
   const [foodList, setFoodList] = useState([]);
   const [goalList, setGoalList] = useState([]);
+  const user = useSelector((state) => state.user);
+
+  const miToken = user.miToken;
 
   // Card 목록을 출력하는 useEffect
   const getFoodList = (_day) => {
     axios
       .get(
         // "http://192.168.0.16:9876/api/diet/list?token=token1&date=2023-02-23T00%3A00%3A00"
-        `http://192.168.0.16:9876/api/diet/list?token=token1&date=${_day}`
+        `http://192.168.0.16:9876/api/diet/list?token=${miToken}&date=${_day}`
       )
       .then((res) => {
         console.log(res.data.list);
@@ -59,7 +63,7 @@ const DailyMenu = () => {
     // 해당년/월에 목표 달성 여부를 출력합니다 / 회원 토큰, 년, 월을 입력하세요.
     axios
       .get(
-        'http://192.168.0.16:9876/api/cal/month?token=token1&year=2023&month=2'
+        `http://192.168.0.16:9876/api/cal/month?token=${miToken}&year=2023&month=2`
       )
       .then((res) => {
         // console.log("결과", res);
@@ -119,6 +123,16 @@ const DailyMenu = () => {
   const goAddFood = () => {
     navigate('/addfood');
   };
+
+
+
+
+  const test = foodList.filter((food) => {
+  
+    return food.dfSeq === false;
+  })
+  
+  console.log('현재 행복한 친구들.. ', test);
 
   return (
     <>
@@ -181,8 +195,6 @@ const DailyMenu = () => {
             </div>
             <div className="mx-4">
               <div className=" grid grid-cols-3 ">
-                <DailyDiet />
-                <DailyDiet />
                 <DailyDiet />
               </div>
             </div>

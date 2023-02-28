@@ -1,25 +1,27 @@
-// import axios from "axios";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import style from "../../pages/Pill.module.css";
-import BarButton from "./BarButton";
+/** @format */
+
+import axios from 'axios';
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import style from '../../pages/Pill.module.css';
+import BarButton from './BarButton';
 
 // const handleChecked=()
 
 const PillUpdate = () => {
-  const [Edit, setEdit] = useState({ name: "추가", EditBt: false });
+  const [Edit, setEdit] = useState({ name: '추가', EditBt: false });
   const PillEdit = (e) => {
     setEdit(() => {
       if (Edit.EditBt) {
-        return { name: "추가", EditBt: false };
+        return { name: '추가', EditBt: false };
       } else {
-        return { name: "등록", EditBt: true };
+        return { name: '등록', EditBt: true };
       }
     });
   };
   // 약 이름
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const piName = (e) => {
     setName(e.target.value);
   };
@@ -34,7 +36,7 @@ const PillUpdate = () => {
   const pillSeq = Plist.pillSeq;
   useEffect(() => {
     axios
-      .get("http://192.168.0.16:9876/api/pill/info?token=token1")
+      .get('http://192.168.0.16:9876/api/pill/info?token=token1')
       .then((res) => {
         setPlist(res.data.list);
       })
@@ -44,31 +46,31 @@ const PillUpdate = () => {
   }, []);
   const btnClick = (e) => {
     e.preventDefault();
-    if (name === "") {
-      alert("이름을 입력해주세요");
+    if (name === '') {
+      alert('이름을 입력해주세요');
     }
-    if (count === "") {
-      alert("횟수를 입력해주세요");
+    if (count === '') {
+      alert('횟수를 입력해주세요');
     }
     const params = {
       piName: name,
       piAmount: count,
     };
     axios
-      .put("http://192.168.0.16:9876/api/pill/add?token=token1", params)
+      .put('http://192.168.0.16:9876/api/pill/add?token=token1', params)
       .then((res) => {
         console.log(res);
         alert(res.data.message);
         setEdit(() => {
           if (Edit.EditBt) {
-            return { name: "추가", EditBt: false };
+            return { name: '추가', EditBt: false };
           } else {
-            return { name: "등록", EditBt: true };
+            return { name: '등록', EditBt: true };
           }
         });
       })
       .catch((err) => {
-        console.log("실패^^", err);
+        console.log('실패^^', err);
       });
   };
   console.log(Plist);
@@ -86,7 +88,7 @@ const PillUpdate = () => {
     };
     axios
       .delete(
-        "http://192.168.0.16:9876/api/pill/delete?token=token1&piSeq=1",
+        'http://192.168.0.16:9876/api/pill/delete?token=token1&piSeq=1',
         param
       )
       .then((res) => {
@@ -99,7 +101,6 @@ const PillUpdate = () => {
       });
   };
 
-
   useEffect(() => {}, [Edit]);
   // axios
   //   .put("http://192.168.0.16:9876/api/pill/add?token=1")
@@ -109,28 +110,28 @@ const PillUpdate = () => {
   //   });
   return (
     <div>
-      {Edit.name === "추가" ? (
+      {Edit.name === '추가' ? (
         <>
           <div className="">
             <div className="pill-left">
               <div className="pill-0">
                 <label htmlFor="pill">
                   <span className={style.labelradio}>종합 영양제</span>
-                  <input type={"checkbox"} />
-                  <input type={"checkbox"} />
-                  <input type={"checkbox"} />
+                  <input type={'checkbox'} />
+                  <input type={'checkbox'} />
+                  <input type={'checkbox'} />
                 </label>
               </div>
               <div className="pill-1">
                 <span className={style.labelradio}>비타민</span>
-                <input type={"checkbox"} />
-                <input type={"checkbox"} />
+                <input type={'checkbox'} />
+                <input type={'checkbox'} />
               </div>
             </div>
             <div className="pill-right justify-between">
               <div className="pill-2">
                 <span className={style.labelradio}>단백질</span>
-                <input type={"checkbox"} />
+                <input type={'checkbox'} />
                 <span className={style.labelradio}>
                   {Plist.map((item, pillSeq) => {
                     return (
@@ -139,7 +140,7 @@ const PillUpdate = () => {
                           {item.pillName}
                           {item.pillAmount}
                         </p>
-                        <input type={"checkbox"} />
+                        <input type={'checkbox'} />
                         <button
                           className="delBtn text-red-700"
                           onClick={(e) => {
@@ -152,12 +153,11 @@ const PillUpdate = () => {
                     );
                   })}
                 </span>
-
               </div>
             </div>
           </div>
           <div onClick={(e) => PillEdit(e)}>
-            <BarButton name={Edit.name} color={"main"} />
+            <BarButton name={Edit.name} color={'main'} />
           </div>
         </>
       ) : (
@@ -177,10 +177,10 @@ const PillUpdate = () => {
             </form>
           </div>
           <div className="mb-2" onClick={PillEdit}>
-            <BarButton name={"취소"} className="cancel" color={"textRed"} />
+            <BarButton name={'취소'} className="cancel" color={'textRed'} />
           </div>
           <div onClick={(e) => PillEdit(e)}>
-            <BarButton name={Edit.name} color={"main"} />
+            <BarButton name={Edit.name} color={'main'} />
           </div>
         </>
       )}
