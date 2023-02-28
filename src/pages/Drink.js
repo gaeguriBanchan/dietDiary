@@ -14,7 +14,6 @@ import axios from "axios";
 import Header from "../components/common/Header";
 
 const Drink = () => {
-  const [goalList, setGoalList] = useState([]);
   useEffect(() => {
     axios.post("").then().catch();
   }, []);
@@ -44,32 +43,6 @@ const Drink = () => {
     });
     console.log(chBt);
   };
-  useEffect(() => {
-    // 해당년/월에 목표 달성 여부를 출력합니다 / 회원 토큰, 년, 월을 입력하세요.
-    axios
-      .get(
-        "http://192.168.0.16:9876/api/cal/month?token=token1&year=2023&month=2"
-      )
-      .then((res) => {
-        let resultArr = [];
-        for (let item of res.data.list) {
-          resultArr.push(item);
-        }
-        setGoalList(resultArr);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  const getDringList = (_day) => {
-    // Drink 정보 가져오기
-  };
-  const changeDay = (_day) => {
-    changeBtn();
-    console.log("전달된 날짜 : ", _day);
-    getDringList(_day);
-  };
   useEffect(() => {}, [chBt]);
   return (
     <>
@@ -98,11 +71,7 @@ const Drink = () => {
               <WaterDrop />
             ) : (
               <div>
-                <MyCalendar
-                  menu="물"
-                  goalList={goalList}
-                  changeDay={changeDay}
-                />
+                <MyCalendar />
               </div>
             )}
           </div>

@@ -21,20 +21,14 @@
 ![notion](https://img.shields.io/badge/notion-000000.svg?style=for-the-badge&logo=notion&logoColor=white&logoWidth=20)
 ![slack](https://img.shields.io/badge/slack-4A154B.svg?style=for-the-badge&logo=slack&logoColor=white&logoWidth=20)
 
-### 디자인
-
-![figma](https://img.shields.io/badge/figma-F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
-
-### 정보구조도
-
-<img src="https://img.shields.io/badge/miro-050038?style=for-the-badge&logo=miro&logoColor=white"/>
-
-
 ### 코드관리
 
 ![github](https://img.shields.io/badge/github-181717.svg?style=for-the-badge&logo=github&logoColor=white&logoWidth=20)
 ![sourcetree](https://img.shields.io/badge/sourcetree-0052CC.svg?style=for-the-badge&logo=sourcetree&logoColor=white&logoWidth=20)
 
+### 디자인
+
+![figma](https://img.shields.io/badge/figma-F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
 <br/>
 <br/>

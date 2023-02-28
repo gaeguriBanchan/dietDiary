@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router";
-import me from "../../assets/images/icon/profile.png";
+import me from "../../assets/images/icon/icon_b_my.png";
 
 const Header = () => {
   const today = () => {
@@ -21,15 +21,13 @@ const Header = () => {
         </p>
 
         <div className="userInfo font-medium pt-2 flex">
-          <a href="/myPage" className="flex">
-            강백호
-            <img
-              src={me}
-              alt="user"
-              style={{ width: "27px", height: "27px" }}
-              className="ml-3"
-            />
-          </a>
+          강백호
+          <img
+            src={me}
+            alt="user"
+            style={{ width: "27px", height: "27px" }}
+            className="ml-3"
+          />
         </div>
       </div>
       <Outlet />
