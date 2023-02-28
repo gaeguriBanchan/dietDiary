@@ -11,7 +11,6 @@ import calender from "../assets/images/icon/icon_calendar.png";
 import diet from "../assets/images/icon/icon_diet.png";
 import MyCalendar from "../components/base/MyCalendar";
 import axios from "axios";
-import Header from "../components/common/Header";
 
 const Drink = () => {
   useEffect(() => {
