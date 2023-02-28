@@ -1,13 +1,27 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { Sidebar } from "../components/common/Sidebar";
+// 스토어에 있는 데이터 읽기
+import { useSelector } from "react-redux";
+// 스토어 값 업데이트하기
+import { useDispatch } from "react-redux";
+import { logOut } from "../reducer/userSlice";
 
 const Today = () => {
+  // 스토어에 있는 데이터 읽기
+  const user = useSelector((state) => state.user);
+  // console.log(user);
+  // 스토어 업데이트하기
+  const dispatch = useDispatch();
+
   // 화면이동
   const navigate = useNavigate();
   // 카카오 기능
   // 카카오 로그아웃
   const kakaoLogOut = () => {
+    // 사용자정보 업데이트
+    dispatch(logOut());
+
     if (!window.Kakao.Auth.getAccessToken()) {
       console.log("Not logged in.");
       return;
@@ -47,9 +61,15 @@ const Today = () => {
           <Sidebar></Sidebar>
           <div className="w-[1080px]  h-full m-8">Today</div>
           <div>
-            <button className="border m-5" onClick={kakaoLogOut}>카카오 로그아웃</button>
-            <button className="border m-5" onClick={memberOut}>카카오 서비스 탈퇴</button>
-            <button className="border m-5" onClick={naverLogout}>네이버 로그아웃</button>
+            <button className="border m-5" onClick={kakaoLogOut}>
+              {user.miName} 카카오 로그아웃
+            </button>
+            <button className="border m-5" onClick={memberOut}>
+              카카오 서비스 탈퇴
+            </button>
+            <button className="border m-5" onClick={naverLogout}>
+              네이버 로그아웃
+            </button>
           </div>
         </div>
       </div>

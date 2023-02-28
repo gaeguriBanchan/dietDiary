@@ -3,9 +3,13 @@ import Background from "../components/base/Background";
 import myIcon from "../assets/images/icon/icon_b_my.png";
 import BarButton from "../components/base/BarButton";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 
 const Join = () => {
+  // 화면이동
+  const navigate = useNavigate();
   //================ 회원 가입 관련
   // 에러 정보 관리 객체
   const [Err, setErr] = useState({});
@@ -26,9 +30,13 @@ const Join = () => {
       errs.pwd = "비밀번호를 입력해 주세요.";
       return alert("비밀번호를 입력해 주세요.");
     }
-    if (_val.pwd === '') {
-      errs.pwd = "비밀번호를 입력해 주세요.";
-      return alert("비밀번호를 입력해 주세요.");
+    if (_val.pwd2 === "") {
+      errs.pwd2 = "비밀번호 확인을 입력해 주세요.";
+      return alert("비밀번호 확인을 입력해 주세요.");
+    }
+    if (_val.pwd2 !== _val.pwd) {
+      errs.pwd2 = "비밀번호가 일치하지 않습니다.";
+      return alert("비밀번호가 일치하지 않습니다.");
     }
     if (_val.hard === "") {
       errs.hard = "다이어트 강도를 선택해 주세요.";
@@ -63,11 +71,11 @@ const Join = () => {
       return alert("목표 체중을 입력해 주세요.");
     }
 
-    // if (Object.keys(Err).length === 0) {
-    //   errCheck.current = false;
-    // } else {
-    //   errCheck.current = true;
-    // }
+    if (Object.keys(Err).length === 0) {
+      errCheck.current = false;
+    } else {
+      errCheck.current = true;
+    }
     return errs;
   };
   useEffect(() => {
@@ -77,8 +85,11 @@ const Join = () => {
   let initVal = {
     id: "",
     pwd: "",
+    pwd2: "",
     name: "",
     age: "",
+    gen: "",
+    address: "",
     tall: "",
     weight: "",
     hard: "",
@@ -86,27 +97,25 @@ const Join = () => {
     kg: "",
     water: "",
     time: "",
-    token: "",
     // 서버관리자에게 전달할 내용
   };
-  let pwC= {
-    pwd2:''
-  }
   // 최종 서버로 전송할 데이터 모음
   const [val, setVal] = useState(initVal);
-  const [pwCheck, setPwCheck] = useState(pwC)
 
+  const handleChangeNumber = (e) => {
+    let v = e.target.value;
+    v = v.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "$1");
+    const { name } = e.target;
+    setVal({ ...val, [name]: v });
+  };
   const handleChange = (e) => {
     // console.log(e.target);
     // console.log(e.target.name);
     // console.log(e.target.value);
+
     const { name, value } = e.target;
     setVal({ ...val, [name]: value });
   };
-  const handlePwCheck = (e)=>{
-    const { name, value } = e.target;
-    setPwCheck({ ...pwCheck, [name]: value });
-  }
 
   useEffect(() => {
     console.log("사용자 입력 내용 :", val);
@@ -114,19 +123,59 @@ const Join = () => {
 
   // 전송 실행시 각 항목의 내용 체크
   const handleSubmit = (e) => {
-    console.log("handleSubmit : ");
     e.preventDefault();
     // 필요항목에 대한 체크 실행
     // 각 항목 체크용 객체를 생성해 진행
     setErr(check(val));
-    setErr(check(pwC))
-    // let errObj = check(val);
-    // const count = Object.keys(errObj).length;
-    // // console.log("count 체크 값 : ", count);
-    // if (count === 0) {
-    //   alert("서버전송");
-    // }
+
+    let errObj = check(val);
+    const count = Object.keys(errObj).length;
+    // console.log("count 체크 값 : ", count);
+    if (count === 0) {
+      registFunc();
+    }
   };
+  const registFunc = () => {
+    console.log("회원가입 실행");
+
+    const header = {
+      headers: {
+        // "Content-Type": "multipart/form-data",
+        // Authorization,
+      },
+    };
+
+    // 서버로 이미지를 임시로 보내고 url 글자를 받아오는 코드 / 일반적인 방법
+    // 파일을 강제로 업로드 한다.
+    const formData = new FormData();
+    formData.append("file", imgFile);
+    formData.append("id", val.id);
+    formData.append("pwd", val.pwd);
+    formData.append("name", val.name);
+    formData.append("age", val.age);
+    formData.append("gen", "");
+    formData.append("address", "");
+    formData.append("tall", val.tall);
+    formData.append("weight", val.weight);
+    formData.append("hard", val.hard);
+    formData.append("cal", val.cal);
+    formData.append("kg", val.kg);
+    formData.append("water", val.water);
+    formData.append("time", val.time);
+
+    axios
+      .put("http://192.168.0.16:9876/api/member/add", formData, header)
+      .then((res) => {
+        console.log(res.data);
+        alert("회원가입 완료");
+        navigate("/today");
+      })
+      .catch((err) => {
+        console.log(err);
+        // setBtFlag(false);
+      });
+  };
+
   //================
   const [btnActive, setBtnActive] = useState();
   const toggleActive = (e) => {
@@ -165,6 +214,43 @@ const Join = () => {
     );
   };
 
+  const [imgFile, setImgFile] = useState("");
+  const imgRef = useRef(null);
+  const imgUplod = () => {
+    imgRef.current.click();
+  };
+  const onChangeImg = async (e) => {
+    e.preventDefault();
+    // 미리보기 기능
+    if (e.target.files) {
+      // files 는 배열에 담긴다
+      // files는 1개 이므로 e.target.files[0]
+      const uploadFile = e.target.files[0];
+      console.log(uploadFile);
+      // 이미지를 읽어들이는 바닐라 메서드(함수)
+      const reader = new FileReader();
+      reader.readAsDataURL(uploadFile);
+      reader.onloadend = () => {
+        // 임시 이미지 주소가 만들어진다.
+        // useState
+        setImgFile(reader.result);
+      };
+
+      // 서버로 이미지를 임시로 보내고 url 글자를 받아오는 코드 / 일반적인 방법
+      // 파일을 강제로 업로드 한다.
+      // const formData = new FormData();
+      // formData.append("files", uploadFile);
+      // await axios({
+      //   method: "post",
+      //   url: "/api/files/images",
+      //   data: formData,
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+    }
+  };
+
   return (
     <>
       <Background>
@@ -178,12 +264,29 @@ const Join = () => {
             <p className="text-main text-xl">회원가입</p>
           </div>
         </div>
-        <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray my-[50px]"></div>
+        <div className="w-[300px] h-[300px] m-auto rounded-full relative bg-textGray mt-[50px] mb-[20px]">
+          <img
+            onClick={imgUplod}
+            src={imgFile}
+            alt=""
+            className="w-[300px] h-[300px] m-auto rounded-full bg-main"
+          />
+          <input
+            type="file"
+            accept="image/*"
+            onInput={onChangeImg}
+            ref={imgRef}
+            style={{ display: "none" }}
+          />
+        </div>
+        <div onClick={imgUplod} className="w-[200px] m-auto mb-[50px]">
+          <BarButton name={"프로필 사진 추가"} color={"main"} />
+        </div>
         <div className="flex justify-center mb-[10px]">
           <input
             className="text-4xl text-textBlack text-center mb-[100px] focus:outline-none border-b-2"
             type="text"
-            placeholder="홍길동"
+            placeholder="Name"
             maxLength="10"
             name="name"
             onChange={handleChange}
@@ -223,7 +326,7 @@ const Join = () => {
             placeholder="비밀번호를 입력해 주세요"
             minLength="8"
             name="pwd2"
-            onChange={handlePwCheck}
+            onChange={handleChange}
           />
         </div>
         <Level />
@@ -232,8 +335,9 @@ const Join = () => {
             <p className="text-center text-main mb-[10px] text-2xl">나이</p>
             <input
               name="age"
-              onChange={handleChange}
+              onChange={handleChangeNumber}
               type="text"
+              value={val.age}
               className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
               placeholder={"25세"}
             />
@@ -242,8 +346,9 @@ const Join = () => {
             <p className="text-center text-main mb-[10px] text-2xl">신장</p>
             <input
               name="tall"
-              onChange={handleChange}
+              onChange={handleChangeNumber}
               type="text"
+              value={val.tall}
               className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
               placeholder={"170cm"}
             />
@@ -252,10 +357,11 @@ const Join = () => {
             <p className="text-center text-main mb-[10px] text-2xl">체중</p>
             <input
               type="text"
+              value={val.kg}
               className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
               placeholder={"70kg"}
               name="kg"
-              onChange={handleChange}
+              onChange={handleChangeNumber}
             />
           </div>
         </div>
@@ -268,9 +374,10 @@ const Join = () => {
               <input
                 className="max-w-[140px] h-[90px] text-[62px] font-MuseoModerno text-center text-textBlack focus:outline-none"
                 type="text"
+                value={val.time}
                 placeholder="300"
                 name="time"
-                onChange={handleChange}
+                onChange={handleChangeNumber}
               />
               <p className="text-[26px] text-textGray font-normal">일</p>
             </span>
@@ -284,9 +391,10 @@ const Join = () => {
               <input
                 className="max-w-[160px] h-[90px] text-[62px] font-MuseoModerno text-center text-textBlack focus:outline-none"
                 type="text"
+                value={val.cal}
                 placeholder="2500"
                 name="cal"
-                onChange={handleChange}
+                onChange={handleChangeNumber}
               />
               <p className="text-[26px] text-textGray font-normal">Kcal</p>
             </span>
@@ -300,9 +408,10 @@ const Join = () => {
               <input
                 className="max-w-[100px] h-[90px] text-[62px] font-MuseoModerno text-center text-textBlack focus:outline-none"
                 type="text"
+                value={val.water}
                 placeholder="8"
                 name="water"
-                onChange={handleChange}
+                onChange={handleChangeNumber}
               />
               <p className="text-[26px] text-textGray font-normal">컵</p>
             </span>
@@ -316,9 +425,10 @@ const Join = () => {
               <input
                 className="max-w-[120px] h-[90px] text-[62px] font-MuseoModerno text-center text-textBlack focus:outline-none"
                 type="text"
+                value={val.weight}
                 placeholder="80"
                 name="weight"
-                onChange={handleChange}
+                onChange={handleChangeNumber}
               />
               <p className="text-[26px] text-textGray font-normal">kg</p>
             </span>
@@ -330,7 +440,6 @@ const Join = () => {
           name={"회원가입"}
           color={"main"}
           handleSubmit={handleSubmit}
-          
         />
         {/* </Link> */}
       </Background>

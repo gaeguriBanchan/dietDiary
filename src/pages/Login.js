@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import axios from "axios";
+// 스토어 값 업데이트하기
+import { useDispatch } from "react-redux";
+import { logIn } from "../reducer/userSlice";
+
 // import { useRef } from "react";
 // import { useEffect } from "react";
 // import { useNavigate } from "react-router";
@@ -9,6 +14,11 @@ import kakaoLoginBt from "../assets/images/kakao_login/kakao_login_large_wide.pn
 import naverLoginBt from "../assets/images/naver_login/naver_login_large_wide.png";
 
 const Login = () => {
+  // 스토어 업데이트하기
+  const dispatch = useDispatch();
+
+  const [id, setId] = useState("");
+  const [pwd, setPwd] = useState("");
   // 카카오 로그인 기능
   // 등록된 앱의 JavaScript key
   const jsKey = process.env.REACT_APP_KAKAO;
@@ -112,6 +122,59 @@ const Login = () => {
   const naverLogin = () => {
     naverRef.current.children[0].click();
   };
+  // 회원로그인
+  const handleChange = (e) => {
+    if (e.target.name === "id") {
+      setId(e.target.value);
+    } else if (e.target.name === "pwd") {
+      setPwd(e.target.value);
+    }
+  };
+  const handlerLogin = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://192.168.0.16:9876/api/member/login", { id: id, pwd: pwd })
+      .then((res) => {
+        console.log(res.data);
+        // 사용자정보 업데이트
+        dispatch(logIn(res.data.data));
+
+        alert("회원로그인 완료");
+        navigate("/today");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // axios
+    //   .get(`http://192.168.0.16:9876/api/member/login?id=${id}&pwd=${pwd}`)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     const userInfo = {
+    //       miAddress: "",
+    //       miAge: 30,
+    //       miEndTime: "2023-03-30",
+    //       miGen: null,
+    //       miGoalKg: 30,
+    //       miHard: 1,
+    //       miId: "bbb",
+    //       miImg: "",
+    //       miKcal: 30,
+    //       miName: "bbb",
+    //       miSeq: 20,
+    //       miStartTime: "2023-02-28",
+    //       miStatus: 0,
+    //       miTall: 30,
+    //       miToken: "sUiWa99PaL8jjzdEBsrN",
+    //       miWater: 30,
+    //       miWeight: 30,
+    //     };
+    //     alert("회원로그인 완료");
+    //     navigate("/today");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  };
   return (
     <>
       <div className="flex my-1 justify-center items-center">
@@ -125,19 +188,26 @@ const Login = () => {
             <form className="w-[600px] h-[90px] my-10 flex justify-between">
               <div className="grid gap-1">
                 <input
-                  className="border-b-2 w-[480px]"
+                  className="border-b-2 w-[480px] text-center"
                   type="text"
+                  name="id"
+                  value={id}
                   placeholder="아이디"
+                  onChange={handleChange}
                 />
                 <input
-                  className="border-b-2 w-[480px]"
-                  type="text"
+                  className="border-b-2 w-[480px] text-center"
+                  type="password"
+                  name="pwd"
+                  value={pwd}
                   placeholder="비밀번호"
+                  onChange={handleChange}
                 />
               </div>
               <button
                 type="submit"
                 className="w-[100px] h-[100px] bg-main rounded-xl text-white text-lg"
+                onClick={handlerLogin}
               >
                 로그인
               </button>
