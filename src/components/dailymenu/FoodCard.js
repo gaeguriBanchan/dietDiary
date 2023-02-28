@@ -3,10 +3,9 @@
 import React from 'react';
 
 const FoodCard = ({ item, open, close, header }) => {
+  //시간표기
   const data = item.dfRegDt;
   let a = data.slice(11, 16);
-  // console.log(a);
-
   function convert12H(time, options) {
     var _ampmLabel = (options && options.ampmLabel) || ['오전', '오후'];
     var _timeRegExFormat = /^([0-9]{2}):([0-9]{2})$/;
@@ -28,11 +27,6 @@ const FoodCard = ({ item, open, close, header }) => {
       _intMinutes
     );
   }
-  // console.log(
-  //   convert12H(a, {
-  //     ampmLabel: ['AM', 'PM'],
-  //   })
-  // );
   const time = convert12H(a, {
     ampmLabel: ['am', 'pm'],
   });

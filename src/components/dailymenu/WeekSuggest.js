@@ -17,7 +17,7 @@ const WeekSuggest = () => {
         console.log(err);
       });
   }, []);
-  console.log(suggestList);
+  console.log('리스트', suggestList);
 
   const suggesSug = suggestList.map((item, index) => {
     return (
