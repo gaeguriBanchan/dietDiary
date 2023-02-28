@@ -71,12 +71,13 @@ const PillUpdate = () => {
   console.log(Plist);
 
   // 약 삭제
-  const [listDel, setlistDel] = useState();
+  const [listDel, setListDel] = useState();
   const deletePill = (e) => {
-    setlistDel(e.target.piSeq);
-    console.log(e.target.piSeq);
+    setListDel(e.target.pillSeq);
+    console.log(e.target.pillSeq);
   };
-  const deleteBtn = () => {
+  const deleteBtn = (e) => {
+    e.preventDefault();
     let param = {
       piSeq: pillSeq,
     };
@@ -88,7 +89,7 @@ const PillUpdate = () => {
       .then((res) => {
         console.log(res.data);
         alert(res.data.message);
-        setPlist(res.data.list);
+        // setPlist(res.data.list);
       })
       .catch((err) => {
         console.log(err);
