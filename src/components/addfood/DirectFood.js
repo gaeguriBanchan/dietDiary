@@ -1,13 +1,29 @@
-import React, { useEffect, useRef, useState } from "react";
-import BarButton from "../base/BarButton";
-import Memo from "../base/Memo";
-import RountButton from "../base/RoundButon";
-import axios from "axios";
+/** @format */
+
+import React, { useEffect, useRef, useState } from 'react';
+import BarButton from '../base/BarButton';
+import Memo from '../base/Memo';
+import RountButton from '../base/RoundButon';
+import axios from 'axios';
 
 const DirectFood = () => {
   // 이미지 업로드 및 미리보기
-  const [imgFile, setImgFile] = useState("");
+  const [imgFile, setImgFile] = useState('');
   const imgRef = useRef(null);
+
+  const [foodName, setFoodName] = useState('');
+  const addFoodName = (e) => {
+    setFoodName(e.target.value);
+  };
+
+  const [foodKcal, setFoodKcal] = useState('');
+  const addFoodKcal = (e) => {
+    setFoodName(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log(foodName);
+  }, [foodName]);
 
   const onChangeImg = async (e) => {
     e.preventDefault();
@@ -29,13 +45,13 @@ const DirectFood = () => {
       // 서버로 이미지를 임시로 보내고 url 글자를 받아오는 코드 / 일반적인 방법
       // 파일을 강제로 업로드 한다.
       const formData = new FormData();
-      formData.append("files", uploadFile);
+      formData.append('files', uploadFile);
       await axios({
-        method: "post",
-        url: "/api/files/images",
+        method: 'post',
+        url: '/api/files/images',
         data: formData,
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       });
     }
@@ -54,6 +70,7 @@ const DirectFood = () => {
               <input
                 className="w-full bg-none focus:outline-none font-normal "
                 placeholder="음식이름"
+                onChange={addFoodName}
               />
             </label>
           </div>
@@ -69,8 +86,8 @@ const DirectFood = () => {
               </label>
             </div>
             <div className="flex w-1/2">
-              <RountButton name={"취소"} text={"main"} color={"white"} />
-              <RountButton name={"저장"} text={"white"} color={"main"} />
+              <RountButton name={'취소'} text={'main'} color={'white'} />
+              <RountButton name={'저장'} text={'white'} color={'main'} />
             </div>
           </div>
         </div>
@@ -81,7 +98,7 @@ const DirectFood = () => {
             <div>
               <img
                 src={imgFile}
-                alt="프로필 이미지"
+                alt="음식이미지"
                 className="w-[500px] h-[400px] bg-main rounded-2xl mb-8"
               />
               <input
@@ -89,25 +106,13 @@ const DirectFood = () => {
                 accept="image/*"
                 onInput={onChangeImg}
                 ref={imgRef}
-                style={{ display: "none" }}
+                style={{ display: 'none' }}
               ></input>
             </div>
             <div onClick={imgUplod} className="mb-8">
-              <BarButton name={"사진올리기"} color={"main"} />
+              <BarButton name={'사진올리기'} color={'main'} />
             </div>
-            <div className="flex flex-col justify-center items-center">
-              <div>
-                <p className="text-5xl text-textBlack text-center">
-                  {}&nbsp;aaa
-                </p>
-                <p className="flex justify-between items-end text-textGray font-normal my-8">
-                  <span className="text-3xl leading-[30px]">{}aaa</span>
-                  <span className="text-5xl font-medium font-MuseoModerno leading-[40px]">
-                    {} aaa Kcal
-                  </span>
-                </p>
-              </div>
-            </div>
+            <div className="flex flex-col justify-center items-center"></div>
           </div>
         </div>
         <Memo />
