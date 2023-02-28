@@ -1,11 +1,9 @@
-// import axios from "axios";
+import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import style from "../../pages/Pill.module.css";
 import BarButton from "./BarButton";
-
-// const handleChecked=()
 
 const PillUpdate = () => {
   const [Edit, setEdit] = useState({ name: "추가", EditBt: false });
@@ -99,7 +97,6 @@ const PillUpdate = () => {
       });
   };
 
-
   useEffect(() => {}, [Edit]);
   // axios
   //   .put("http://192.168.0.16:9876/api/pill/add?token=1")
@@ -152,7 +149,6 @@ const PillUpdate = () => {
                     );
                   })}
                 </span>
-
               </div>
             </div>
           </div>
@@ -177,9 +173,9 @@ const PillUpdate = () => {
             </form>
           </div>
           <div className="mb-2" onClick={PillEdit}>
-            <BarButton name={"취소"} className="cancel" color={"textRed"} />
+            <BarButton name={"취소"} className="cancel" />
           </div>
-          <div onClick={(e) => PillEdit(e)}>
+          <div onClick={(e) => btnClick(e)}>
             <BarButton name={Edit.name} color={"main"} />
           </div>
         </>
