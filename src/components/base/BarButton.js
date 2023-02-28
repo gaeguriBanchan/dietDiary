@@ -1,11 +1,12 @@
-/** @format */
 
 import { useEffect } from "react";
 
-const BarButton = ({ name, color = "textRed" }) => {
+const BarButton = ({ name, color = "textRed",handleSubmit }) => {
+
   return (
     <div>
       <button
+        onClick={handleSubmit}
         className={`bg-${color} text-white w-full h-16 rounded-2xl text-xl`}
       >
         {name}

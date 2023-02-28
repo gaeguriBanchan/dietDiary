@@ -6,7 +6,6 @@ import {
   Routes,
   Route,
   Navigate,
-
 } from "react-router-dom";
 import Login from "./pages/Login";
 import Today from "./pages/Today";
@@ -35,9 +34,9 @@ function App() {
             <Route path="/addfood" element={<Addfood />}></Route>
             <Route path="/supplement" element={<Supplement />}></Route>
             <Route path="/myPage" element={<RealMyPage />}></Route>
-            <Route path="/join" element={<Join />}></Route>
             <Route path="*" element={<Navigate to="/today" />} />
           </Route>
+          <Route path="/join" element={<Join />}></Route>
         </Routes>
         <Footer />
         {/* </LoginProvider> */}
