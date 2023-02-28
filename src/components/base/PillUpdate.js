@@ -28,7 +28,7 @@ const PillUpdate = () => {
 
   //리스트 출력
   const [Plist, setPlist] = useState([]);
-
+  const pillSeq = Plist.pillSeq;
   useEffect(() => {
     axios
       .get("http://192.168.0.16:9876/api/pill/info?token=token1")
@@ -68,8 +68,32 @@ const PillUpdate = () => {
         console.log("실패^^", err);
       });
   };
-
   console.log(Plist);
+
+  // 약 삭제
+  const [listDel, setlistDel] = useState();
+  const deletePill = (e) => {
+    setlistDel(e.target.piSeq);
+    console.log(e.target.piSeq);
+  };
+  const deleteBtn = () => {
+    let param = {
+      piSeq: pillSeq,
+    };
+    axios
+      .delete(
+        "http://192.168.0.16:9876/api/pill/delete?token=token1&piSeq=1",
+        param
+      )
+      .then((res) => {
+        console.log(res.data);
+        alert(res.data.message);
+        setPlist(res.data.list);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {}, [Edit]);
 
@@ -82,24 +106,39 @@ const PillUpdate = () => {
               <div className="pill-0">
                 <label htmlFor="pill">
                   <span className={style.labelradio}>종합 영양제</span>
-                  <input type={"checkbox"} className={style.inputradio} />
-                  <input type={"checkbox"} className={style.inputradio} />
-                  <input type={"checkbox"} className={style.inputradio} />
+                  <input type={"checkbox"} />
+                  <input type={"checkbox"} />
+                  <input type={"checkbox"} />
                 </label>
               </div>
               <div className="pill-1">
                 <span className={style.labelradio}>비타민</span>
+                <input type={"checkbox"} />
+                <input type={"checkbox"} />
               </div>
             </div>
             <div className="pill-right justify-between">
               <div className="pill-2">
                 <span className={style.labelradio}>단백질</span>
+                <input type={"checkbox"} />
                 <span className={style.labelradio}>
                   {Plist.map((item, pillSeq) => {
                     return (
-                      <p key={pillSeq} className="ml-[8.5px]">
-                        {item.pillName}
-                      </p>
+                      <div className="flex">
+                        <p key={pillSeq} className="ml-[8.5px]">
+                          {item.pillName}
+                          {item.pillAmount}
+                        </p>
+                        <input type={"checkbox"} />
+                        <button
+                          className="delBtn text-red-700"
+                          onClick={(e) => {
+                            deleteBtn(e);
+                          }}
+                        >
+                          X
+                        </button>
+                      </div>
                     );
                   })}
                 </span>
