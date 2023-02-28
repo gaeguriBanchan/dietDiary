@@ -1,6 +1,8 @@
-/** @format */
 
-const BarButton = ({ name, color, handleSubmit }) => {
+import { useEffect } from "react";
+
+const BarButton = ({ name, color = "textRed",handleSubmit }) => {
+
   return (
     <div>
       <button
