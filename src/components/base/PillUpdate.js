@@ -74,8 +74,7 @@ const PillUpdate = () => {
   // 약 삭제
   const [listDel, setListDel] = useState();
   const deletePill = (e) => {
-    setListDel(e.target.pillSeq);
-    console.log(e.target.pillSeq);
+    setPlist();
   };
   const deleteBtn = (e) => {
     e.preventDefault();
@@ -88,9 +87,14 @@ const PillUpdate = () => {
         param
       )
       .then((res) => {
-        console.log(res.data);
         alert(res.data.message);
-        // setPlist(res.data.list);
+        console.log(res.config.method);
+        setListDel((e) => {
+          if (pillSeq === deletePill) {
+            setPlist(res.data.status);
+          }
+        });
+        console.log(res.data.status);
       })
       .catch((err) => {
         console.log(err);
@@ -138,7 +142,8 @@ const PillUpdate = () => {
                         </p>
                         <input type={"checkbox"} />
                         <button
-                          className="delBtn text-red-700"
+                          value={item.pillSeq}
+                          className="delBtn pl-2 text-red-700"
                           onClick={(e) => {
                             deleteBtn(e);
                           }}
