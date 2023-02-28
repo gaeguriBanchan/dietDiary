@@ -1,9 +1,11 @@
 import React from "react";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { MypageContext } from "../../../context/MypageContext";
 
 const GoalChange = () => {
   const { human } = useContext(MypageContext);
+  const user = useSelector((state)=> state.user)
   return (
     <>
       <div className="m-auto grid grid-cols-3 gap-3 mb-[20px] rounded-2xl">
@@ -24,7 +26,7 @@ const GoalChange = () => {
             <input
               className="max-w-[180px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
               type="text"
-              placeholder={human.cal}
+              placeholder={user.miKcal}
             />
             <p className="text-[26px] text-textGray font-MuseoModerno font-normal">
               Kcal
@@ -37,7 +39,7 @@ const GoalChange = () => {
             <input
               className="max-w-[110px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
               type="text"
-              placeholder={human.cup}
+              placeholder={user.miWater}
             />
             <p className="text-[26px] text-textGray font-normal">컵</p>
           </span>
@@ -49,7 +51,7 @@ const GoalChange = () => {
           <input
             className="max-w-[120px] h-[90px] text-[62px] font-MuseoModerno border rounded-full text-center text-textBlack"
             type="text"
-            placeholder="80"
+            placeholder={user.miGoalKg}
           />
           <p className="text-[26px] text-textGray font-MuseoModerno font-normal">
             kg

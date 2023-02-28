@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import me from "../../assets/images/icon/icon_b_my.png";
 
 const Header = () => {
+  const user = useSelector((state) => state.user);
   const today = () => {
     let now = new Date(); // today 객체에 Date()의 결과를 넣어줬다
     let time = {
@@ -21,7 +23,7 @@ const Header = () => {
         </p>
 
         <div className="userInfo font-medium pt-2 flex">
-          강백호
+          {user.miName}
           <img
             src={me}
             alt="user"

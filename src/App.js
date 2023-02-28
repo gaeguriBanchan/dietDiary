@@ -15,7 +15,6 @@ import Supplement from "./pages/Supplement";
 import Footer from "./components/common/Footer";
 import Join from "./pages/Join";
 import RealMyPage from "./pages/RealMyPage";
-import { LoginProvider } from "./context/LoginContext";
 import Header from "./components/common/Header";
 import Addfood from "./pages/AddFood";
 
@@ -23,7 +22,6 @@ function App() {
   return (
     <>
       <Router>
-        {/* <LoginProvider> */}
         <Routes>
           <Route path="/" element={<Navigate to="/login" />}></Route>
           <Route path="/login" element={<Login />}></Route>
@@ -39,7 +37,6 @@ function App() {
           <Route path="/join" element={<Join />}></Route>
         </Routes>
         <Footer />
-        {/* </LoginProvider> */}
       </Router>
     </>
   );

@@ -21,6 +21,7 @@ const Today = () => {
   const kakaoLogOut = () => {
     // 사용자정보 업데이트
     dispatch(logOut());
+    navigate("/");
 
     if (!window.Kakao.Auth.getAccessToken()) {
       console.log("Not logged in.");

@@ -1,10 +1,39 @@
 import React from "react";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
 import { MypageContext } from "../../../context/MypageContext";
 
 const MyPageProfile = () => {
   const { toggleChange, human } = useContext(MypageContext);
+  const user = useSelector((state) => state.user);
+  const hard = () => {
+    if (user.miHard === 0) {
+      return (
+        <p className="text-3xl text-textGray text-center mb-[50px]">
+          건강한 다이어터
+        </p>
+      );
+    } else if (user.miHard === 1) {
+      return (
+        <p className="text-3xl text-textGray text-center mb-[50px]">
+          쉽게 가고싶은 다이어터
+        </p>
+      );
+    } else if (user.miHard === 2) {
+      return (
+        <p className="text-3xl text-textGray text-center mb-[50px]">
+          탄탄한 몸매를 원하는 다이어터
+        </p>
+      );
+    } else {
+      return (
+        <p className="text-3xl text-textGray text-center mb-[50px]">
+          극한의 몸매를 원하는 다이어터
+        </p>
+      );
+    }
+  };
 
   return (
     <div className="h-[770px] m-auto mb-[20px] rounded-2xl border bg-white ">
@@ -28,26 +57,34 @@ const MyPageProfile = () => {
         {/* <img src={myIcon} alt="profile" className="w-[300px] h-[300px]"/> */}
       </div>
       <p className="text-4xl text-textBlack text-center mb-[10px]">
-        {human.name}
+        {user.miName}
+      </p>
+      {hard()}
+      {/* <p className="text-3xl text-textGray text-center mb-[50px]">
+        건강한 다이어터
+      </p> */}
+      {/* <p className="text-3xl text-textGray text-center mb-[50px]">
+        쉽게 가고싶은 다이어터
+      </p> */}
+      {/* <p className="text-3xl text-textGray text-center mb-[50px]">
+        탄탄한 몸매를 원하는 다이어터
       </p>
       <p className="text-3xl text-textGray text-center mb-[50px]">
-        건강한 다이어터
-      </p>
+        극한의 몸매를 원하는 다이어터
+      </p> */}
       <div className="flex justify-around">
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">나이</p>
-          <p className="text-center text-textGray text-4xl">{human.age} 세</p>
+          <p className="text-center text-textGray text-4xl">{user.miAge} 세</p>
         </div>
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">신장</p>
-          <p className="text-center text-textGray text-4xl">
-            {human.height} cm
-          </p>
+          <p className="text-center text-textGray text-4xl">{user.miTall} cm</p>
         </div>
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">체중</p>
           <p className="text-center text-textGray text-4xl">
-            {human.weight} kg
+            {user.miWeight} kg
           </p>
         </div>
       </div>
