@@ -1,11 +1,9 @@
-/** @format */
-
-import axios from 'axios';
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import style from '../../pages/Pill.module.css';
-import BarButton from './BarButton';
+import axios from "axios";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import style from "../../pages/Pill.module.css";
+import BarButton from "./BarButton";
 
 // const handleChecked=()
 
