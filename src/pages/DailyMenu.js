@@ -1,29 +1,29 @@
 /** @format */
 
 // 날짜 관련 라이브러리
-import moment from 'moment/moment';
-import Title from '../components/base/Title';
-import { Sidebar } from '../components/common/Sidebar';
-import food from '../assets/images/icon/icon_b_food.png';
-import calender from '../assets/images/icon/icon_calendar.png';
-import diet from '../assets/images/icon/icon_diet.png';
-import { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import FoodCard from '../components/dailymenu/FoodCard';
-import { useEffect } from 'react';
-import MyCalendar from '../components/base/MyCalendar';
+import moment from "moment/moment";
+import Title from "../components/base/Title";
+import { Sidebar } from "../components/common/Sidebar";
+import food from "../assets/images/icon/icon_b_food.png";
+import calender from "../assets/images/icon/icon_calendar.png";
+import diet from "../assets/images/icon/icon_diet.png";
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import FoodCard from "../components/dailymenu/FoodCard";
+import { useEffect } from "react";
+import MyCalendar from "../components/base/MyCalendar";
 
-import Modal from '../components/dailymenu/Modal';
-import Background from '../components/base/Background';
-import Linechart from '../components/base/Linechart';
-import Piechart2 from '../components/base/Piechart2';
-import Barchart from '../components/base/Barchart';
-import DailyDiet from '../components/dailymenu/DailyDiet';
-import FoodModal from '../components/dailymenu/FoodModal';
-import axios from 'axios';
-import { useNavigate } from 'react-router';
-import WeekSuggest from '../components/dailymenu/WeekSuggest';
-import { useSelector } from 'react-redux';
+import Modal from "../components/dailymenu/Modal";
+import Background from "../components/base/Background";
+import Linechart from "../components/base/Linechart";
+import Piechart2 from "../components/base/Piechart2";
+import Barchart from "../components/base/Barchart";
+import DailyDiet from "../components/dailymenu/DailyDiet";
+import FoodModal from "../components/dailymenu/FoodModal";
+import axios from "axios";
+import { useNavigate } from "react-router";
+import WeekSuggest from "../components/dailymenu/WeekSuggest";
+import { useSelector } from "react-redux";
 
 const DailyMenu = () => {
   const [foodList, setFoodList] = useState([]);
@@ -52,9 +52,9 @@ const DailyMenu = () => {
   useEffect(() => {
     // 오늘날짜 목록 가져오기
     getFoodList(
-      moment(new Date()).format('YYYY-MM-DD') +
-        'T' +
-        moment(new Date()).format('hh:mm')
+      moment(new Date()).format("YYYY-MM-DD") +
+        "T" +
+        moment(new Date()).format("hh:mm")
     );
   }, []);
 
@@ -81,13 +81,13 @@ const DailyMenu = () => {
   const navigate = useNavigate();
   const [chBt, setchBt] = useState({
     src: calender,
-    alt: 'calender',
+    alt: "calender",
     chBt: true,
   });
 
   const changeDay = (_day) => {
     changeBtn();
-    console.log('전달된 날짜 : ', _day);
+    console.log("전달된 날짜 : ", _day);
     getFoodList(_day);
   };
   const changeBtn = () => {
@@ -96,13 +96,13 @@ const DailyMenu = () => {
       if (chBt.chBt) {
         return {
           src: diet,
-          alt: 'diet',
+          alt: "diet",
           chBt: false,
         };
       } else {
         return {
           src: calender,
-          alt: 'calender',
+          alt: "calender",
           chBt: true,
         };
       }
@@ -113,26 +113,24 @@ const DailyMenu = () => {
 
   // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  const openModal = () => {
+  const openModal = (item) => {
     setModalOpen(true);
+    setSelectedItem(item);
   };
   const closeModal = () => {
     setModalOpen(false);
   };
   const goAddFood = () => {
-    navigate('/addfood');
+    navigate("/addfood");
   };
 
-
-
-
   const test = foodList.filter((food) => {
-  
     return food.dfSeq === false;
-  })
-  
-  console.log('현재 행복한 친구들.. ', test);
+  });
+
+  console.log("현재 행복한 친구들.. ", test);
 
   return (
     <>
@@ -152,7 +150,7 @@ const DailyMenu = () => {
                   alt="food"
                   className="w-[20px] h-[20px] self-center mr-3"
                 />
-                <Title name={'밥'} />
+                <Title name={"밥"} />
               </div>
               <button onClick={changeBtn}>
                 <img src={chBt.src} alt={chBt.alt} />
@@ -169,7 +167,7 @@ const DailyMenu = () => {
 
                   {foodList.map((item, index) => {
                     return (
-                      <div onClick={openModal}>
+                      <div onClick={() => openModal(item)}>
                         <FoodCard item={item} key={index} />
                       </div>
                     );
@@ -190,7 +188,7 @@ const DailyMenu = () => {
           <div className="mb-[20px] pb-[10px] rounded-2xl border bg-white drop-shadow-md">
             <div className="flex justify-between p-8">
               <div className="flex">
-                <Title name={'오늘 추천 식단'} />
+                <Title name={"오늘 추천 식단"} />
               </div>
             </div>
             <div className="mx-4">
@@ -201,19 +199,19 @@ const DailyMenu = () => {
           </div>
 
           <Background>
-            <Title name={'주간 섭취 칼로리'} />
+            <Title name={"주간 섭취 칼로리"} />
             <Linechart />
           </Background>
 
           <div className="flex justify-between">
             <div className="bg-white mb-8 border rounded-2xl h-1/4">
               <div className="m-8">
-                <Title neme={'섭취 칼로리'} />
+                <Title neme={"섭취 칼로리"} />
               </div>
               <p
                 className="absolute font-MuseoModerno text-5xl font-medium w-[300px] translate-x-32 translate-y-24"
                 style={{
-                  color: '#46A7AE',
+                  color: "#46A7AE",
                 }}
               >
                 25
@@ -223,7 +221,7 @@ const DailyMenu = () => {
               </p>
               <span
                 className="absolute font-MuseoModerno text-m font-medium translate-x-[103px] translate-y-40"
-                style={{ color: '#6D9399' }}
+                style={{ color: "#6D9399" }}
               >
                 8
                 <span className="font-NanumSquareNeo text-m font-medium">
@@ -232,7 +230,7 @@ const DailyMenu = () => {
               </span>
               <Piechart2 />
               <p className="font-NanumSquareNeo text-center pb-5">
-                목표 음수량{' '}
+                목표 음수량{" "}
                 <span className="ml-12 text-2xl font-NanumSquareNeo">
                   1600ml
                 </span>
@@ -245,12 +243,12 @@ const DailyMenu = () => {
 
               <h4
                 className="flex text-[65px] font-medium font-MuseoModerno justify-around"
-                style={{ color: '#46A7AE' }}
+                style={{ color: "#46A7AE" }}
               >
                 <p className=" text-main font-NanumSquareNeo text-xl pt-14 pr-5">
-                  <span className="font-bold text-[18px] mr-3">달성일</span>{' '}
+                  <span className="font-bold text-[18px] mr-3">달성일</span>{" "}
                   <span className="font-MuseoModerno text-lg font-medium">
-                    282 <span style={{ color: '#D9D9D9' }}>/</span> 364
+                    282 <span style={{ color: "#D9D9D9" }}>/</span> 364
                   </span>
                 </p>
                 <span className="font-normal font-MuseoModerno">
@@ -263,14 +261,16 @@ const DailyMenu = () => {
 
           <div className="mb-[20px] rounded-2xl border bg-white drop-shadow-md">
             <div className="m-8">
-              <Title name={'주간 식단'} />
+              <Title name={"주간 식단"} />
               <WeekSuggest />
             </div>
           </div>
 
           <div className="w-full absolute top-0 left-0 z-999999">
             <Modal open={modalOpen} close={closeModal}>
-              <FoodModal close={closeModal} foodList={foodList} />
+              {selectedItem && (
+                <FoodModal item={selectedItem} close={closeModal} />
+              )}
             </Modal>
           </div>
         </div>

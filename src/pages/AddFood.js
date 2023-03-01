@@ -72,7 +72,8 @@ const Addfood = () => {
       </button>
     );
   });
-
+  
+  // 검색기능
   useEffect(() => {
     let param = { keyword: searchVal };
     axios
@@ -89,7 +90,6 @@ const Addfood = () => {
   }, []);
 
   // 식단예시클릭 등록
-
   const handleSubmit = () => {
     let params = {
       dceSeq: dceSeq,
