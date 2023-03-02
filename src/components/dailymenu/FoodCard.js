@@ -36,10 +36,11 @@ const FoodCard = ({ item, open, close, header }) => {
       className="bg-white drop-shadow-md h-[290px] py-4 px-5 rounded-2xl mx-[10px] mb-[20px] cursor-pointer"
       onClick={open}
     >
-      <div className="w-full h-1/2 bg-main rounded-xl">
+      <div className="w-full h-1/2 bg-main rounded-xl overflow-hidden">
         <img
           src={`http://192.168.0.16:9876/api/diet/images/${item.dfImg}`}
           alt={item.dfImg}
+          className="w-full h-full"
         />
       </div>
       <div className="flex flex-col items-center justify-between">
