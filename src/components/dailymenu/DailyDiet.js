@@ -5,14 +5,14 @@ import React from 'react';
 import { useEffect } from 'react';
 
 const DailyDiet = () => {
-  useEffect(() => {
-    axios
-      .get('http://192.168.0.16:9876/api/suggest/suggest/list?token=token1')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch();
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get('http://192.168.0.16:9876/api/suggest/suggest/list?token=token1')
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch();
+  // }, []);
 
   return (
     <div className=" bg-white drop-shadow-md py-4 px-5 rounded-2xl mx-[10px] mb-[20px] ">

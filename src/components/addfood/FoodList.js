@@ -6,8 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import style from '../addfood/foodlist.module.css';
 import Memo from '../base/Memo';
-import RountButton from '../base/RoundButon';
-
+import BarButton from '../base/BarButton';
 import FoodListItem from './FoodListItem';
 
 const FoodList = ({
@@ -18,6 +17,7 @@ const FoodList = ({
   dceImage,
   selectRadio,
   radioVal,
+  addBycal,
 }) => {
   // const [foodContent, setFoodContent] = useState([]);
   // const [radioVal, setRadioVal] = useState('');
@@ -83,6 +83,7 @@ const FoodList = ({
             </div>
           </div>
           <Memo />
+          <BarButton name={'등록'} color={'main'} handleSubmit={addBycal} />
         </>
       )}
     </>

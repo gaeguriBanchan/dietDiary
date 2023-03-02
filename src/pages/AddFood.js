@@ -31,10 +31,9 @@ const Addfood = () => {
     setDceStandard(_item.dceStandard);
     setDceImage(_item.dceImage);
     setDceSeq(_item.dceSeq);
-
     console.log(radioVal);
   };
-  console.log('dd', dceImage);
+  // console.log('dd', dceImage);
 
   const [selectBtn, setSelectBtn] = useState('전체');
 
@@ -46,6 +45,12 @@ const Addfood = () => {
   const [searchVal, setSearchVal] = useState('');
   const searchKet = (e) => {
     setSearchVal(e.target.value);
+  };
+  const onKeyUpSearch = (event) => {
+    // 'enter'키의 keycode는 13
+    if (event.keyCode === 13) {
+      getSearch();
+    }
   };
   useEffect(() => {}, [selectBtn]);
 
@@ -72,9 +77,8 @@ const Addfood = () => {
       </button>
     );
   });
-  
-  // 검색기능
-  useEffect(() => {
+
+  const getSearch = () => {
     let param = { keyword: searchVal };
     axios
       .get(
@@ -82,15 +86,25 @@ const Addfood = () => {
         param
       )
       .then((res) => {
-        console.log(res.data.data);
+        console.log('검색결과 : ', res.data.data);
+        if (res.data.data === null) {
+          setFoodContent([]);
+        } else {
+          setFoodContent(res.data.data);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  // 검색기능
+  useEffect(() => {
+    getSearch();
   }, []);
 
   // 식단예시클릭 등록
-  const handleSubmit = () => {
+  const addBycal = () => {
     let params = {
       dceSeq: dceSeq,
       token: miToken,
@@ -110,7 +124,31 @@ const Addfood = () => {
       });
   };
 
-  // {dceSeq: 1, dceContent: '수제비', dceImage: 'sujaebi.jpg', dceKcal: 200, dceStandard: '1인분 '}
+  // 식단 직접 등록
+  const addDirectFood = () => {
+    // let body = {
+    //   data :  {{
+    //     "menu": "떡볶이",
+    //     "kcal": 480,
+    //     "content": "string"
+    //   }},
+    //   file: string
+    //   token: miToken,
+    // };
+    // axios
+    //   .get(
+    //     `http://192.168.0.16:9876/api/diet/add`,
+    //     body
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //     alert(res.data.message);
+    //     navigate('/dailymenu');
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  };
 
   return (
     <>
@@ -143,6 +181,7 @@ const Addfood = () => {
                 className="w-full bg-none focus:outline-none font-normal"
                 onChange={searchKet}
                 value={searchVal}
+                onKeyUp={onKeyUpSearch}
               />
               <img src={search} alt="search" />
             </label>
@@ -181,16 +220,12 @@ const Addfood = () => {
                 dceImage={dceImage}
                 selectRadio={selectRadio}
                 radioVal={radioVal}
+                addBycal={addBycal}
               />
             ) : (
-              <DirectFood />
+              <DirectFood handleSubmit={addDirectFood} />
             )}
-
-            <BarButton
-              name={'등록'}
-              color={'main'}
-              handleSubmit={handleSubmit}
-            />
+    
           </Background>
         </div>
       </div>

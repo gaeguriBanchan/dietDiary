@@ -1,7 +1,9 @@
 /** @format */
 
 const BarButton = ({ name, color, handleSubmit }) => {
+
   return (
+    
     <div>
       <button
         onClick={handleSubmit}
