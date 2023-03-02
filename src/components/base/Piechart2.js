@@ -1,7 +1,14 @@
 import * as React from "react";
 import { ResponsivePie } from "@nivo/pie";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { useEffect } from "react";
 
 const Piechart2 = () => {
+  const user = useSelector((state) => state.user);
+  const miToken = user.miToken;
+
   const handle = {
     padClick: (data) => {
       console.log(data);
@@ -11,6 +18,30 @@ const Piechart2 = () => {
       console.log(data);
     },
   };
+  const [chartData, setChartData] = useState([]);
+
+  let param = {
+    id: miToken,
+    date: "2023-02-27",
+  };
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       "http://192.168.0.16:9876/api/water/day?token=token1&date=2023-02-27",
+  //       param
+  //     )
+  //     .res((res) => {
+  //       console.log(res);
+  //       let chaData = {
+  //          id: miToken,
+  //          value: res.body.wiSuccess,
+  //        };
+  //        setChartData();
+  //     })
+  //     .catch((err) => {
+  //       console.log("에러났어용");
+  //     });
+  // }, []);
 
   return (
     // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
@@ -20,8 +51,8 @@ const Piechart2 = () => {
          * chart에 사용될 데이터
          */
         data={[
-          { id: "water", value: 25 },
-          { id: "none", value: 75 },
+          { id: "water", value: 36 },
+          { id: "남은 목표량", value: 64 },
         ]}
         /**
          * chart margin

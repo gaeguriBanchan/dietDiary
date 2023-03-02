@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import plus from "../../assets/images/icon/icon_w_add.png";
 import minus from "../../assets/images/icon/icon_w_del.png";
-import water from "../../assets/images/water_drop_water.png";
+import water from "../../assets/images/water_drop_water2.png";
 import bg from "../../assets/images/water_drop_bg.png";
 
 const WaterDrop = () => {
   // 물방울 변경 관련
-  const [count, setCount] = useState(2);
+  const [cup, setCup] = useState(8);
+  // let result = 100 * (1 + count / 100);
+  // setCup(result);
+  const [count, setCount] = useState(0);
   const plusCount = () => {
     setCount(count + 1);
+    if (count > 7) return setCount(count);
   };
   const minusCount = () => {
     return count > 0 ? setCount((prev) => prev - 1) : false;
@@ -65,14 +69,6 @@ const WaterDrop = () => {
               }}
             />
           </div>
-
-          {/* <img src={bg} alt="waterdrop" className="absolute mx-auto pb-10" />
-          <img
-            src={water}
-            alt="waterdrop"
-            className="drop absolute mx-auto pb-10"
-            ref={upDown}
-          /> */}
         </div>
         <div className="btn flex justify-around translate-y-5">
           <button onClick={plusCount}>
@@ -100,14 +96,14 @@ const WaterDrop = () => {
                   className="font-MuseoModerno font-normal text-[15px] self-center"
                   style={{ color: "#6D9399" }}
                 >
-                  /&#32;{count}
+                  /&#32;{cup}
                   <span className="font-NanumSquareNeo font-bold">&#32;컵</span>
                 </p>
                 <p
                   className="pl-1 font-MuseoModerno font-normal text-[15px] tracking-tighter"
                   style={{ color: "#6D9399" }}
                 >
-                  &#32;({count * 200}ml)
+                  &#32;{cup * 200}ml
                 </p>
               </div>
             </>
