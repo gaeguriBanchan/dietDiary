@@ -1,5 +1,8 @@
 import { createContext, useState } from "react";
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logIn, updateHard } from "../reducer/userSlice";
+import axios from "axios";
 export const MypageContext = createContext();
 
 export function MypageProvider({ children }) {
@@ -15,22 +18,36 @@ export function MypageProvider({ children }) {
     cal: 2450,
     cup: 10,
   };
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const [btnActive, setBtnActive] = useState();
+  const [btnActive, setBtnActive] = useState(user.miHard);
+  const level = ["건강", "쉬움", "보통", "강함"];
   const toggleActive = (e) => {
     setBtnActive((prev) => {
-      return e.target.value;
+      return parseInt(e.target.value);
     });
+    axios
+      .patch(
+        `http://192.168.0.16:9876/api/member/update/hard?hard=${e.target.value}&token=${user.miToken}`
+      )
+      .then((res) => {
+        // console.log("성공? : ", res.data);
+        dispatch(updateHard(parseInt(e.target.value)));
+      })
+      .catch((err) => console.log(err));
   };
-  const level = ["건강", "쉬움", "보통", "강함"];
   const levelBt = level.map((item, index) => {
+    // console.log(user);
     return (
       <button
+        key={index}
         value={index}
         onClick={toggleActive}
         type="button"
         className={
-          index.toString() === btnActive
+          // index.toString() === btnActive
+          index === btnActive
             ? "border border-main rounded-full px-7 bg-main text-white"
             : "border rounded-full px-7"
         }

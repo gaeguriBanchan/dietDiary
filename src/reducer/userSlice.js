@@ -1,25 +1,25 @@
 /** @format */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
-  name: 'userSlice',
+  name: "userSlice",
   initialState: {
-    miAddress: '',
+    miAddress: "",
     miAge: 0,
-    miEndTime: '',
+    miEndTime: "",
     miGen: null,
     miGoalKg: 0,
     miHard: 1,
-    miId: '',
-    miImg: '',
+    miId: "",
+    miImg: "",
     miKcal: 0,
-    miName: '',
+    miName: "",
     miSeq: 0,
-    miStartTime: '',
+    miStartTime: "",
     miStatus: 0,
     miTall: 0,
-    miToken: 'token1',
+    miToken: "token1",
     miWater: 0,
     miWeight: 0,
   },
@@ -45,22 +45,36 @@ const userSlice = createSlice({
       state.miWater = action.payload.miWater;
       state.miWeight = action.payload.miWeight;
     },
+    updateHard: (state, action) => {
+      // console.log("updateHard : ", action.payload);
+      state.miHard = action.payload;
+    },
+    updateKcal: (state, action) => {
+      state.miKcal = action.payload;
+    },
+    updateGoalKg: (state, action) => {
+      state.miGoalKg = action.payload;
+    },
+    updateWater: (state, action) => {
+      state.miWater = action.payload;
+    },
+
     logOut: (state, action) => {
-      state.miAddress = '';
+      state.miAddress = "";
       state.miAge = 0;
-      state.miEndTime = '';
-      state.miGen = '';
+      state.miEndTime = "";
+      state.miGen = "";
       state.miGoalKg = 0;
       state.miHard = 1;
-      state.miId = '';
-      state.miImg = '';
+      state.miId = "";
+      state.miImg = "";
       state.miKcal = 0;
-      state.miName = '';
+      state.miName = "";
       state.miSeq = 0;
-      state.miStartTime = '';
+      state.miStartTime = "";
       state.miStatus = 0;
       state.miTall = 0;
-      state.miToken = '';
+      state.miToken = "";
       state.miWater = 0;
       state.miWeight = 0;
     },
@@ -68,4 +82,11 @@ const userSlice = createSlice({
 });
 export default userSlice;
 // deStructuring(교재참조)
-export const { logIn, logOut } = userSlice.actions;
+export const {
+  logIn,
+  logOut,
+  updateHard,
+  updateKcal,
+  updateGoalKg,
+  updateWater,
+} = userSlice.actions;

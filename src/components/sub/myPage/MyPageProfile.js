@@ -7,12 +7,12 @@ import { useSelector } from "react-redux";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
 import { MypageContext } from "../../../context/MypageContext";
 
-const MyPageProfile = () => {
+const MyPageProfile = ({ userInfo }) => {
   const { toggleChange, human } = useContext(MypageContext);
   const user = useSelector((state) => state.user);
   const [myImg, setMyImg] = useState("");
-  const [info, setInfo] = useState({});
   const hard = () => {
+    console.log("여기?", userInfo.miHard);
     if (user.miHard === 0) {
       return (
         <p className="text-3xl text-textGray text-center mb-[50px]">
@@ -39,20 +39,11 @@ const MyPageProfile = () => {
       );
     }
   };
-  useEffect(() => {
-    axios
-      .get(`http://192.168.0.16:9876/api/member/info?token=${user.miToken}`)
-      .then((res) => {
-        console.log(res.data);
-        // 사용자정보 업데이트
-        setInfo(res.data);
 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  useEffect(() => {
+    hard();
   }, []);
-  console.log(info);
+
   return (
     <div className="h-[770px] m-auto mb-[20px] rounded-2xl border bg-white ">
       <div className="flex justify-between">
@@ -75,34 +66,26 @@ const MyPageProfile = () => {
         {/* <img src={myIcon} alt="profile" className="w-[300px] h-[300px]"/> */}
       </div>
       <p className="text-4xl text-textBlack text-center mb-[10px]">
-        {user.miName}
+        {userInfo.miName}
       </p>
       {hard()}
-      {/* <p className="text-3xl text-textGray text-center mb-[50px]">
-        건강한 다이어터
-      </p> */}
-      {/* <p className="text-3xl text-textGray text-center mb-[50px]">
-        쉽게 가고싶은 다이어터
-      </p> */}
-      {/* <p className="text-3xl text-textGray text-center mb-[50px]">
-        탄탄한 몸매를 원하는 다이어터
-      </p>
-      <p className="text-3xl text-textGray text-center mb-[50px]">
-        극한의 몸매를 원하는 다이어터
-      </p> */}
       <div className="flex justify-around">
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">나이</p>
-          <p className="text-center text-textGray text-4xl">{user.miAge} 세</p>
+          <p className="text-center text-textGray text-4xl">
+            {userInfo.miAge} 세
+          </p>
         </div>
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">신장</p>
-          <p className="text-center text-textGray text-4xl">{user.miTall} cm</p>
+          <p className="text-center text-textGray text-4xl">
+            {userInfo.miTall} cm
+          </p>
         </div>
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">체중</p>
           <p className="text-center text-textGray text-4xl">
-            {user.miWeight} kg
+            {userInfo.miWeight} kg
           </p>
         </div>
       </div>
