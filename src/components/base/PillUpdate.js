@@ -89,6 +89,7 @@ const PillUpdate = () => {
   const deleteBtn = (e) => {
     e.preventDefault();
     setSelPill()
+    setSelPill();
     let param = {
       token: miToken,
       piSeq: selPill,

@@ -1,4 +1,7 @@
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
@@ -7,6 +10,8 @@ import { MypageContext } from "../../../context/MypageContext";
 const MyPageProfile = () => {
   const { toggleChange, human } = useContext(MypageContext);
   const user = useSelector((state) => state.user);
+  const [myImg, setMyImg] = useState("");
+  const [info, setInfo] = useState({});
   const hard = () => {
     if (user.miHard === 0) {
       return (
@@ -34,7 +39,20 @@ const MyPageProfile = () => {
       );
     }
   };
+  useEffect(() => {
+    axios
+      .get(`http://192.168.0.16:9876/api/member/info?token=${user.miToken}`)
+      .then((res) => {
+        console.log(res.data);
+        // 사용자정보 업데이트
+        setInfo(res.data);
 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(info);
   return (
     <div className="h-[770px] m-auto mb-[20px] rounded-2xl border bg-white ">
       <div className="flex justify-between">
