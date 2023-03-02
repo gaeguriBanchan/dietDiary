@@ -2,10 +2,14 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import style from "../../pages/Pill.module.css";
+import styles from "../../pages/Pill.module.css";
 import BarButton from "./BarButton";
+import { useSelector } from "react-redux";
+// const handleChecked=()
 
 const PillUpdate = () => {
+  const user = useSelector((state) => state.user);
+  const miToken = user.miToken;
   const [Edit, setEdit] = useState({ name: "추가", EditBt: false });
   const PillEdit = (e) => {
     setEdit(() => {
@@ -29,8 +33,11 @@ const PillUpdate = () => {
 
   //리스트 출력
   const [Plist, setPlist] = useState([]);
-  const pillSeq = Plist.pillSeq;
+
   useEffect(() => {
+    let param = {
+      token: miToken,
+    };
     axios
       .get("http://192.168.0.16:9876/api/pill/info?token=token1")
       .then((res) => {
@@ -72,29 +79,28 @@ const PillUpdate = () => {
   console.log(Plist);
 
   // 약 삭제
-  const [listDel, setListDel] = useState();
-  const deletePill = (e) => {
-    setPlist();
+  const [selPill, setSelPill] = useState("");
+
+  const deletePill = (item) => {
+    console.log(item.data.pillSeq);
   };
+  console.log("뜨냐", selPill);
+
   const deleteBtn = (e) => {
     e.preventDefault();
+    setSelPill()
     let param = {
-      piSeq: pillSeq,
+      token: miToken,
+      piSeq: selPill,
     };
     axios
       .delete(
-        "http://192.168.0.16:9876/api/pill/delete?token=token1&piSeq=1",
+        `http://192.168.0.16:9876/api/pill/delete?token=${miToken}&piSeq=${selPill}`,
         param
       )
       .then((res) => {
-        alert(res.data.message);
-        console.log(res.config.method);
-        setListDel((e) => {
-          if (pillSeq === deletePill) {
-            setPlist(res.data.status);
-          }
-        });
-        console.log(res.data.status);
+        console.log(res);
+        console.log(res.data.pillSeq);
       })
       .catch((err) => {
         console.log(err);
@@ -102,58 +108,60 @@ const PillUpdate = () => {
   };
 
   useEffect(() => {}, [Edit]);
-  // axios
-  //   .put("http://192.168.0.16:9876/api/pill/add?token=1")
-  //   .then(() => {})
-  //   .catch((err) => {
-  //     console.log("실패^^");
-  //   });
+
   return (
     <div>
       {Edit.name === "추가" ? (
         <>
-          <div className="">
+          <div className="grid ">
             <div className="pill-left">
-              <div className="pill-0">
-                <label htmlFor="pill">
-                  <span className={style.labelradio}>종합 영양제</span>
-                  <input type={"checkbox"} />
-                  <input type={"checkbox"} />
-                  <input type={"checkbox"} />
+              <div className="pill">
+                <label htmlFor="pill" className={styles.labelradio}>
+                  <span>종합 영양제</span>
+                  <input type={"checkbox"} className={styles.inputradio} />
+                  <input type={"checkbox"} className={styles.inputradio} />
+                  <input type={"checkbox"} className={styles.inputradio} />
                 </label>
               </div>
-              <div className="pill-1">
-                <span className={style.labelradio}>비타민</span>
-                <input type={"checkbox"} />
-                <input type={"checkbox"} />
+              <div className="pill">
+                <label htmlFor="pill" className={styles.labelradio}>
+                  <span>비타민</span>
+                  <input type={"checkbox"} className={styles.inputradio} />
+                  <input type={"checkbox"} className={styles.inputradio} />
+                </label>
               </div>
             </div>
             <div className="pill-right justify-between">
               <div className="pill-2">
-                <span className={style.labelradio}>단백질</span>
-                <input type={"checkbox"} />
-                <span className={style.labelradio}>
-                  {Plist.map((item, pillSeq) => {
-                    return (
-                      <div className="flex">
-                        <p key={pillSeq} className="ml-[8.5px]">
-                          {item.pillName}
-                          {item.pillAmount}
-                        </p>
-                        <input type={"checkbox"} />
-                        <button
-                          value={item.pillSeq}
-                          className="delBtn pl-2 text-red-700"
-                          onClick={(e) => {
-                            deleteBtn(e);
-                          }}
-                        >
-                          X
-                        </button>
-                      </div>
-                    );
-                  })}
-                </span>
+                <label htmlFor="pill" className={styles.labelradio}>
+                  <span>단백질</span>
+                  <input type={"checkbox"} />
+                  <span>
+                    {Plist.map((item, pillSeq) => {
+                      return (
+                        <div className="flex">
+                          <label htmlFor="">
+                            <p key={pillSeq} className={styles.labelradio}>
+                              {item.pillName}
+                              {item.pillAmount}
+                              {item.pillSeq}
+                            </p>
+                            <input
+                              type={"checkbox"}
+                              className={styles.inputradio}
+                            />
+                          </label>
+                          <button
+                            className="delBtn ml-1 text-red-700"
+                            onClick={(item) => deletePill(item)}
+                          >
+                            X
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </span>
+                </label>
               </div>
             </div>
           </div>
@@ -178,9 +186,9 @@ const PillUpdate = () => {
             </form>
           </div>
           <div className="mb-2" onClick={PillEdit}>
-            <BarButton name={"취소"} className="cancel" />
+            <BarButton name={"취소"} className="cancel" color={"textRed"} />
           </div>
-          <div onClick={(e) => btnClick(e)}>
+          <div onClick={(e) => PillEdit(e)}>
             <BarButton name={Edit.name} color={"main"} />
           </div>
         </>

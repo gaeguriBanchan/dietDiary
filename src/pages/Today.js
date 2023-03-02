@@ -18,21 +18,6 @@ const Today = () => {
   const navigate = useNavigate();
   // 카카오 기능
   // 카카오 로그아웃
-  const kakaoLogOut = () => {
-    // 사용자정보 업데이트
-    dispatch(logOut());
-    navigate("/");
-
-    if (!window.Kakao.Auth.getAccessToken()) {
-      console.log("Not logged in.");
-      return;
-    }
-    window.Kakao.Auth.logout(function (response) {
-      alert(response + " logout");
-      // window.location.href='/'
-      navigate("/");
-    });
-  };
   // 카카오 회원 탈퇴
   const memberOut = () => {
     window.Kakao.API.request({
@@ -61,17 +46,6 @@ const Today = () => {
         <div className="w-full h-full m-auto flex">
           <Sidebar></Sidebar>
           <div className="w-[1080px]  h-full m-8">Today</div>
-          <div>
-            <button className="border m-5" onClick={kakaoLogOut}>
-              {user.miName} 카카오 로그아웃
-            </button>
-            <button className="border m-5" onClick={memberOut}>
-              카카오 서비스 탈퇴
-            </button>
-            <button className="border m-5" onClick={naverLogout}>
-              네이버 로그아웃
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,6 @@ import drug from "../../assets/images/drug.png";
 import me from "../../assets/images/man.png";
 
 export const Sidebar = () => {
-  const hover = {};
   return (
     <div className="w-[200px] h-[800px] bg-main rounded-3xl">
       <div className="flex h-full justify-center text-center">
@@ -18,45 +17,45 @@ export const Sidebar = () => {
           </Link>
           <Link
             to="/dailyMenu"
-            className="flex justify-center items-center px-10 text-white h-7 rounded-xl hover:bg-white hover:text-main"
+            className="flex justify-center items-center px-10 text-white h-7 rounded-xl focus:bg-white focus:text-main hover:bg-white hover:text-main"
           >
             <img
               src={food}
               alt=""
-              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"
+              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center bg-main"
             />
             <p className="ml-2 text-xl">밥</p>
           </Link>
           <Link
             to="/drink"
-            className="flex justify-center items-center px-10 text-white h-7 rounded-xl hover:bg-white hover:text-main"
+            className="flex justify-center items-center px-10 text-white h-7 rounded-xl focus:bg-white focus:text-main hover:bg-white hover:text-main"
           >
             <img
               src={water}
               alt=""
-              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"
+              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center bg-main"
             />
             <p className="ml-2 text-xl">물</p>
           </Link>
           <Link
             to="/supplement"
-            className="flex justify-center items-center px-10 text-white h-7 rounded-xl hover:bg-white hover:text-main"
+            className="flex justify-center items-center px-10 text-white h-7 rounded-xl focus:bg-white focus:text-main hover:bg-white hover:text-main"
           >
             <img
               src={drug}
               alt=""
-              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"
+              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center bg-main"
             />
             <p className="ml-2 text-xl">약</p>
           </Link>
           <Link
             to="/mypage"
-            className="flex justify-center items-center px-10 text-white h-7 rounded-xl hover:bg-white hover:text-main "
+            className="flex justify-center items-center px-10 text-white h-7 rounded-xl focus:bg-white focus:text-main hover:bg-white hover:text-main"
           >
             <img
               src={me}
               alt=""
-              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center hover:bg-main"
+              className="w-6 h-6 opacity-60 border-2 rounded-xl items-center bg-main"
             />
             <p className="ml-2 text-xl">나</p>
           </Link>
