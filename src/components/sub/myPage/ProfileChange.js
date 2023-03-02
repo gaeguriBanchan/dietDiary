@@ -4,8 +4,12 @@ import myIcon from "../../../assets/images/icon/icon_b_my.png";
 import { MypageContext } from "../../../context/MypageContext";
 import Level from "./Level";
 
-const ProfileChange = ({ userInfo }) => {
+const ProfileChange = ({ userInfo, setMiWeight }) => {
   const { human } = useContext(MypageContext);
+  const changeWeight = (e) => {
+    console.log("체중: ", e.target.value);
+    setMiWeight(parseInt(e.target.value));
+  };
   return (
     <div className="h-[770px] mb-[20px] rounded-2xl border bg-white p-8">
       <div className="flex justify-between">
@@ -46,6 +50,7 @@ const ProfileChange = ({ userInfo }) => {
             type="text"
             className="w-[180px] p-1 border rounded-full text-center text-textGray text-4xl"
             placeholder={userInfo.miWeight + "kg"}
+            onChange={changeWeight}
           />
         </div>
       </div>

@@ -8,9 +8,26 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
-const Weight = ({userInfo}) => {
+const Weight = () => {
   const { human } = useContext(MypageContext);
-  const weightChange = userInfo.miWeight - userInfo.miGoalKg;
+  const user = useSelector((state) => state.user);
+  const [userInfo, setUserInfo] = useState(user);
+
+  useEffect(() => {
+    axios
+      .get(`http://192.168.0.16:9876/api/member/info?token=${user.miToken}`)
+      .then((res) => {
+        // console.log(res.data);
+        // 사용자정보 업데이트
+        setUserInfo(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(user);
+
+  const weightChange = user.miWeight - user.miGoalKg;
   // console.log(weightChange);
   return (
     <div className="m-auto w-full h-[165px] rounded-2xl bg-white border box-border mb-[20px]">
@@ -18,13 +35,13 @@ const Weight = ({userInfo}) => {
       <div className="flex items-center justify-center gap-40">
         <div className="grid justify-center text-center">
           <p className="text-3xl text-textGray font-MuseoModerno font-normal">
-            {userInfo.miGoalKg} kg
+            {user.miGoalKg} kg
           </p>
           <p className="text-m text-second">목표체중</p>
         </div>
         <div className="grid justify-center text-center">
           <p className="text-3xl text-textGray font-MuseoModerno font-normal">
-            {userInfo.miWeight} kg
+            {user.miWeight} kg
           </p>
           <p className="text-m text-second">현재체중</p>
         </div>

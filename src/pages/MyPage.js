@@ -19,6 +19,8 @@ const MyPage = () => {
   const { pageChange } = useContext(MypageContext);
   const user = useSelector((state) => state.user);
   const [userInfo, setUserInfo] = useState(user);
+  const [userImg, setUserImg] = useState("");
+
   useEffect(() => {
     axios
       .get(`http://192.168.0.16:9876/api/member/info?token=${user.miToken}`)
@@ -30,8 +32,18 @@ const MyPage = () => {
       .catch((err) => {
         console.log(err);
       });
+    // axios
+    //   .get(`http://192.168.0.16:9876/api/member/image/200937431.jpg`)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     // 사용자정보 업데이트
+        
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
-  // console.log(userInfo);
+  // console.log(user);
 
   useEffect(() => {
     // console.log("사용자 정보 Mypage userInfo : ", userInfo);

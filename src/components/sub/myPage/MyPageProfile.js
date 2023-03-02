@@ -7,12 +7,13 @@ import { useSelector } from "react-redux";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
 import { MypageContext } from "../../../context/MypageContext";
 
-const MyPageProfile = ({ userInfo }) => {
+const MyPageProfile = () => {
   const { toggleChange, human } = useContext(MypageContext);
   const user = useSelector((state) => state.user);
+  const [userInfo, setUserInfo] = useState(user);
   const [myImg, setMyImg] = useState("");
   const hard = () => {
-    console.log("여기?", userInfo.miHard);
+    // console.log("여기?", userInfo.miHard);
     if (user.miHard === 0) {
       return (
         <p className="text-3xl text-textGray text-center mb-[50px]">
@@ -42,8 +43,20 @@ const MyPageProfile = ({ userInfo }) => {
 
   useEffect(() => {
     hard();
+    axios
+      .get(`http://192.168.0.16:9876/api/member/info?token=${user.miToken}`)
+      .then((res) => {
+        // console.log(res.data);
+        // 사용자정보 업데이트
+        setUserInfo(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // setMyImg(userInfo.miImg);
+    // console.log(myImg);
   }, []);
-
+  // console.log(user);
   return (
     <div className="h-[770px] m-auto mb-[20px] rounded-2xl border bg-white ">
       <div className="flex justify-between">
@@ -62,8 +75,12 @@ const MyPageProfile = ({ userInfo }) => {
           수정
         </button>
       </div>
-      <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray mb-[50px]">
-        {/* <img src={myIcon} alt="profile" className="w-[300px] h-[300px]"/> */}
+      <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray mb-[50px] overflow-hidden">
+        {/* <img
+          // src={`http://192.168.0.16:9876/api/member/image/${userInfo.miImg}`}
+          alt="profile"
+          className="w-[300px] h-[300px] "
+        /> */}
       </div>
       <p className="text-4xl text-textBlack text-center mb-[10px]">
         {userInfo.miName}
@@ -85,7 +102,7 @@ const MyPageProfile = ({ userInfo }) => {
         <div className="">
           <p className="text-center text-main mb-[10px] text-2xl">체중</p>
           <p className="text-center text-textGray text-4xl">
-            {userInfo.miWeight} kg
+            {user.miWeight} kg
           </p>
         </div>
       </div>
