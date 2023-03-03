@@ -138,9 +138,9 @@ const Login = () => {
         console.log(res.data);
         // 사용자정보 업데이트
         dispatch(logIn(res.data.data));
-        
+
         alert("회원로그인 완료");
-        navigate("/today");
+        navigate("/dailyMenu");
       })
       .catch((err) => {
         console.log(err);

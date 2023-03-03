@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 const WeightGraph = ({ userInfo }) => {
   const [weightData, setWeightData] = useState();
-  // console.log(userInfo);
+  console.log(userInfo);
   const data = [
     {
       id: "주간 체중변화",
@@ -69,7 +69,7 @@ const WeightGraph = ({ userInfo }) => {
   return (
     <div className="w-full h-full bg-white rounded-2xl border mb-3">
       <p className=" text-xl text-main m-8 mb-0">체중변화 그래프</p>
-      {/* <div
+      <div
         className="px-3"
         style={{ width: "full", height: "360px", margin: "0 auto" }}
       >
@@ -141,9 +141,9 @@ const WeightGraph = ({ userInfo }) => {
             },
           ]}
         />
-      </div> */}
+      </div>
       <div className="flex justify-end mb-5 pr-10 text-center items-center">
-        <p className="text-textGray text-m font-normal pr-5">2월1일 금요일</p>
+        <p className="text-textGray text-m font-normal pr-5">3월3일 금요일</p>
         <p className="text-textBlack text-xl font-medium font-MuseoModerno">
           85kg
         </p>
