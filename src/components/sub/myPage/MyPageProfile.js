@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 import myIcon from "../../../assets/images/icon/icon_b_my.png";
+import myProfile from "../../../assets/images/icon/icon_profile_big.png";
 import { MypageContext } from "../../../context/MypageContext";
 
 const MyPageProfile = () => {
@@ -76,11 +77,12 @@ const MyPageProfile = () => {
         </button>
       </div>
       <div className="w-[300px] h-[300px] m-auto rounded-full bg-textGray mb-[50px] overflow-hidden">
-        {/* <img
+        <img
           // src={`http://192.168.0.16:9876/api/member/image/${userInfo.miImg}`}
+          src={myProfile}
           alt="profile"
           className="w-[300px] h-[300px] "
-        /> */}
+        />
       </div>
       <p className="text-4xl text-textBlack text-center mb-[10px]">
         {userInfo.miName}
