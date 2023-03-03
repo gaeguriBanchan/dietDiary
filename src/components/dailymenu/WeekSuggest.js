@@ -1,8 +1,8 @@
 /** @format */
 
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 const WeekSuggest = () => {
   const [suggestList, setSuggestList] = useState([]);
@@ -17,7 +17,7 @@ const WeekSuggest = () => {
   //       console.log(err);
   //     });
   // }, []);
-  console.log('리스트', suggestList);
+  // console.log('리스트', suggestList);
 
   const suggesSug = suggestList.map((item, index) => {
     return (

@@ -1,19 +1,19 @@
 /** @format */
 
-import axios from 'axios';
-import React, { useState, useRef } from 'react';
-import { useEffect } from 'react';
-import Background from '../base/Background';
-import BarButton from '../base/BarButton';
-import BarButtonRed from '../base/BarButtonRed';
-import dummyData from './dummyData.json';
-import { useSelector } from 'react-redux';
-import Memo from '../base/Memo';
-import useInput from '../addfood/useinput';
+import axios from "axios";
+import React, { useState, useRef } from "react";
+import { useEffect } from "react";
+import Background from "../base/Background";
+import BarButton from "../base/BarButton";
+import BarButtonRed from "../base/BarButtonRed";
+import dummyData from "./dummyData.json";
+import { useSelector } from "react-redux";
+import Memo from "../base/Memo";
+import useInput from "../addfood/useinput";
 
-const FoodModal = ({ close, foodList, item, getFoodList }) => {
-  const [Edit, setEdit] = useState({ name: '수정', EditBt: false });
-  const [memoContent, userMemoContent] = useInput('');
+const FoodModal = ({ close, foodList, item, getFoodList, getFoodListRe }) => {
+  const [Edit, setEdit] = useState({ name: "수정", EditBt: false });
+  const [memoContent, userMemoContent] = useInput("");
 
   const user = useSelector((state) => state.user);
   const miToken = user.miToken;
@@ -21,9 +21,9 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
   const dietEdit = (e) => {
     setEdit(() => {
       if (Edit.EditBt) {
-        return { name: '수정', EditBt: false };
+        return { name: "수정", EditBt: false };
       } else {
-        return { name: '등록', EditBt: true };
+        return { name: "등록", EditBt: true };
       }
     });
   };
@@ -32,38 +32,38 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
   const data = item.dfRegDt;
   let a = data.slice(11, 16);
   function convert12H(time, options) {
-    var _ampmLabel = (options && options.ampmLabel) || ['오전', '오후'];
+    var _ampmLabel = (options && options.ampmLabel) || ["오전", "오후"];
     var _timeRegExFormat = /^([0-9]{2}):([0-9]{2})$/;
     var _timeToken = time.match(_timeRegExFormat);
-    if (typeof _timeRegExFormat === 'undefine') {
+    if (typeof _timeRegExFormat === "undefine") {
       // 잘못된 형식
       return null;
     }
     var _intHours = parseInt(_timeToken[1]);
     var _intMinutes = parseInt(_timeToken[2]);
-    var _strHours12H = ('0' + (_intHours == 12 ? 12 : _intHours % 12)).slice(
+    var _strHours12H = ("0" + (_intHours == 12 ? 12 : _intHours % 12)).slice(
       -2
     );
     return (
       _ampmLabel[parseInt(_intHours / 12)] +
-      ' ' +
+      " " +
       _strHours12H +
-      ':' +
+      ":" +
       _intMinutes
     );
   }
   const time = convert12H(a, {
-    ampmLabel: ['am', 'pm'],
+    ampmLabel: ["am", "pm"],
   });
 
   // 식단 삭제
   console.log(getFoodList);
-  const delFood = () => {
+  const delFood = async () => {
     let params = {
       token: miToken,
       dfSeq: item.dfSeq,
     };
-    axios
+    await axios
       .get(
         `http://192.168.0.16:9876/api/diet/delete?token=${miToken}&dfSeq=${item.dfSeq}`,
         params
@@ -76,8 +76,9 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
       })
       .catch((err) => {
         console.log(err);
-        alert('삭제에 실패했습니다.');
+        // alert("삭제에 실패했습니다.");
       });
+    getFoodListRe();
   };
 
   useEffect(() => {
@@ -100,9 +101,9 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
     let seq = item.dfSep;
     let param = {
       data: {},
-      file: '',
+      file: "",
       token: miToken,
-      date: '',
+      date: "",
     };
     axios
       .put(`http://192.168.0.16:9876/api/diet/update?dfSeq=${seq}`, param)
@@ -111,7 +112,7 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
   };
 
   // 이미지 업로드 및 미리보기
-  const [imgFile, setImgFile] = useState('');
+  const [imgFile, setImgFile] = useState("");
   const imgRef = useRef(null);
 
   const onChangeImg = async (e) => {
@@ -165,7 +166,7 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
 
           <button className="bg-close bg-no-repeat w-8 h-8 " onClick={close} />
         </div>
-        {Edit.name === '수정' ? (
+        {Edit.name === "수정" ? (
           <>
             <div className="flex flex-col justify-center items-center p-8">
               <div className="w-[525px] h-[525px] bg-textGray rounded-2xl overflow-hidden">
@@ -196,7 +197,7 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
               </div>
             </div>
             <div onClick={dietEdit}>
-              <BarButton name={Edit.name} color={'main'} />
+              <BarButton name={Edit.name} color={"main"} />
             </div>
           </>
         ) : (
@@ -216,10 +217,10 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
                   accept="image/*"
                   onInput={onChangeImg}
                   ref={imgRef}
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                 ></input>
                 <div onClick={imgUplod} className="mb-8 w-full">
-                  <BarButton name={'사진올리기'} color={'main'} />
+                  <BarButton name={"사진올리기"} color={"main"} />
                 </div>
               </div>
 
@@ -238,10 +239,10 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
             </div>
             <Memo memoContent={memoContent} userMemoContent={userMemoContent} />
             <div className="mb-2" onClick={delFood}>
-              <BarButtonRed name={'삭제'} color={'textRed'} />
+              <BarButtonRed name={"삭제"} color={"textRed"} />
             </div>
             <div onClick={close}>
-              <BarButton name={Edit.name} color={'main'} />
+              <BarButton name={Edit.name} color={"main"} />
             </div>
           </>
         )}

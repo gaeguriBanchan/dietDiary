@@ -1,14 +1,14 @@
 /** @format */
 
-import axios from 'axios';
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import style from '../addfood/foodlist.module.css';
-import Memo from '../base/Memo';
-import BarButton from '../base/BarButton';
-import FoodListItem from './FoodListItem';
-import useInput from './useinput';
+import axios from "axios";
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import style from "../addfood/foodlist.module.css";
+import Memo from "../base/Memo";
+import BarButton from "../base/BarButton";
+import FoodListItem from "./FoodListItem";
+import useInput from "./useinput";
 
 const FoodList = ({
   foodContent,
@@ -20,13 +20,13 @@ const FoodList = ({
   radioVal,
   addBycal,
 }) => {
-  const [memoContent, userMemoContent] = useInput('');
+  const [memoContent, userMemoContent] = useInput("");
 
   useEffect(() => {
     axios
-      .get('http://192.168.0.16:9876/api/calex/calorie/list')
+      .get("http://192.168.0.16:9876/api/calex/calorie/list")
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setFoodContent(res.data.data);
       })
       .catch();
@@ -40,14 +40,14 @@ const FoodList = ({
       >
         {foodContent.map((item, index) => {
           return (
-            <div>
+            <div key={index}>
               <FoodListItem item={item} key={index} selectRadio={selectRadio} />
             </div>
           );
         })}
       </div>
 
-      {radioVal === '' ? (
+      {radioVal === "" ? (
         <div> </div>
       ) : (
         <>
@@ -72,7 +72,7 @@ const FoodList = ({
             </div>
           </div>
           <Memo memoContent={memoContent} userMemoContent={userMemoContent} />
-          <BarButton name={'등록'} color={'main'} handleSubmit={addBycal} />
+          <BarButton name={"등록"} color={"main"} handleSubmit={addBycal} />
         </>
       )}
     </>
