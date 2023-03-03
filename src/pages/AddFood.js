@@ -1,17 +1,17 @@
 /** @format */
-import { Helmet } from 'react-helmet';
-import Background from '../components/base/Background';
-import Title from '../components/base/Title';
-import food from '../assets/images/icon/icon_b_food.png';
-import search from '../assets/images/icon/search.png';
-import { Sidebar } from '../components/common/Sidebar';
-import FoodList from '../components/addfood/FoodList';
-import BarButton from '../components/base/BarButton';
-import { useEffect, useState } from 'react';
-import DirectFood from '../components/addfood/DirectFood';
-import axios, { Axios } from 'axios';
-import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
+import { Helmet } from "react-helmet";
+import Background from "../components/base/Background";
+import Title from "../components/base/Title";
+import food from "../assets/images/icon/icon_b_food.png";
+import search from "../assets/images/icon/search.png";
+import { Sidebar } from "../components/common/Sidebar";
+import FoodList from "../components/addfood/FoodList";
+import BarButton from "../components/base/BarButton";
+import { useEffect, useState } from "react";
+import DirectFood from "../components/addfood/DirectFood";
+import axios, { Axios } from "axios";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 // import { useEffect } from 'react';
 const Addfood = () => {
   const navigate = useNavigate();
@@ -20,29 +20,29 @@ const Addfood = () => {
   const miToken = user.miToken;
 
   const [foodContent, setFoodContent] = useState([]);
-  const [radioVal, setRadioVal] = useState('');
+  const [radioVal, setRadioVal] = useState("");
   const [dceKcal, setDceKcal] = useState(0);
   const [dceStandard, setDceStandard] = useState(0);
-  const [dceImage, setDceImage] = useState('');
-  const [dceSeq, setDceSeq] = useState('');
+  const [dceImage, setDceImage] = useState("");
+  const [dceSeq, setDceSeq] = useState("");
   const selectRadio = (_item) => {
     setRadioVal(_item.dceContent);
     setDceKcal(_item.dceKcal);
     setDceStandard(_item.dceStandard);
     setDceImage(_item.dceImage);
     setDceSeq(_item.dceSeq);
-    console.log(radioVal);
+    // console.log(radioVal);
   };
   // console.log('dd', dceImage);
 
-  const [selectBtn, setSelectBtn] = useState('전체');
+  const [selectBtn, setSelectBtn] = useState("전체");
 
   // 버튼 클릭 이벤트 핸들러
   const handleClick = (e) => {
     setSelectBtn(e.target.id);
   };
   // 검색
-  const [searchVal, setSearchVal] = useState('');
+  const [searchVal, setSearchVal] = useState("");
   const searchKet = (e) => {
     setSearchVal(e.target.value);
   };
@@ -60,17 +60,18 @@ const Addfood = () => {
       return e.target.value;
     });
   };
-  const level = ['아침', '점심', '저녁', '오전간식', '오후간식', '저녁간식'];
+  const level = ["아침", "점심", "저녁", "오전간식", "오후간식", "저녁간식"];
   const levelBt = level.map((item, index) => {
     return (
       <button
+        key={index}
         value={index}
         onClick={toggleActive}
         type="button"
         className={
           index.toString() === btnActive
-            ? 'h-12 w-11/12 border text-center  border-main rounded-full bg-main text-white mb-4  '
-            : 'h-12 w-11/12 border text-center  border-main text-main rounded-full mb-4 '
+            ? "h-12 w-11/12 border text-center  border-main rounded-full bg-main text-white mb-4  "
+            : "h-12 w-11/12 border text-center  border-main text-main rounded-full mb-4 "
         }
       >
         {item}
@@ -86,7 +87,7 @@ const Addfood = () => {
         param
       )
       .then((res) => {
-        console.log('검색결과 : ', res.data.data);
+        // console.log("검색결과 : ", res.data.data);
         if (res.data.data === null) {
           setFoodContent([]);
         } else {
@@ -117,7 +118,7 @@ const Addfood = () => {
       .then((res) => {
         console.log(res);
         alert(res.data.message);
-        navigate('/dailymenu');
+        navigate("/dailymenu");
       })
       .catch((err) => {
         console.log(err);
@@ -141,7 +142,7 @@ const Addfood = () => {
                   alt="food"
                   className="w-[20px] h-[20px] self-center mr-3"
                 />
-                <Title name={'밥'} />
+                <Title name={"밥"} />
               </div>
 
               <div className=" my-8">
@@ -163,9 +164,9 @@ const Addfood = () => {
               <button
                 id="전체"
                 className={
-                  selectBtn === '전체'
-                    ? 'h-12 w-full border border-main text-white bg-main rounded-full mr-6'
-                    : 'h-12 w-full border border-main text-main rounded-full mr-6'
+                  selectBtn === "전체"
+                    ? "h-12 w-full border border-main text-white bg-main rounded-full mr-6"
+                    : "h-12 w-full border border-main text-main rounded-full mr-6"
                 }
                 value={selectBtn}
                 onClick={handleClick}
@@ -175,9 +176,9 @@ const Addfood = () => {
               <button
                 id="직접입력"
                 className={
-                  selectBtn === '직접입력'
-                    ? 'h-12 w-full border border-main text-white bg-main rounded-full mr-6'
-                    : 'h-12 w-full border border-main text-main rounded-full mr-6'
+                  selectBtn === "직접입력"
+                    ? "h-12 w-full border border-main text-white bg-main rounded-full mr-6"
+                    : "h-12 w-full border border-main text-main rounded-full mr-6"
                 }
                 value={selectBtn}
                 onClick={handleClick}
@@ -185,7 +186,7 @@ const Addfood = () => {
                 직접입력
               </button>
             </div>
-            {selectBtn === '전체' ? (
+            {selectBtn === "전체" ? (
               <FoodList
                 foodContent={foodContent}
                 setFoodContent={setFoodContent}
