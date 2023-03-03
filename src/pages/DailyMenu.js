@@ -199,12 +199,11 @@ const DailyMenu = () => {
               <DailyDiet />
             </div>
           </div>
-          {/* 
+
           <Background>
             <Title name={'주간 섭취 칼로리'} />
             <Linechart />
-          </Background> */}
-
+          </Background>
           <div className="flex justify-between">
             <div className="bg-white mb-8 border rounded-2xl h-1/4">
               <div className="m-8">
@@ -238,28 +237,26 @@ const DailyMenu = () => {
                 </span>
               </p>
             </div>
-            <div className="h-full">
-              <div className="goalGraph bg-white mb-8 border rounded-2xl ">
-                <p className="text-xl text-main font-NanumSquareNeo font-bold p-8">
-                  목표 달성 그래프
-                </p>
+            <div className="goalGraph bg-white mb-8 border rounded-2xl ">
+              <p className="text-xl text-main font-NanumSquareNeo font-bold p-8">
+                목표 달성 그래프
+              </p>
 
-                <h4
-                  className="flex text-[65px] font-medium font-MuseoModerno justify-around"
-                  style={{ color: '#46A7AE' }}
-                >
-                  <p className=" text-main font-NanumSquareNeo text-xl pt-14 pr-5">
-                    <span className="font-bold text-[18px] mr-3">달성일</span>{' '}
-                    <span className="font-MuseoModerno text-lg font-medium">
-                      282 <span style={{ color: '#D9D9D9' }}>/</span> 364
-                    </span>
-                  </p>
-                  <span className="font-normal font-MuseoModerno">
-                    82 <span className="text-5xl font-bold pt-7">%</span>
+              <h4
+                className="flex text-[65px] font-medium font-MuseoModerno justify-around"
+                style={{ color: '#46A7AE' }}
+              >
+                <p className=" text-main font-NanumSquareNeo text-xl pt-14 pr-5">
+                  <span className="font-bold text-[18px] mr-3">달성일</span>{' '}
+                  <span className="font-MuseoModerno text-lg font-medium">
+                    282 <span style={{ color: '#D9D9D9' }}>/</span> 364
                   </span>
-                </h4>
-                <Barchart />
-              </div>
+                </p>
+                <span className="font-normal font-MuseoModerno">
+                  82 <span className="text-5xl font-bold pt-7">%</span>
+                </span>
+              </h4>
+              <Barchart />
             </div>
           </div>
 
@@ -273,12 +270,7 @@ const DailyMenu = () => {
           <div className="w-full absolute top-0 left-0 z-999999">
             <Modal open={modalOpen} close={closeModal}>
               {selectedItem && (
-                <FoodModal
-                  item={selectedItem}
-                  close={closeModal}
-                  foodList={foodList}
-                  setFoodList={setFoodList}
-                />
+                <FoodModal item={selectedItem} close={closeModal} />
               )}
             </Modal>
           </div>
