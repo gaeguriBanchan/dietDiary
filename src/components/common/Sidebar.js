@@ -1,11 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+/** @format */
+
+import React from 'react';
+import { Link } from 'react-router-dom';
 // 임시 로고
-import logo from "../../assets/images/285645_user_icon.png";
-import food from "../../assets/images/food.png";
-import water from "../../assets/images/water.png";
-import drug from "../../assets/images/drug.png";
-import me from "../../assets/images/man.png";
+import logo from '../../assets/images//icon/logo_d-day.png';
+import food from '../../assets/images/food.png';
+import water from '../../assets/images/water.png';
+import drug from '../../assets/images/drug.png';
+import me from '../../assets/images/man.png';
 
 export const Sidebar = () => {
   return (

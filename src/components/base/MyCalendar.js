@@ -1,26 +1,26 @@
 /** @format */
-import icon_c_true from "../../assets/images/icon/icon_c_true.png";
-import icon_c_false from "../../assets/images/icon/icon_c_false.png";
-import React from "react";
-import Calendar from "react-calendar";
+import icon_c_true from '../../assets/images/icon/icon_c_true.png';
+import icon_c_false from '../../assets/images/icon/icon_c_false.png';
+import React from 'react';
+import Calendar from 'react-calendar';
 
 // 날짜 관련 라이브러리
-import moment from "moment/moment";
+import moment from 'moment/moment';
 // 한글로 출력하게 해줌.
-import "moment/locale/ko";
-import { useState } from "react";
+import 'moment/locale/ko';
+import { useState } from 'react';
 
 const MyCalendar = ({ goalList, changeDay }) => {
   console.log(goalList);
   const [value, onChange] = useState(new Date());
   const calendarMonthFormat = {
-    monthShort: "MMM",
+    monthShort: 'MMM',
   };
   const showTile = ({ date, view }) => {
     let html = [];
     let obj = goalList.find((item, index) => {
       if (
-        item.date === moment(date).format("YYYY-MM-DD") &&
+        item.date === moment(date).format('YYYY-MM-DD') &&
         item.totalCal > 0
       ) {
         return item;
@@ -32,7 +32,7 @@ const MyCalendar = ({ goalList, changeDay }) => {
         <div key={obj.date}>
           <img
             key={`todoData_${moment(date)}}`}
-            src={obj.goal ? icon_c_true : icon_c_false}
+            src={obj.goal ? icon_c_false : icon_c_true}
             alt="아이콘"
             style={{ width: 20, height: 20 }}
           />
@@ -58,7 +58,7 @@ const MyCalendar = ({ goalList, changeDay }) => {
         calendarType="US"
         onChange={onChange}
         value={value}
-        formatDay={(locale, date) => moment(date).format("D")}
+        formatDay={(locale, date) => moment(date).format('D')}
         formatShortMonth={calendarMonthFormat}
         tileContent={showTile}
       />
