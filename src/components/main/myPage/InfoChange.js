@@ -139,6 +139,7 @@ const InfoChange = () => {
         .catch((err) => console.log(err));
     }
     toggleChange();
+    window.scrollTo(0, 0);
   };
   useEffect(() => {
     console.log("사용자 정보 InfoChange userInfo : ", userInfo);

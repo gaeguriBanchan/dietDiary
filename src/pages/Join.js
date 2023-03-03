@@ -168,7 +168,8 @@ const Join = () => {
       .then((res) => {
         console.log(res.data);
         alert("회원가입 완료");
-        navigate("/today");
+        navigate("/login");
+        window.scrollTo(0, 0);
       })
       .catch((err) => {
         console.log(err);
