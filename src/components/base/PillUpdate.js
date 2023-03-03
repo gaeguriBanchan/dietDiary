@@ -51,23 +51,23 @@ const PillUpdate = () => {
     getPillData();
   }, []);
 
-  //
+  // 약 추가
   const btnClick = (e) => {
     e.preventDefault();
+    const params = {
+      piName: name,
+      piAmount: count,
+    };
     if (name === "") {
       alert("이름을 입력해주세요");
     }
     if (count === "") {
       alert("횟수를 입력해주세요");
     }
-    const params = {
-      piName: name,
-      piAmount: count,
-    };
     axios
       .put(`http://192.168.0.16:9876/api/pill/add?token=${miToken}`, params)
       .then((res) => {
-        alert(res.data.message);
+        console.log(res);
         setEdit(() => {
           if (Edit.EditBt) {
             return { name: "추가", EditBt: false };
@@ -80,6 +80,7 @@ const PillUpdate = () => {
         console.log("실패^^", err);
       });
   };
+  useEffect(() => {}, []);
 
   // 약 삭제
   const [selPill, setSelPill] = useState("");
@@ -112,55 +113,36 @@ const PillUpdate = () => {
       {Edit.name === "추가" ? (
         <>
           <div className="grid mb-6">
-            <div className="pill-left">
-              <div className="pill">
-                <label htmlFor="pill" className={styles.labelradio}>
-                  <span>종합 영양제</span>
-                  <input type={"checkbox"} className={styles.inputradio} />
-                  <input type={"checkbox"} className={styles.inputradio} />
-                  <input type={"checkbox"} className={styles.inputradio} />
-                </label>
-              </div>
-              <div className="pill">
-                <label htmlFor="pill" className={styles.labelradio}>
-                  <span>비타민</span>
-                  <input type={"checkbox"} className={styles.inputradio} />
-                  <input type={"checkbox"} className={styles.inputradio} />
-                </label>
-              </div>
-            </div>
             <div className="pill-right">
-              <div className="pill-2">
-                <label htmlFor="pill" className={styles.labelradio}>
-                  <span>단백질</span>
-                  <input type={"checkbox"} />
-                  <span>
-                    {Plist.map((item, pillSeq) => {
-                      return (
-                        <div className="flex" key={pillSeq}>
-                          <label htmlFor="">
-                            <p key={pillSeq} className={styles.labelradio}>
+              <label htmlFor="pill" className={styles.labelradio}>
+                <span>
+                  {Plist.map((item, pillSeq) => {
+                    return (
+                      <div className="flex" key={pillSeq}>
+                        <label htmlFor="">
+                          <p key={pillSeq} className={styles.labelradio}>
+                            <span className="text-[#0C3547] font-semibold pr-2 leading-7 text-[17px]">
+                              <span className="pr-1">&#183;</span>
                               {item.pillName}
-                              {item.pillAmount}
-                              {item.pillSeq}
-                            </p>
-                            <input
-                              type={"checkbox"}
-                              className={styles.inputradio}
-                            />
-                          </label>
-                          <button
-                            className="delBtn font-bold ml-3 text-sm text-[#D76A6A]"
-                            onClick={() => deletePill(item)}
-                          >
-                            X
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </span>
-                </label>
-              </div>
+                            </span>
+                            <span className="mr-1">{item.pillAmount}</span>회
+                          </p>
+                          <input
+                            type={"checkbox"}
+                            className={styles.inputradio}
+                          />
+                        </label>
+                        <button
+                          className="delBtn font-bold ml-3 text-sm text-[#D76A6A]"
+                          onClick={() => deletePill(item)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    );
+                  })}
+                </span>
+              </label>
             </div>
           </div>
           <div onClick={(e) => PillEdit(e)}>
@@ -175,11 +157,15 @@ const PillUpdate = () => {
                 type="text"
                 className="w-full h-14 font-nomal focus:outline-none border border-main rounded-2xl pl-3"
                 placeholder="약의 종류를 입력해주세요"
+                onChange={piName}
+                value={name}
               />
               <input
                 type="number"
                 className="w-full h-14 font-nomal focus:outline-none border border-main rounded-2xl pl-3 mt-3"
                 placeholder="복용 횟수를 입력해주세요"
+                onChange={piAmount}
+                value={count}
               />
             </form>
           </div>

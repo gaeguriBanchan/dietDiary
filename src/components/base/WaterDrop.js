@@ -6,20 +6,20 @@ import bg from "../../assets/images/water_drop_bg.png";
 
 const WaterDrop = () => {
   // 물방울 변경 관련
-  const [cup, setCup] = useState(10);
+  const [cup, setCup] = useState(8);
   // let result = 100 * (1 + count / 100);
   // setCup(result);
   const [count, setCount] = useState(0);
   const plusCount = () => {
     setCount(count + 1);
-    if (count > 9) return setCount(count);
+    if (count > 7) return setCount(count);
   };
   const minusCount = () => {
     return count > 0 ? setCount((prev) => prev - 1) : false;
   };
   const upDown = useRef(null);
   useEffect(() => {
-    upDown.current.style.top = `${-12 * count}px`;
+    upDown.current.style.top = `${-15 * count}px`;
   }, [count]);
 
   return (
