@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Navigate to="/login" />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route element={<Header />}>
-            <Route path="/today" element={<Today />}></Route>
+            {/* <Route path="/today" element={<Today />}></Route> */}
             <Route path="/drink" element={<Drink />}></Route>
             <Route path="/dailyMenu" element={<DailyMenu />}></Route>
             <Route path="/addfood" element={<Addfood />}></Route>

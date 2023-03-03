@@ -12,7 +12,7 @@ export const Sidebar = () => {
     <div className="w-[200px] h-[800px] bg-main rounded-3xl">
       <div className="flex h-full justify-center text-center">
         <div className="grid h-3/5  items-center justify-center align-middle text-center">
-          <Link className="self-center" to="/today">
+          <Link className="self-center" to="/dailyMenu">
             <img className="self-center m-auto" src={logo} alt="logo" />
           </Link>
           <Link

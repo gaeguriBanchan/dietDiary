@@ -12,6 +12,7 @@ import {
   updateKcal,
   updateGoalKg,
   updateWater,
+  updateWeight,
 } from "../../../reducer/userSlice";
 
 const InfoChange = () => {
@@ -44,6 +45,7 @@ const InfoChange = () => {
   const [miKcal, setMiKcal] = useState(userInfo.miKcal);
   const [miGoalKg, setMiGoalKg] = useState(userInfo.miGoalKg);
   const [miWater, setMiWater] = useState(userInfo.miWater);
+  const [miWeight, setMiWeight] = useState(userInfo.miWeight);
 
   const userInfoUpdate = async () => {
     const newUserInfo = {
@@ -63,7 +65,7 @@ const InfoChange = () => {
     // console.log("기존 정보dday: ", dday);
     // console.log("신규 정보 miKcal: ", ddayNow);
     if (dday !== ddayNow) {
-      alert("목표날짜 수정");
+      // alert("목표날짜 수정");
       await axios
         .patch(
           `http://192.168.0.16:9876/api/member/update/day?time=${ddayNow}&token=${user.miToken}`
@@ -77,7 +79,7 @@ const InfoChange = () => {
     // console.log("기존 정보 user.miKcal: ", user.miKcal);
     // console.log("신규 정보 miKcal: ", miKcal);
     if (user.miKcal !== miKcal) {
-      alert("목표 칼로리 수정");
+      // alert("목표 칼로리 수정");
       await axios
         .patch(
           `http://192.168.0.16:9876/api/member/update/kcal?cal=${miKcal}&token=${user.miToken}`
@@ -93,7 +95,7 @@ const InfoChange = () => {
     // console.log("기존 정보 user.miGoalKg: ", user.miGoalKg);
     // console.log("신규 정보 miGoalKg: ", miGoalKg);
     if (user.miGoalKg !== miGoalKg) {
-      alert("몸무게 목표 수정");
+      // alert("몸무게 목표 수정");
       await axios
         .patch(
           `http://192.168.0.16:9876/api/member/update/kg?weight=${miGoalKg}&token=${user.miToken}`
@@ -110,7 +112,7 @@ const InfoChange = () => {
     // console.log("기존 정보 user.miWater: ", user.miWater);
     // console.log("신규 정보 miWater: ", miWater);
     if (user.miWater !== miWater) {
-      alert("음수량 수정");
+      // alert("음수량 수정");
       await axios
         .patch(
           `http://192.168.0.16:9876/api/member/update/water?water=${miWater}&token=${user.miToken}`
@@ -122,6 +124,20 @@ const InfoChange = () => {
         })
         .catch((err) => console.log(err));
     }
+    if (user.miWeight !== miWeight) {
+      // alert("몸무게 수정");
+      await axios
+        .put(
+          `http://192.168.0.16:9876/api/weight/add?token=${user.miToken}&weight=${miWeight}`
+        )
+        .then((res) => {
+          console.log(res.data);
+          newUserInfo.miWeight = miWeight;
+
+          dispatch(updateWeight(miWeight));
+        })
+        .catch((err) => console.log(err));
+    }
     toggleChange();
   };
   useEffect(() => {
@@ -129,7 +145,7 @@ const InfoChange = () => {
   }, [userInfo]);
   return (
     <>
-      <ProfileChange userInfo={userInfo} />
+      <ProfileChange userInfo={userInfo} setMiWeight={setMiWeight} />
       <GoalChange
         userInfo={userInfo}
         ddayNow={ddayNow}

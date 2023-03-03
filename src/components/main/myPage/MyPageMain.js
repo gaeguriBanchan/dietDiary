@@ -16,7 +16,7 @@ const MyPageMain = ({ userInfo }) => {
       <MyPageProfile userInfo={userInfo} />
       <Goal userInfo={userInfo} />
       <Weight userInfo={userInfo} />
-      <WeightGraph />
+      {/* <WeightGraph userInfo={userInfo} /> */}
     </>
   );
 };

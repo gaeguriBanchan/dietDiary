@@ -1,11 +1,14 @@
 import { ResponsiveLine } from "@nivo/line";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const WeightGraph = () => {
+const WeightGraph = ({ userInfo }) => {
+  const [weightData, setWeightData] = useState();
+  console.log(userInfo);
   const data = [
     {
       id: "주간 체중변화",
-      data: [
+      wdata: [
         {
           x: "월",
           y: "80kg",
@@ -37,6 +40,32 @@ const WeightGraph = () => {
       ],
     },
   ];
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `http://192.168.0.16:9876/api/weight/list/week?token=token1&date=2023-02-15`
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       // 사용자정보 업데이트
+  //       setWeightData(res.data.data);
+  //       console.log(weightData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+  // console.log(weightData);
+  // const pieChartData = weightData.map((item) => {
+  //   let wdata = {
+  //     x: item.weiDate,
+  //     y: item.weiWeight,
+  //   };
+  //   return wdata;
+  // });
+  // console.log(pieChartData && pieChartData);
+  // const data = [{ id: "주간 체중변화", data: pieChartData }];
+  // console.log(data);
   return (
     <div className="w-full h-full bg-white rounded-2xl border mb-3">
       <p className=" text-xl text-main m-8 mb-0">체중변화 그래프</p>
@@ -114,8 +143,10 @@ const WeightGraph = () => {
         />
       </div>
       <div className="flex justify-end mb-5 pr-10 text-center items-center">
-        <p className="text-textGray text-m font-normal pr-5">2월1일 금요일</p>
-        <p className="text-textBlack text-xl font-medium font-MuseoModerno">85kg</p>
+        <p className="text-textGray text-m font-normal pr-5">3월3일 금요일</p>
+        <p className="text-textBlack text-xl font-medium font-MuseoModerno">
+          85kg
+        </p>
       </div>
     </div>
   );

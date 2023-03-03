@@ -58,6 +58,9 @@ const userSlice = createSlice({
     updateWater: (state, action) => {
       state.miWater = action.payload;
     },
+    updateWeight: (state, action) => {
+      state.miWeight = action.payload;
+    },
 
     logOut: (state, action) => {
       state.miAddress = '';
@@ -89,4 +92,5 @@ export const {
   updateKcal,
   updateGoalKg,
   updateWater,
+  updateWeight,
 } = userSlice.actions;
