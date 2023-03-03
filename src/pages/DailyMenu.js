@@ -33,8 +33,8 @@ const DailyMenu = () => {
   const miToken = user.miToken;
 
   // Card 목록을 출력하는 useEffect
-  const getFoodList = (_day) => {
-    axios
+  const getFoodList = async (_day) => {
+    await axios
       .get(
         // "http://192.168.0.16:9876/api/diet/list?token=token1&date=2023-02-23T00%3A00%3A00"
         `http://192.168.0.16:9876/api/diet/list?token=${miToken}&date=${_day}`
@@ -49,6 +49,7 @@ const DailyMenu = () => {
       })
       .catch();
   };
+
   useEffect(() => {
     // 오늘날짜 목록 가져오기
     getFoodList(
@@ -57,13 +58,18 @@ const DailyMenu = () => {
         moment(new Date()).format('hh:mm')
     );
   }, []);
+  useEffect(() => {
+    getFoodList();
+  }, []);
 
   // 결과를 출력하는 useEffect
   useEffect(() => {
+    let year = moment(new Date()).format('YYYY');
+    let month = moment(new Date()).format('M');
     // 해당년/월에 목표 달성 여부를 출력합니다 / 회원 토큰, 년, 월을 입력하세요.
     axios
       .get(
-        `http://192.168.0.16:9876/api/cal/month?token=${miToken}&year=2023&month=2`
+        `http://192.168.0.16:9876/api/cal/month?token=${miToken}&year=${year}&month=${month}`
       )
       .then((res) => {
         // console.log("결과", res);
@@ -161,8 +167,12 @@ const DailyMenu = () => {
 
                   {foodList.map((item, index) => {
                     return (
-                      <div onClick={() => openModal(item)}>
-                        <FoodCard item={item} key={index} />
+                      <div onClick={() => openModal(item)} key={index}>
+                        <FoodCard
+                          item={item}
+                          key={index}
+                          getFoodList={getFoodList}
+                        />
                       </div>
                     );
                   })}
@@ -186,9 +196,7 @@ const DailyMenu = () => {
               </div>
             </div>
             <div className="mx-4">
-              <div className=" grid grid-cols-3 ">
-                <DailyDiet />
-              </div>
+              <DailyDiet />
             </div>
           </div>
 
@@ -196,7 +204,6 @@ const DailyMenu = () => {
             <Title name={'주간 섭취 칼로리'} />
             <Linechart />
           </Background>
-
           <div className="flex justify-between">
             <div className="bg-white mb-8 border rounded-2xl h-1/4">
               <div className="m-8">
@@ -263,12 +270,7 @@ const DailyMenu = () => {
           <div className="w-full absolute top-0 left-0 z-999999">
             <Modal open={modalOpen} close={closeModal}>
               {selectedItem && (
-                <FoodModal
-                  item={selectedItem}
-                  close={closeModal}
-                  foodList={foodList}
-                  setFoodList={setFoodList}
-                />
+                <FoodModal item={selectedItem} close={closeModal} />
               )}
             </Modal>
           </div>

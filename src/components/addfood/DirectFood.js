@@ -6,22 +6,23 @@ import Memo from '../base/Memo';
 import RountButton from '../base/RoundButon';
 import axios from 'axios';
 import useInput from './useinput';
+import { useNavigate } from 'react-router';
 
-const DirectFood = ({ addDirectFood }) => {
+const DirectFood = ({ addDirectFood, miToken }) => {
+  const navigate = useNavigate();
   // 이미지 업로드 및 미리보기
   const [imgFile, setImgFile] = useState('');
   const imgRef = useRef(null);
 
   const [foodName, userFoodName] = useInput('');
   const [foodKcal, userFoodKcal] = useInput('');
-  const [foodContent, userFoodContent] = useInput('');
+  const [memoContent, userMemoContent] = useInput('');
 
   let initVal = {
-    menu: '떡볶이',
-    kcal: 480,
-    content: 'string',
+    menu: foodName,
+    kcal: foodKcal,
+    content: memoContent,
   };
-  const [fooddata, SetFoodData] = useState(initVal);
 
   const onChangeImg = async (e) => {
     e.preventDefault();
@@ -42,16 +43,16 @@ const DirectFood = ({ addDirectFood }) => {
 
       // 서버로 이미지를 임시로 보내고 url 글자를 받아오는 코드 / 일반적인 방법
       // 파일을 강제로 업로드 한다.
-      const formData = new FormData();
-      formData.append('files', uploadFile);
-      await axios({
-        method: 'post',
-        url: '/api/files/images',
-        data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      // const formData = new FormData();
+      // formData.append('files', uploadFile);
+      // await axios({
+      //   method: 'post',
+      //   url: '/api/files/images',
+      //   data: formData,
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // });
     }
   };
 
@@ -61,16 +62,32 @@ const DirectFood = ({ addDirectFood }) => {
 
   console.log(imgFile);
 
-  useEffect(() => {
+  // 직접 식단 등록
+  const directAdd = (e) => {
+    console.log('직접 식단 등록');
+    const header = {
+      headers: {},
+    };
+    const formData = new FormData();
+    formData.append('file', imgFile);
+
+    const blob = new Blob([JSON.stringify(initVal)], {
+      type: 'multipart/form-data',
+    });
+    formData.append('data', blob);
+    // formData.append('data', initVal);
+    formData.append('token', miToken);
+
     axios
-      .put('http://192.168.0.16:9876/api/diet/add')
+      .put('http://192.168.0.16:9876/api/diet/add', formData, header)
       .then((res) => {
         console.log(res.data);
+        alert(res.data.message);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
 
   console.log(foodName);
 
@@ -83,6 +100,7 @@ const DirectFood = ({ addDirectFood }) => {
               <input
                 className="w-full bg-none focus:outline-none font-normal "
                 placeholder="음식이름"
+                name={foodName}
                 value={foodName}
                 onChange={(e) => userFoodName(e)}
               />
@@ -93,6 +111,7 @@ const DirectFood = ({ addDirectFood }) => {
               <span className="w-1/2 text-textBlack">칼로리</span>
               <label className="flex">
                 <input
+                  name={foodKcal}
                   value={foodKcal}
                   onChange={(e) => userFoodKcal(e)}
                   type="text"
@@ -101,9 +120,8 @@ const DirectFood = ({ addDirectFood }) => {
                 <span className="text-textBlack">Kcal</span>
               </label>
             </div>
-            <div className="flex w-1/2">
+            <div className="w-1/2">
               <RountButton name={'취소'} text={'main'} color={'white'} />
-              <RountButton name={'저장'} text={'white'} color={'main'} />
             </div>
           </div>
         </form>
@@ -118,6 +136,7 @@ const DirectFood = ({ addDirectFood }) => {
                 className="w-[500px] h-[400px] bg-main rounded-2xl mb-8"
               />
               <input
+                name={imgFile}
                 type="file"
                 accept="image/*"
                 onInput={onChangeImg}
@@ -130,9 +149,9 @@ const DirectFood = ({ addDirectFood }) => {
             </div>
           </div>
         </div>
-        <Memo />
-
-        <BarButton name={'등록'} color={'main'} handleSubmit={addDirectFood} />
+        <Memo memoContent={memoContent} userMemoContent={userMemoContent} />
+        
+        <BarButton name={'등록'} color={'main'} handleSubmit={directAdd} />
       </>
     </div>
   );

@@ -8,6 +8,7 @@ import style from '../addfood/foodlist.module.css';
 import Memo from '../base/Memo';
 import BarButton from '../base/BarButton';
 import FoodListItem from './FoodListItem';
+import useInput from './useinput';
 
 const FoodList = ({
   foodContent,
@@ -19,19 +20,7 @@ const FoodList = ({
   radioVal,
   addBycal,
 }) => {
-  // const [foodContent, setFoodContent] = useState([]);
-  // const [radioVal, setRadioVal] = useState('');
-  // const [dceKcal, setDceKcal] = useState(0);
-  // const [dceStandard, setDceStandard] = useState(0);
-  // const [sujaebi, setSujaebi] = useState('');
-  // const selectRadio = (_item) => {
-  //   setRadioVal(_item.dceContent);
-  //   setDceKcal(_item.dceKcal);
-  //   setDceStandard(_item.dceStandard);
-  //   setSujaebi(_item.sujaebi);
-  //   console.log(radioVal);
-  // };
-  // console.log(radioVal);
+  const [memoContent, userMemoContent] = useInput('');
 
   useEffect(() => {
     axios
@@ -82,7 +71,7 @@ const FoodList = ({
               </p>
             </div>
           </div>
-          <Memo />
+          <Memo memoContent={memoContent} userMemoContent={userMemoContent} />
           <BarButton name={'등록'} color={'main'} handleSubmit={addBycal} />
         </>
       )}

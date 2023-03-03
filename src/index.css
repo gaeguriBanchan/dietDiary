@@ -132,7 +132,9 @@ body::-webkit-scrollbar-thumb {
   border-left: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
 }
-.react-calendar__month-view__days > button:nth-child(1),
+
+
+/* .react-calendar__month-view__days > button:nth-child(1),
 .react-calendar__month-view__days > button:nth-child(8),
 .react-calendar__month-view__days > button:nth-child(15),
 .react-calendar__month-view__days > button:nth-child(22),
@@ -147,7 +149,7 @@ body::-webkit-scrollbar-thumb {
 .react-calendar__month-view__days > button:nth-child(34),
 .react-calendar__month-view__days > button:nth-child(35) {
   border-bottom: none;
-}
+} */
 
 .react-calendar__month-view__days__day--weekend {
   color: #d10000;
