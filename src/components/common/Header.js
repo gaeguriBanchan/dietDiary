@@ -54,7 +54,7 @@ const Header = () => {
             className="ml-2"
           />
           <button
-            className="flex border-2 border-main rounded-md px-1 ml-3 mr-1 mb-5 text-center text-[15px] bg-main text-white  hover:font-semibold hover:bg-white hover:text-main"
+            className="flex border-2 border-main rounded-md px-1 ml-3 mr-1 mb-6 text-center text-[15px] bg-main text-white  hover:font-semibold hover:bg-white hover:text-main"
             onClick={kakaoLogOut}
           >
             로그아웃
