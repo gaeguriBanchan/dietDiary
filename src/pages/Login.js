@@ -222,20 +222,30 @@ const Login = () => {
               </p>
             </Link>
             <button className="bg-[#FEE500] w-[600px] h-[90px] rounded-xl my-3 flex text-[26px]">
-              <img className="w-full top-0" src={kakaoLoginBt} alt="" src="" />
+              <img
+                className="w-full top-0"
+                src={kakaoLoginBt}
+                alt=""
+                srcset=""
+              />
             </button>
             <button
               id="naverIdLogin"
               ref={naverRef}
               style={{ display: "none" }}
             >
-              <img src={naverLoginBt} alt="" src="" />
+              <img src={naverLoginBt} alt="" srcset="" />
             </button>
             <button
               className="bg-[#03C75A] w-[600px] h-[90px] rounded-xl my-3 flex text-[26px]"
               // onClick={naverLogin}
             >
-              <img className="w-full top-0" src={naverLoginBt} alt="" src="" />
+              <img
+                className="w-full top-0"
+                src={naverLoginBt}
+                alt=""
+                srcset=""
+              />
             </button>
           </div>
         </div>
