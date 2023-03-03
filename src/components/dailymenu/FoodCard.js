@@ -45,10 +45,10 @@ const FoodCard = ({ item, open, close, header }) => {
       </div>
       <div className="flex flex-col items-center justify-between">
         <span className="text-lg text-textBlack my-4">{item.dfMenu}</span>
-        <p className="flex flex-col h-full font-MuseoModerno font-normal ">
+        <div className="flex flex-col h-full font-MuseoModerno font-normal ">
           <p className="text-xs text-second">{time}</p>
           <p className="text-lg text-textGray">{item.dfKcal}Kcal</p>
-        </p>
+        </div>
       </div>
     </div>
   );

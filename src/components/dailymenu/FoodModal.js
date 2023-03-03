@@ -57,7 +57,6 @@ const FoodModal = ({ close, foodList, item, getFoodList }) => {
   });
 
   // 식단 삭제
-
   console.log(getFoodList);
   const delFood = () => {
     let params = {

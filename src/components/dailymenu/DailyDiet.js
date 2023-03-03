@@ -1,37 +1,51 @@
 /** @format */
 
 import axios from 'axios';
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const DailyDiet = () => {
-  // useEffect(() => {
-  //   axios
-  //     .get('http://192.168.0.16:9876/api/suggest/suggest/list?token=token1')
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch();
-  // }, []);
+  const user = useSelector((state) => state.user);
+  const miToken = user.miToken;
+
+  const [sugges, setSugges] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://192.168.0.16:9876/api/suggest/suggest/list?token=${miToken}`)
+      .then((res) => {
+        console.log(res.data.data);
+        setSugges(res.data.data);
+      })
+      .catch();
+  }, []);
+
+  //  dietContent  :   "새우, 닭가슴살 100g, 야채 2컵"
+  //  dietDate :  "2023-03-03"
+  //  dietHard :  1
+  //  dietSeq :  37
+  //  dietStatus :  4
+  //  dietTotalCal :  225
 
   return (
-    <div className=" bg-white drop-shadow-md py-4 px-5 rounded-2xl mx-[10px] mb-[20px] ">
-      <div className="bg-main w-full h-40"></div>
-      <p className="mt-5 mb-4 text-xl text-main text-center">아침</p>
-      <p className="flex justify-between">
-        <span>삶은 계란</span>
-        <span>156Kcal</span>
-      </p>
-      <p className="flex justify-between">
-        <span>삶은 계란</span>
-        <span>156Kcal</span>
-      </p>
-      <p className="flex justify-between">
-        <span>삶은 계란</span>
-        <span>156Kcal</span>
-      </p>
+    <div className="px-8 mb-4">
+      {sugges.map((item, dietSeq) => {
+        return (
+          <div className="flex justify-between">
+            <span className="text-textGray">{item.dietContent}</span>
+            <span className="text-textBlack">{item.dietTotalCal} kcal</span>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 export default DailyDiet;
+
+// <p>
+// <span>총 섭취 칼로리</span>
+// <span>
+//   {Number(item.dietTotalCal) * Number(sugges.length)}kcal
+// </span>
+// </p>

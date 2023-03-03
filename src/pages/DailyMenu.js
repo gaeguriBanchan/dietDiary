@@ -58,13 +58,18 @@ const DailyMenu = () => {
         moment(new Date()).format('hh:mm')
     );
   }, []);
+  useEffect(() => {
+    getFoodList();
+  }, []);
 
   // 결과를 출력하는 useEffect
   useEffect(() => {
+    let year = moment(new Date()).format('YYYY');
+    let month = moment(new Date()).format('M');
     // 해당년/월에 목표 달성 여부를 출력합니다 / 회원 토큰, 년, 월을 입력하세요.
     axios
       .get(
-        `http://192.168.0.16:9876/api/cal/month?token=${miToken}&year=2023&month=2`
+        `http://192.168.0.16:9876/api/cal/month?token=${miToken}&year=${year}&month=${month}`
       )
       .then((res) => {
         // console.log("결과", res);
@@ -162,8 +167,12 @@ const DailyMenu = () => {
 
                   {foodList.map((item, index) => {
                     return (
-                      <div onClick={() => openModal(item)}>
-                        <FoodCard item={item} key={index} getFoodList={getFoodList}/>
+                      <div onClick={() => openModal(item)} key={index}>
+                        <FoodCard
+                          item={item}
+                          key={index}
+                          getFoodList={getFoodList}
+                        />
                       </div>
                     );
                   })}
@@ -187,16 +196,14 @@ const DailyMenu = () => {
               </div>
             </div>
             <div className="mx-4">
-              <div className=" grid grid-cols-3 ">
-                <DailyDiet />
-              </div>
+              <DailyDiet />
             </div>
           </div>
-
+          {/* 
           <Background>
             <Title name={'주간 섭취 칼로리'} />
             <Linechart />
-          </Background>
+          </Background> */}
 
           <div className="flex justify-between">
             <div className="bg-white mb-8 border rounded-2xl h-1/4">
@@ -231,26 +238,28 @@ const DailyMenu = () => {
                 </span>
               </p>
             </div>
-            <div className="goalGraph bg-white mb-8 border rounded-2xl ">
-              <p className="text-xl text-main font-NanumSquareNeo font-bold p-8">
-                목표 달성 그래프
-              </p>
-
-              <h4
-                className="flex text-[65px] font-medium font-MuseoModerno justify-around"
-                style={{ color: '#46A7AE' }}
-              >
-                <p className=" text-main font-NanumSquareNeo text-xl pt-14 pr-5">
-                  <span className="font-bold text-[18px] mr-3">달성일</span>{' '}
-                  <span className="font-MuseoModerno text-lg font-medium">
-                    282 <span style={{ color: '#D9D9D9' }}>/</span> 364
-                  </span>
+            <div className="h-full">
+              <div className="goalGraph bg-white mb-8 border rounded-2xl ">
+                <p className="text-xl text-main font-NanumSquareNeo font-bold p-8">
+                  목표 달성 그래프
                 </p>
-                <span className="font-normal font-MuseoModerno">
-                  82 <span className="text-5xl font-bold pt-7">%</span>
-                </span>
-              </h4>
-              <Barchart />
+
+                <h4
+                  className="flex text-[65px] font-medium font-MuseoModerno justify-around"
+                  style={{ color: '#46A7AE' }}
+                >
+                  <p className=" text-main font-NanumSquareNeo text-xl pt-14 pr-5">
+                    <span className="font-bold text-[18px] mr-3">달성일</span>{' '}
+                    <span className="font-MuseoModerno text-lg font-medium">
+                      282 <span style={{ color: '#D9D9D9' }}>/</span> 364
+                    </span>
+                  </p>
+                  <span className="font-normal font-MuseoModerno">
+                    82 <span className="text-5xl font-bold pt-7">%</span>
+                  </span>
+                </h4>
+                <Barchart />
+              </div>
             </div>
           </div>
 
