@@ -124,32 +124,6 @@ const Addfood = () => {
       });
   };
 
-  // 식단 직접 등록
-  const addDirectFood = () => {
-    // let body = {
-    //   data :  {{
-    //     "menu": "떡볶이",
-    //     "kcal": 480,
-    //     "content": "string"
-    //   }},
-    //   file: string
-    //   token: miToken,
-    // };
-    // axios
-    //   .get(
-    //     `http://192.168.0.16:9876/api/diet/add`,
-    //     body
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //     alert(res.data.message);
-    //     navigate('/dailymenu');
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-  };
-
   return (
     <>
       <Helmet>
@@ -223,9 +197,8 @@ const Addfood = () => {
                 addBycal={addBycal}
               />
             ) : (
-              <DirectFood handleSubmit={addDirectFood} />
+              <DirectFood miToken={miToken} />
             )}
-    
           </Background>
         </div>
       </div>

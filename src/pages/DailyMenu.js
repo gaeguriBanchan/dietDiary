@@ -33,8 +33,8 @@ const DailyMenu = () => {
   const miToken = user.miToken;
 
   // Card 목록을 출력하는 useEffect
-  const getFoodList = (_day) => {
-    axios
+  const getFoodList = async (_day) => {
+    await axios
       .get(
         // "http://192.168.0.16:9876/api/diet/list?token=token1&date=2023-02-23T00%3A00%3A00"
         `http://192.168.0.16:9876/api/diet/list?token=${miToken}&date=${_day}`
@@ -49,6 +49,7 @@ const DailyMenu = () => {
       })
       .catch();
   };
+
   useEffect(() => {
     // 오늘날짜 목록 가져오기
     getFoodList(
@@ -162,7 +163,7 @@ const DailyMenu = () => {
                   {foodList.map((item, index) => {
                     return (
                       <div onClick={() => openModal(item)}>
-                        <FoodCard item={item} key={index} />
+                        <FoodCard item={item} key={index} getFoodList={getFoodList}/>
                       </div>
                     );
                   })}

@@ -8,17 +8,16 @@ import BarButton from '../base/BarButton';
 import BarButtonRed from '../base/BarButtonRed';
 import dummyData from './dummyData.json';
 import { useSelector } from 'react-redux';
+import Memo from '../base/Memo';
+import useInput from '../addfood/useinput';
 
-const FoodModal = ({ close, foodList, item }) => {
+const FoodModal = ({ close, foodList, item, getFoodList }) => {
   const [Edit, setEdit] = useState({ name: '수정', EditBt: false });
-  const [totalLength, setTotalLength] = useState('');
+  const [memoContent, userMemoContent] = useInput('');
 
   const user = useSelector((state) => state.user);
   const miToken = user.miToken;
 
-  const tL = (e) => {
-    setTotalLength(e.target.value);
-  };
   const dietEdit = (e) => {
     setEdit(() => {
       if (Edit.EditBt) {
@@ -28,6 +27,7 @@ const FoodModal = ({ close, foodList, item }) => {
       }
     });
   };
+
   //시간표기
   const data = item.dfRegDt;
   let a = data.slice(11, 16);
@@ -58,6 +58,7 @@ const FoodModal = ({ close, foodList, item }) => {
 
   // 식단 삭제
 
+  console.log(getFoodList);
   const delFood = () => {
     let params = {
       token: miToken,
@@ -72,6 +73,7 @@ const FoodModal = ({ close, foodList, item }) => {
         console.log(res);
         alert(res.data.message);
         close();
+        getFoodList();
       })
       .catch((err) => {
         console.log(err);
@@ -132,16 +134,16 @@ const FoodModal = ({ close, foodList, item }) => {
 
       // 서버로 이미지를 임시로 보내고 url 글자를 받아오는 코드 / 일반적인 방법
       // 파일을 강제로 업로드 한다.
-      const formData = new FormData();
-      formData.append('files', uploadFile);
-      await axios({
-        method: 'post',
-        url: '/api/files/images',
-        data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      // const formData = new FormData();
+      // formData.append('files', uploadFile);
+      // await axios({
+      //   method: 'post',
+      //   url: '/api/files/images',
+      //   data: formData,
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // });
     }
   };
 
@@ -207,14 +209,17 @@ const FoodModal = ({ close, foodList, item }) => {
                   alt={item.dfImg}
                   className="w-full h-full"
                 />
+              </div>
+              <div className="photo w-[525px] mt-8 ">
                 <input
+                  name={imgFile}
                   type="file"
                   accept="image/*"
                   onInput={onChangeImg}
                   ref={imgRef}
                   style={{ display: 'none' }}
                 ></input>
-                <div onClick={imgUplod} className="w-full mb-8">
+                <div onClick={imgUplod} className="mb-8 w-full">
                   <BarButton name={'사진올리기'} color={'main'} />
                 </div>
               </div>
@@ -229,25 +234,10 @@ const FoodModal = ({ close, foodList, item }) => {
 
               <label className="mb-8 text-5xl font-MuseoModerno font-normal text-center">
                 <input type="text" placeholder={item.dfKcal} />
-                <span>Kcal</span>
+                <span className="text-textBlack">Kcal</span>
               </label>
             </div>
-            <div className="bg-[#F6F6F6] rounded-2xl mb-8">
-              <div className="p-8">
-                <p className="text-textGray font-MuseoModerno font-normal text-[24px]">
-                  memo
-                </p>
-                <textarea
-                  className="font-normal w-full bg-[#F6F6F6] focus:outline-none p-3 text-[24px] resize-none h-[250px]"
-                  maxLength="150"
-                  value={totalLength}
-                  onChange={tL}
-                />
-                <p className=" left-0 text-xs text-textGray flex justify-end">
-                  <span>{totalLength.length}/150</span>
-                </p>
-              </div>
-            </div>
+            <Memo memoContent={memoContent} userMemoContent={userMemoContent} />
             <div className="mb-2" onClick={delFood}>
               <BarButtonRed name={'삭제'} color={'textRed'} />
             </div>

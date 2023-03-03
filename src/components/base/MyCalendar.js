@@ -9,11 +9,12 @@ import moment from "moment/moment";
 import "moment/locale/ko";
 import { useState } from "react";
 
-const MyCalendar = () => {
+const MyCalendar = ({changeDay}) => {
   const [value, onChange] = useState(new Date());
   const calendarMonthFormat = {
     monthShort: "MMM",
   };
+  console.log();
   return (
     <div className="pb-4 px-8">
       <Calendar
